@@ -87,7 +87,7 @@
             Controls.Add(txtPassword);
             Controls.Add(txtUserName);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "frmLogin";
             Text = "frmLogin";
             ResumeLayout(false);

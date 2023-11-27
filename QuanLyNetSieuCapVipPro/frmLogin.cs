@@ -12,6 +12,7 @@ namespace QuanLyNetSieuCapVipPro
 {
     public partial class frmLogin : Form
     {
+        Database db = new Database();
         public frmLogin()
         {
             InitializeComponent();
