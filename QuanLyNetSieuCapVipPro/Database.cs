@@ -28,70 +28,84 @@ namespace QuanLyNetSieuCapVipPro
 
             sql = "CREATE TABLE IF NOT EXISTS \"NGUOICHOI\" (" +
                   "\"MaNguoiChoi\" TEXT," +
-                  "\"TenNguoiDung\" TEXT," +
+                  "\"TenNguoiDung\" TEXT NOT NULL," +
                   "\"SoGioChoiConLai\" TEXT," +
                   "\"SoTienNo\" NUMERIC," +
                   "\"NgayTaoTaiKhoan\" TEXT," +
+                  "\"NguoiTaoTaiKhoan\" TEXT," +
+                  "\"NguoiNapTien\" TEXT," +
+                  "CONSTRAINT \"NC_NguoiNapTien_FK\" FOREIGN KEY(\"NguoiNapTien\") REFERENCES \"ADMIN\"(\"MaAdmin\")," +
+                  "CONSTRAINT \"NC_NguoiTaoTaiKhoan_FK\" FOREIGN KEY(\"NguoiTaoTaiKhoan\") REFERENCES \"ADMIN\"(\"MaAdmin\")," +
                   "CONSTRAINT \"NC_MaNguoiChoi_PK\" PRIMARY KEY(\"MaNguoiChoi\")" +
                   ")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"DOAN\" (" +
-                  "\"MaDoAn\" TEXT," +
-                  "\"TenDoAn\" TEXT NOT NULL," +
-                  "\"Gia\"\t NUMERIC," +
-                  "CONSTRAINT \"DA_MaDoAn_PK\" PRIMARY KEY(\"MaDoAn\"" +
-                  ")";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-
-            sql = "CREATE TABLE IF NOT EXISTS \"NUOCUONG\" (" +
-                  "\"MaNuocUong\" TEXT," +
-                  "\"TenNuocUong\" TEXT NOT NULL," +
+            sql = "CREATE TABLE IF NOT EXISTS \"DICHVU\" (" +
+                  "\"MaDichVu\" TEXT," +
+                  "\"TenDichVu\" TEXT NOT NULL," +
                   "\"Gia\" NUMERIC," +
-                  "CONSTRAINT \"NU_MaNuocUong_PK\" PRIMARY KEY(\"MaNuocUong\")" +
+                  "CONSTRAINT \"DV_MaDichVu_PK\" PRIMARY KEY(\"MaDichVu\")" +
                   ")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"DONHANG_DOAN\" (" +
-                  "\"MaDonHangDoAn\" TEXT," +
-                  "\"MaDoAn\" TEXT," +
-                  "\"MaNguoiChoi\" TEXT," +
-                  "\"ThoiGianDat\" TEXT," +
-                  "CONSTRAINT \"DHDA_MaDonHang_MaDoAn_MaNguoiChoi_PK\" PRIMARY KEY(\"MaDonHangDoAn\",\"MaDoAn\",\"MaNguoiChoi\")," +
-                  "CONSTRAINT \"DHDA_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\")," +
-                  "CONSTRAINT \"DHDA_MaDoAn_FK\" FOREIGN KEY(\"MaDoAn\") REFERENCES \"DOAN\"(\"MaDoAn\")" +
+            sql = "CREATE TABLE IF NOT EXISTS \"ADMIN\" (" +
+                  "\"MaAdmin\" TEXT," +
+                  "\"TenAdmin\" TEXT NOT NULL," +
+                  "\"SDT\" TEXT," +
+                  "\"DiaChi\" TEXT," +
+                  "PRIMARY KEY(\"MaAdmin\")" +
                   ")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"DONHANG_NUOCUONG\" (" +
-                  "\"MaDonHangNuocUong\" TEXT," +
-                  "\"MaNuocUong\" TEXT," +
-                  "\"MaNguoiChoi\" TEXT," +
-                  "\"ThoiGianDat\" TEXT," +
-                  "CONSTRAINT \"DHNU_MaDonHangNuocUong_MaNuocUong_MaNguoiChoi_PK\" PRIMARY KEY(\"MaDonHangNuocUong\",\"MaNuocUong\",\"MaNguoiChoi\")," +
-                  "CONSTRAINT \"DHNU_MaNuocUong_FK\" FOREIGN KEY(\"MaNuocUong\") REFERENCES \"NUOCUONG\"(\"MaNuocUong\")," +
-                  "CONSTRAINT \"DHNU_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\")" +
+            sql = "CREATE TABLE IF NOT EXISTS \"TAIKHOAN\" (" +
+                  "\"MaTaiKhoan\" TEXT NOT NULL," +
+                  "\"MatKhau\" TEXT NOT NULL," +
+                  "CONSTRAINT \"TK_MaTaiKhoan_PK\" PRIMARY KEY(\"MaTaiKhoan\")" +
+                  ")";
+            cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+
+            sql = "CREATE TABLE IF NOT EXISTS \"DANGNHAP_ADMIN\" (" +
+                  "\"MaPhienDangNhap\" TEXT," +
+                  "\"MaAdmin\" TEXT NOT NULL," +
+                  "\"MaMay\" TEXT NOT NULL," +
+                  "\"ThoiGianDangNhap\" TEXT," +
+                  "\"ThoiGianDangXuat\" TEXT," +
+                  "CONSTRAINT \"DNA_MaMay_FK\" FOREIGN KEY(\"MaMay\") REFERENCES \"MAYTINH\"(\"MaMay\")," +
+                  "CONSTRAINT \"DNA_MaAdmin_FK\" FOREIGN KEY(\"MaAdmin\") REFERENCES \"ADMIN\"(\"MaAdmin\")," +
+                  "CONSTRAINT \"DNA_MaPhienDangNhap_MaAdmin_MaMay_PK\" PRIMARY KEY(\"MaPhienDangNhap\",\"MaAdmin\",\"MaMay\")" +
                   ")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
             sql = "CREATE TABLE IF NOT EXISTS \"DANGNHAP_USER\" (" +
-                  "\"MaMay\" TEXT," +
+                  "\"MaMay\" TEXT NOT NULL," +
                   "\"MaNguoiChoi\" TEXT NOT NULL," +
                   "\"ThoiGianDangNhap\" TEXT," +
-                  "\"MatKhau\"TEXT," +
                   "\"ThoiGianLogOut\" TEXT," +
-                  "CONSTRAINT \"DN_MaMay_MaNguoiChoi_ThoiGianDangNhap_PK\" PRIMARY KEY(\"MaMay\",\"MaNguoiChoi\",\"ThoiGianDangNhap\")," +
-                  "FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\")" +
+                  "\"MaPhienDangNhap\" TEXT," +
+                  "CONSTRAINT \"DNU_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\")," +
+                  "CONSTRAINT \"DNU_MaMay_FK\" FOREIGN KEY(\"MaMay\") REFERENCES \"MAYTINH\"(\"MaMay\")," +
+                  "CONSTRAINT \"DN_MaMay_MaNguoiChoi_ThoiGianDangNhap_PK\" PRIMARY KEY(\"MaMay\",\"MaNguoiChoi\",\"MaPhienDangNhap\")" +
                   ")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
-            
-            
+
+            sql = "CREATE TABLE IF NOT EXISTS \"DONHANG_DICHVU\" (" +
+                  "\"MaDonHang\" TEXT," +
+                  "\"MaDichVu\" TEXT NOT NULL," +
+                  "\"MaNguoiChoi\" TEXT NOT NULL," +
+                  "\"ThoiGianDatHang\" TEXT," +
+                  "CONSTRAINT \"DHDV_MaDonHang_MaDichVu_MaNguoiChoi_PK\" PRIMARY KEY(\"MaDonHang\",\"MaDichVu\",\"MaNguoiChoi\")," +
+                  "CONSTRAINT \"DHDV_MaDichVu_FK\" FOREIGN KEY(\"MaDichVu\") REFERENCES \"DICHVU\"(\"MaDichVu\")," +
+                  "CONSTRAINT \"DHDV_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\")" +
+                  ")";
+            cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+
         }
         public void createTable(SQLiteConnection conn)
         {
