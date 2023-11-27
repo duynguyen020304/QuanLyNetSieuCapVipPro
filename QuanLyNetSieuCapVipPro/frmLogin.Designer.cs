@@ -33,18 +33,19 @@
             label1 = new Label();
             label2 = new Label();
             button1 = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // txtUserName
             // 
-            txtUserName.Location = new Point(123, 35);
+            txtUserName.Location = new Point(125, 93);
             txtUserName.Name = "txtUserName";
             txtUserName.Size = new Size(357, 33);
             txtUserName.TabIndex = 0;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(123, 95);
+            txtPassword.Location = new Point(125, 153);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(357, 33);
             txtPassword.TabIndex = 1;
@@ -52,7 +53,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(25, 38);
+            label1.Location = new Point(27, 96);
             label1.Name = "label1";
             label1.Size = new Size(92, 25);
             label1.TabIndex = 2;
@@ -61,7 +62,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(26, 93);
+            label2.Location = new Point(28, 151);
             label2.Name = "label2";
             label2.Size = new Size(91, 25);
             label2.TabIndex = 3;
@@ -69,18 +70,28 @@
             // 
             // button1
             // 
-            button1.Location = new Point(486, 35);
+            button1.Location = new Point(488, 93);
             button1.Name = "button1";
             button1.Size = new Size(103, 93);
             button1.TabIndex = 4;
             button1.Text = "Đăng nhập";
             button1.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(258, 9);
+            label3.Name = "label3";
+            label3.Size = new Size(63, 25);
+            label3.TabIndex = 5;
+            label3.Text = "label3";
+            // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(620, 160);
+            ClientSize = new Size(620, 267);
+            Controls.Add(label3);
             Controls.Add(button1);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -101,5 +112,6 @@
         private Label label1;
         private Label label2;
         private Button button1;
+        private Label label3;
     }
 }
