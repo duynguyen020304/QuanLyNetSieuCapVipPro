@@ -10,9 +10,11 @@ namespace QuanLyNetSieuCapVipPro
     class Authentication
     {
         private Database db = new Database();
-        public bool Auth(string username, string password)
+
+
+        public bool AuthAdminLogin(string username, string password)
         {
-            if (db.getUserPassword(username) == password)
+            if (db.getAdminPassword(username) == password)
             {
                 return true;
             }

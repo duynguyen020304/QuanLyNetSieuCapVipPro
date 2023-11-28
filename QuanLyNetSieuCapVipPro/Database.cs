@@ -61,10 +61,18 @@ namespace QuanLyNetSieuCapVipPro
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"TAIKHOAN\" ( " +
+            sql = "CREATE TABLE IF NOT EXISTS \"TAIKHOAN_ADMIN\" ( " +
                   "\"MaTaiKhoan\" TEXT NOT NULL, " +
                   "\"MatKhau\" TEXT NOT NULL, " +
-                  "CONSTRAINT \"TK_MaTaiKhoan_PK\" PRIMARY KEY(\"MaTaiKhoan\") " +
+                  "CONSTRAINT \"TKADMIN_MaTaiKhoan_PK\" PRIMARY KEY(\"MaTaiKhoan\") " +
+                  ")";
+            cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+
+            sql = "CREATE TABLE IF NOT EXISTS \"TAIKHOAN_USER\" (" +
+                  "\"MaTaiKhoan\"\tTEXT NOT NULL," +
+                  "\"MatKhau\"\tTEXT NOT NULL," +
+                  "CONSTRAINT \"TKUSER_MaTaiKhoan_PK\" PRIMARY KEY(\"MaTaiKhoan\")" +
                   ")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
@@ -107,19 +115,18 @@ namespace QuanLyNetSieuCapVipPro
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
-            
-            sql = "INSERT OR IGNORE INTO TAIKHOAN(MaTaiKhoan, MatKhau) " +
+            sql = "INSERT OR IGNORE INTO TAIKHOAN_ADMIN(MaTaiKhoan, MatKhau) " +
                       "VALUES(\"admin\", \"admin\") ";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
             conn.Close();
         }
-        public void insertDataIntoTaiKhoan(string UserAccount, string Password)
+        public void insertDataIntoTaiKhoanAdmin(string UserAccount, string Password)
         {
             SQLiteConnection conn = new SQLiteConnection(createDBSQL);
             conn.Open();
-            string sql = "INSERT INTO TAIKHOAN(MaTaiKhoan, MatKhau) " +
+            string sql = "INSERT OR IGNORE INTO TAIKHOAN_ADMIN(MaTaiKhoan, MatKhau) " +
                          "VALUES(@MaTaiKhoan, @MatKhau) ";
             var cmd = new SQLiteCommand(sql, conn);
             cmd.Parameters.AddWithValue("@MaTaiKhoan", UserAccount);
@@ -132,7 +139,7 @@ namespace QuanLyNetSieuCapVipPro
         {
             SQLiteConnection conn = new SQLiteConnection(createDBSQL);
             conn.Open();
-            string sql = "INSERT INTO ADMIN(MaAdmin, TenAdmin, SDT, DiaChi) " +
+            string sql = "INSERT OR IGNORE INTO ADMIN(MaAdmin, TenAdmin, SDT, DiaChi) " +
                          "VALUES(@MaAdmin, @TenAdmin, @SDT, @DiaChi) ";
             var cmd = new SQLiteCommand(sql, conn);
             cmd.Parameters.AddWithValue("@MaAdmin", UserAccount);
@@ -143,13 +150,13 @@ namespace QuanLyNetSieuCapVipPro
             conn.Close();
         }
 
-        public string getUserPassword(string UserAccount)
+        public string getAdminPassword(string UserAccount)
         {
             SQLiteConnection conn = new SQLiteConnection(createDBSQL);
             conn.Open();
             string sql = "SELECT MatKhau " +
-                         "FROM TAIKHOAN " +
-                         "WHERE TAIKHOAN.MaTaiKhoan = @UserAccount "; // Corrected parameter syntax
+                         "FROM TAIKHOAN_ADMIN " +
+                         "WHERE TAIKHOAN_ADMIN.MaTaiKhoan = @UserAccount "; // Corrected parameter syntax
             var cmd = new SQLiteCommand(sql, conn);
             cmd.Parameters.AddWithValue("@UserAccount", UserAccount);
             var sqReader = cmd.ExecuteReader();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,18 @@ namespace QuanLyNetSieuCapVipPro
             InitializeComponent();
         }
 
+        public delegate void truyenChoFrmManagement(bool isSuccess = false);
+        public truyenChoFrmManagement truyenTinHieuDangNhapThanhCong;
+
         private bool isExit = false;
+        bool tinHieuChuyenCa = false;
+
+        public frmLogin(bool tinHieu)
+        {
+            tinHieuChuyenCa = tinHieu;
+            InitializeComponent();
+        }
+
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!isExit)
@@ -38,12 +50,16 @@ namespace QuanLyNetSieuCapVipPro
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
             Authentication authentication = new Authentication();
-            if (authentication.Auth(txtUserName.Text.Trim(), txtPassword.Text.Trim()))
+            if (authentication.AuthAdminLogin(txtUserName.Text.Trim(), txtPassword.Text.Trim()))
             {
                 FormClosing -= frmLogin_FormClosing;
-                this.Close();
-                frmManagement management = new frmManagement();
+                if (tinHieuChuyenCa)
+                {
+                    truyenTinHieuDangNhapThanhCong(true);
+                }
+                frmManagement management = new frmManagement(txtUserName.Text);
                 management.Show();
+                this.Close();
             }
             else
             {
