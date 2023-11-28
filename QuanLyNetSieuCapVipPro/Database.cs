@@ -106,6 +106,13 @@ namespace QuanLyNetSieuCapVipPro
                   ")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
+
+            
+            sql = "INSERT OR IGNORE INTO TAIKHOAN(MaTaiKhoan, MatKhau) " +
+                      "VALUES(\"admin\", \"admin\") ";
+            cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+
             conn.Close();
         }
         public void insertDataIntoTaiKhoan(string UserAccount, string Password)

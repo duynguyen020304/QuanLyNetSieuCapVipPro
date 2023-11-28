@@ -11,8 +11,12 @@ namespace QuanLyNetSieuCapVipPro
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            Database db = new Database();
+            db.createDatabase();
             frmLogin login = new frmLogin();
             login.Show();
+            //frmManagement frm = new frmManagement();
+            //frm.Show();
             Application.Run();
         }
     }

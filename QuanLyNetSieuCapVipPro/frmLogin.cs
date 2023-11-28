@@ -12,10 +12,8 @@ namespace QuanLyNetSieuCapVipPro
 {
     public partial class frmLogin : Form
     {
-        Database db = new Database();
         public frmLogin()
         {
-            db.createDatabase();
             InitializeComponent();
         }
 
@@ -42,7 +40,10 @@ namespace QuanLyNetSieuCapVipPro
             Authentication authentication = new Authentication();
             if (authentication.Auth(txtUserName.Text.Trim(), txtPassword.Text.Trim()))
             {
-                MessageBox.Show("Đăng nhập thành công");
+                FormClosing -= frmLogin_FormClosing;
+                this.Close();
+                frmManagement management = new frmManagement();
+                management.Show();
             }
             else
             {
@@ -53,7 +54,7 @@ namespace QuanLyNetSieuCapVipPro
         private void lblTaoTaiKhoan_Click(object sender, EventArgs e)
         {
             FormClosing -= frmLogin_FormClosing;
-            Application.Exit();
+            this.Close();
             frmCreateAccountAdmin createAccountAdmin = new frmCreateAccountAdmin();
             createAccountAdmin.Show();
         }
