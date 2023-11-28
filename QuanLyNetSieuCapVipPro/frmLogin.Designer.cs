@@ -113,11 +113,12 @@
             Controls.Add(label1);
             Controls.Add(txtPassword);
             Controls.Add(txtUserName);
-            FormClosing += frmLogin_FormClosing;
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(5);
             Name = "frmLogin";
             Text = "frmLogin";
+            FormClosing += frmLogin_FormClosing;
+            Load += frmLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -19,7 +19,7 @@ namespace QuanLyNetSieuCapVipPro
 
         private void txtHoTen_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != ' ')
             {
                 e.Handled = true;
             }
@@ -61,12 +61,28 @@ namespace QuanLyNetSieuCapVipPro
 
         private void btnTaoTaiKhoan_Click(object sender, EventArgs e)
         {
-
+            TaoTaiKhoan tk = new TaoTaiKhoan();
+            if (txtNhapLaiMatKhau.Text.Trim() == txtMatKhau.Text.Trim())
+            {
+                tk.TaoTaiKhoanAdmin(txtTenTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim(), txtHoVaTen.Text.Trim(), txtSDT.Text.Trim(), txtDiaChi.Text.Trim());
+                MessageBox.Show("Tạo tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Xác nhận mật khẩu không đúng, vui lòng kiểm tra lại", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
+        }
+
+        private void btnDangNhap_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

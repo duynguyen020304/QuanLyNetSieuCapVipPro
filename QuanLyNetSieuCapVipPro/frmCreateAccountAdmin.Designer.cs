@@ -45,6 +45,7 @@
             btnTaoTaiKhoan = new Button();
             btnThoat = new Button();
             errorProvider1 = new ErrorProvider(components);
+            btnDangNhap = new Button();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
@@ -174,7 +175,7 @@
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(389, 332);
+            btnThoat.Location = new Point(265, 332);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(77, 36);
             btnThoat.TabIndex = 14;
@@ -186,11 +187,22 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // btnDangNhap
+            // 
+            btnDangNhap.Location = new Point(348, 332);
+            btnDangNhap.Name = "btnDangNhap";
+            btnDangNhap.Size = new Size(118, 36);
+            btnDangNhap.TabIndex = 15;
+            btnDangNhap.Text = "Đăng Nhập";
+            btnDangNhap.UseVisualStyleBackColor = true;
+            btnDangNhap.Click += btnDangNhap_Click;
+            // 
             // frmCreateAccountAdmin
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(713, 380);
+            Controls.Add(btnDangNhap);
             Controls.Add(btnThoat);
             Controls.Add(btnTaoTaiKhoan);
             Controls.Add(txtDiaChi);
@@ -215,7 +227,7 @@
             PerformLayout();
         }
 
-       
+
 
         #endregion
 
@@ -235,5 +247,6 @@
         private Button btnTaoTaiKhoan;
         private Button btnThoat;
         private ErrorProvider errorProvider1;
+        private Button btnDangNhap;
     }
 }

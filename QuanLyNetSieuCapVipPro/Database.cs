@@ -9,7 +9,7 @@ namespace QuanLyNetSieuCapVipPro
 {
     class Database
     {
-        private string createDBSQL = "Data Source=QuanLyNet123.db";
+        string createDBSQL = "Data Source=QuanLyNet123.db";
         
         public Database()
         {
@@ -107,9 +107,30 @@ namespace QuanLyNetSieuCapVipPro
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public void createTable(SQLiteConnection conn)
+        public void insertDataIntoTaiKhoan(string UserAccount, string Password)
         {
-            
+            SQLiteConnection conn = new SQLiteConnection(createDBSQL);
+            conn.Open();
+            string sql = "INSERT INTO TAIKHOAN(MaTaiKhoan, MatKhau)" +
+                         "VALUES(@MaTaiKhoan, @MatKhau)";
+            var cmd = new SQLiteCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@MaTaiKhoan", UserAccount);
+            cmd.Parameters.AddWithValue("@MatKhau", Password);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void insertDataIntoAdmin(string UserAccount, string TenAdmin, string SDT, string DiaChi)
+        {
+            SQLiteConnection conn = new SQLiteConnection(createDBSQL);
+            conn.Open();
+            string sql = "INSERT INTO ADMIN(MaAdmin, TenAdmin, SDT, DiaChi)" +
+                         "VALUES(@MaAdmin, @TenAdmin, @SDT, @DiaChi)";
+            var cmd = new SQLiteCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@MaAdmin", UserAccount);
+            cmd.Parameters.AddWithValue("@TenAdmin", TenAdmin);
+            cmd.Parameters.AddWithValue("@SDT", SDT);
+            cmd.Parameters.AddWithValue("@DiaChi", DiaChi);
+            cmd.ExecuteNonQuery();
         }
     }
 }

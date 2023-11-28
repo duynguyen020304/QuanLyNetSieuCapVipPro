@@ -18,7 +18,7 @@ namespace QuanLyNetSieuCapVipPro
             InitializeComponent();
         }
 
-        private bool isExit = false; 
+        private bool isExit = false;
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!isExit)
@@ -44,9 +44,14 @@ namespace QuanLyNetSieuCapVipPro
         private void lblTaoTaiKhoan_Click(object sender, EventArgs e)
         {
             FormClosing -= frmLogin_FormClosing;
-            this.Close();
+            Application.Exit();
             frmCreateAccountAdmin createAccountAdmin = new frmCreateAccountAdmin();
             createAccountAdmin.Show();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
