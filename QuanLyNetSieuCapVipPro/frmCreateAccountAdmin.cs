@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace QuanLyNetSieuCapVipPro
+{
+    public partial class frmCreateAccountAdmin : Form
+    {
+        public frmCreateAccountAdmin()
+        {
+            InitializeComponent();
+        }
+
+        private void txtHoTen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtHoTen_Leave(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            if (control.Text.Trim().Length == 0)
+            {
+                this.errorProvider1.SetError(control, "Vui lòng không để trống ô họ tên");
+            }
+            else
+            {
+                this.errorProvider1.Clear();
+            }
+        }
+
+        private void txtPassword_Leave(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            if (control.Text.Trim().Length == 0)
+            {
+                this.errorProvider1.SetError(control, "Vui lòng không để trống ô mật khẩu");
+            }
+            else
+            {
+                this.errorProvider1.Clear();
+            }
+        }
+
+        private void txtSDT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnTaoTaiKhoan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}

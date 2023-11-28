@@ -26,6 +26,16 @@ namespace QuanLyNetSieuCapVipPro
             var cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
+            sql = "CREATE TABLE IF NOT EXISTS \"ADMIN\" (" +
+                  "\"MaAdmin\" TEXT," +
+                  "\"TenAdmin\" TEXT NOT NULL," +
+                  "\"SDT\" TEXT," +
+                  "\"DiaChi\" TEXT," +
+                  "CONSTRAINT \"A_MaAdmin_PK\" PRIMARY KEY(\"MaAdmin\")" +
+                  ")";
+            cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+
             sql = "CREATE TABLE IF NOT EXISTS \"NGUOICHOI\" (" +
                   "\"MaNguoiChoi\" TEXT," +
                   "\"TenNguoiDung\" TEXT NOT NULL," +
@@ -46,16 +56,6 @@ namespace QuanLyNetSieuCapVipPro
                   "\"TenDichVu\" TEXT NOT NULL," +
                   "\"Gia\" NUMERIC," +
                   "CONSTRAINT \"DV_MaDichVu_PK\" PRIMARY KEY(\"MaDichVu\")" +
-                  ")";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-
-            sql = "CREATE TABLE IF NOT EXISTS \"ADMIN\" (" +
-                  "\"MaAdmin\" TEXT," +
-                  "\"TenAdmin\" TEXT NOT NULL," +
-                  "\"SDT\" TEXT," +
-                  "\"DiaChi\" TEXT," +
-                  "PRIMARY KEY(\"MaAdmin\")" +
                   ")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
@@ -105,7 +105,7 @@ namespace QuanLyNetSieuCapVipPro
                   ")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
-
+            conn.Close();
         }
         public void createTable(SQLiteConnection conn)
         {

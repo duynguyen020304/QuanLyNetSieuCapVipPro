@@ -17,5 +17,36 @@ namespace QuanLyNetSieuCapVipPro
         {
             InitializeComponent();
         }
+
+        private bool isExit = false; 
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isExit)
+            {
+                DialogResult r = MessageBox.Show("Bạn có muốn thoát không ?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (r != DialogResult.No)
+                {
+                    isExit = true;
+                    Application.Exit();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void btnDangNhap_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTaoTaiKhoan_Click(object sender, EventArgs e)
+        {
+            FormClosing -= frmLogin_FormClosing;
+            this.Close();
+            frmCreateAccountAdmin createAccountAdmin = new frmCreateAccountAdmin();
+            createAccountAdmin.Show();
+        }
     }
 }
