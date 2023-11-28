@@ -15,6 +15,7 @@ namespace QuanLyNetSieuCapVipPro
         Database db = new Database();
         public frmLogin()
         {
+            db.createDatabase();
             InitializeComponent();
         }
 
@@ -38,7 +39,15 @@ namespace QuanLyNetSieuCapVipPro
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-
+            Authentication authentication = new Authentication();
+            if (authentication.Auth(txtUserName.Text.Trim(), txtPassword.Text.Trim()))
+            {
+                MessageBox.Show("Đăng nhập thành công");
+            }
+            else
+            {
+                MessageBox.Show("Đăng nhập thất bại");
+            }
         }
 
         private void lblTaoTaiKhoan_Click(object sender, EventArgs e)

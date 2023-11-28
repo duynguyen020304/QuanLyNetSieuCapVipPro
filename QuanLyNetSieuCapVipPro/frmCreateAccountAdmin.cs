@@ -82,7 +82,9 @@ namespace QuanLyNetSieuCapVipPro
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-
+            frmLogin login = new frmLogin();
+            Application.Exit();
+            login.Show();
         }
     }
 }

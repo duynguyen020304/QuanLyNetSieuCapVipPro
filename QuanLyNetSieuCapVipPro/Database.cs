@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using Microsoft.Data.SqlClient;
 
 namespace QuanLyNetSieuCapVipPro
 {
@@ -11,7 +12,7 @@ namespace QuanLyNetSieuCapVipPro
     {
         string createDBSQL = "Data Source=QuanLyNet123.db";
         
-        public Database()
+        public void createDatabase()
         {
             SQLiteConnection conn = new SQLiteConnection(createDBSQL);
             conn.Open();
@@ -117,6 +118,7 @@ namespace QuanLyNetSieuCapVipPro
             cmd.Parameters.AddWithValue("@MaTaiKhoan", UserAccount);
             cmd.Parameters.AddWithValue("@MatKhau", Password);
             cmd.ExecuteNonQuery();
+            conn.Close();
         }
 
         public void insertDataIntoAdmin(string UserAccount, string TenAdmin, string SDT, string DiaChi)
@@ -131,6 +133,28 @@ namespace QuanLyNetSieuCapVipPro
             cmd.Parameters.AddWithValue("@SDT", SDT);
             cmd.Parameters.AddWithValue("@DiaChi", DiaChi);
             cmd.ExecuteNonQuery();
+            conn.Close();
         }
+
+        public string getUserPassword(string UserAccount)
+        {
+            SQLiteConnection conn = new SQLiteConnection(createDBSQL);
+            conn.Open();
+            string sql = "SELECT MatKhau " +
+                         "FROM TAIKHOAN " +
+                         "WHERE TAIKHOAN.MaTaiKhoan = @UserAccount"; // Corrected parameter syntax
+            var cmd = new SQLiteCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@UserAccount", UserAccount);
+            var sqReader = cmd.ExecuteReader();
+            string result = "";
+            if (sqReader.Read()) // Use 'if' to check if there is a row
+            {
+                result = sqReader.GetString(0);
+            }
+            sqReader.Close();
+            conn.Close();
+            return result;
+        }
+
     }
 }
