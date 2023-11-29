@@ -12,6 +12,7 @@ namespace QuanLyNetSieuCapVipPro
 {
     public partial class frmManagement : Form
     {
+        private string userName;
         public frmManagement()
         {
             InitializeComponent();
@@ -19,12 +20,11 @@ namespace QuanLyNetSieuCapVipPro
 
         public frmManagement(string userName)
         {
+            this.userName = userName;
             InitializeComponent();
             lblHello.Text = "Hello " + userName;
-            this.userName = userName;
         }
 
-        private string userName;
         private bool nhanTinHieuDangNhap = false;
 
         private void frmManagement_FormClosing(object sender, FormClosingEventArgs e)

@@ -58,24 +58,39 @@ namespace QuanLyNetSieuCapVipPro
         private void btnSua_Click(object sender, EventArgs e)
         {
             ChinhSuaThanhVien sua = new ChinhSuaThanhVien();
+            decimal result;
+            if (!decimal.TryParse(txtNapTien.Text.Trim(), out result))
+            {
+                result = 0;
+            }
+            long soGioChoi = Convert.ToInt64((result / donGia) * 60);
+            if (!decimal.TryParse(txtSoTienNo.Text.Trim(), out result))
+            {
+                result = 0;
+            }
+            if (sua.suaThongTinThanhVien(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
+                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim()))
+            {
+                MessageBox.Show("Sửa tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+
+        private void loadDuLieu()
+        {
+            ChinhSuaThanhVien sua = new ChinhSuaThanhVien();
             DataTable dt = sua.LayDataSetThanhVien(maNguoiChoi).Tables[0];
             DataRow dr = dt.Rows[0];
             txtNguoiSuDung.Text = dr[0].ToString();
             txtHoTen.Text = dr[1].ToString();
+            txtSoGioChoiHienCo.Text = dr[2].ToString();
             txtSoTienNo.Text = dr[3].ToString();
             dateTimePicker1.Value = DateTime.Parse(dr[4].ToString());
-            txtEmail.Text = dr[6].ToString();
-            txtDiaChi.Text = dr[7].ToString();
-            txtThanhPho.Text = dr[8].ToString();
-            txtQuanHuyen.Text = dr[9].ToString();
-            long soGioChoi = Convert.ToInt64(dr[2].ToString());
-            decimal soTienNo = Convert.ToInt64(dr[3].ToString());
-            if (sua.suaThongTinThanhVien(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, soTienNo,
-                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim()))
-            {
-                MessageBox.Show("Thêm tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
+            txtEmail.Text = dr[7].ToString();
+            txtDiaChi.Text = dr[8].ToString();
+            txtThanhPho.Text = dr[9].ToString();
+            txtQuanHuyen.Text = dr[10].ToString();
+            txtCMND.Text = dr[11].ToString();
         }
 
         private void frmThemThanhVien_Load(object sender, EventArgs e)
@@ -89,6 +104,8 @@ namespace QuanLyNetSieuCapVipPro
             {
                 btnSua.Enabled = true;
                 btnSua.Visible = true;
+                loadDuLieu();
+                txtNguoiSuDung.Enabled = false;
             }
         }
     }

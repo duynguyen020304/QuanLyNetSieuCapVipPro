@@ -48,7 +48,7 @@
             groupBox2 = new GroupBox();
             txtSoTienNo = new TextBox();
             label13 = new Label();
-            textBox11 = new TextBox();
+            txtSoGioChoiHienCo = new TextBox();
             txtNapTien = new TextBox();
             txtMatKhau = new TextBox();
             txtNguoiSuDung = new TextBox();
@@ -219,7 +219,7 @@
             // 
             groupBox2.Controls.Add(txtSoTienNo);
             groupBox2.Controls.Add(label13);
-            groupBox2.Controls.Add(textBox11);
+            groupBox2.Controls.Add(txtSoGioChoiHienCo);
             groupBox2.Controls.Add(txtNapTien);
             groupBox2.Controls.Add(txtMatKhau);
             groupBox2.Controls.Add(txtNguoiSuDung);
@@ -250,12 +250,12 @@
             label13.TabIndex = 9;
             label13.Text = "Số tiền nợ";
             // 
-            // textBox11
+            // txtSoGioChoiHienCo
             // 
-            textBox11.Location = new Point(117, 176);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(216, 23);
-            textBox11.TabIndex = 8;
+            txtSoGioChoiHienCo.Location = new Point(117, 176);
+            txtSoGioChoiHienCo.Name = "txtSoGioChoiHienCo";
+            txtSoGioChoiHienCo.Size = new Size(216, 23);
+            txtSoGioChoiHienCo.TabIndex = 8;
             // 
             // txtNapTien
             // 
@@ -385,7 +385,7 @@
         private Label label12;
         private Label label11;
         private Label label10;
-        private TextBox textBox11;
+        private TextBox txtSoGioChoiHienCo;
         private TextBox txtNapTien;
         private TextBox txtMatKhau;
         private TextBox txtNguoiSuDung;

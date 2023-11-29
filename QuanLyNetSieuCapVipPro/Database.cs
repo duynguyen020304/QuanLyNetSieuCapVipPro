@@ -44,13 +44,13 @@ namespace QuanLyNetSieuCapVipPro
                   "\"SoGioChoiConLai\" INTEGER," +
                   "\"SoTienNo\" NUMERIC, " +
                   "\"NgayTaoTaiKhoan\" TEXT, " +
+                  "\"NguoiTaoTaiKhoan\" TEXT, " +
+                  "\"NguoiNapTien\" TEXT, " +
                   "\"Email\" TEXT," +
                   "\"DiaChi\" TEXT," +
                   "\"ThanhPho\" TEXT," +
                   "\"QuanHuyen\" TEXT," +
                   "\"CMND\" TEXT," +
-                  "\"NguoiTaoTaiKhoan\" TEXT, " +
-                  "\"NguoiNapTien\" TEXT, " +
                   "CONSTRAINT \"NC_NguoiNapTien_FK\" FOREIGN KEY(\"NguoiNapTien\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
                   "CONSTRAINT \"NC_NguoiTaoTaiKhoan_FK\" FOREIGN KEY(\"NguoiTaoTaiKhoan\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
                   "CONSTRAINT \"NC_MaNguoiChoi_PK\" PRIMARY KEY(\"MaNguoiChoi\") " +
@@ -223,8 +223,8 @@ namespace QuanLyNetSieuCapVipPro
                              "NguoiNapTien = @NguoiNapTien, " +
                              "Email = @Email, " +
                              "DiaChi = @DiaChi, " +
-                             "ThanhPho = @ThanhPho" +
-                             "QuanHuyen = @QuanHuyen" +
+                             "ThanhPho = @ThanhPho, " +
+                             "QuanHuyen = @QuanHuyen, " +
                              "CMND = @CMND Where MaNguoiChoi = @MaNguoiChoi";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNguoiChoi", maNguoiChoi);
@@ -296,8 +296,9 @@ namespace QuanLyNetSieuCapVipPro
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
-                string sql = "SELECT *" +
-                             "From NGUOICHOI";
+                string sql = "SELECT * " +
+                             "From NGUOICHOI " +
+                             "WHERE MaNguoiChoi = \"" + userName + "\"";
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
