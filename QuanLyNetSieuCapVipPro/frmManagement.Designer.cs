@@ -32,6 +32,7 @@
             chứcNăngToolStripMenuItem = new ToolStripMenuItem();
             máyTrạmToolStripMenuItem = new ToolStripMenuItem();
             thànhViênToolStripMenuItem = new ToolStripMenuItem();
+            nhomNguoiDung_mnst = new ToolStripMenuItem();
             nhậtKýGiaoDịchToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             chuyenCaNhanVien_mnst = new ToolStripMenuItem();
@@ -50,6 +51,8 @@
             doanhThuTheoMáyToolStripMenuItem = new ToolStripMenuItem();
             giúpĐỡToolStripMenuItem = new ToolStripMenuItem();
             lblHello = new Label();
+            nhomNguoiDung1 = new NhomNguoiDung();
+            themThanhVien_mnst = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -58,13 +61,13 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { chứcNăngToolStripMenuItem, hệThốngToolStripMenuItem, báoCáoToolStripMenuItem, giúpĐỡToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(991, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // chứcNăngToolStripMenuItem
             // 
-            chứcNăngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { máyTrạmToolStripMenuItem, thànhViênToolStripMenuItem, nhậtKýGiaoDịchToolStripMenuItem, toolStripSeparator1, chuyenCaNhanVien_mnst, thoátToolStripMenuItem });
+            chứcNăngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { máyTrạmToolStripMenuItem, thànhViênToolStripMenuItem, themThanhVien_mnst, nhomNguoiDung_mnst, nhậtKýGiaoDịchToolStripMenuItem, toolStripSeparator1, chuyenCaNhanVien_mnst, thoátToolStripMenuItem });
             chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
             chứcNăngToolStripMenuItem.Size = new Size(77, 20);
             chứcNăngToolStripMenuItem.Text = "Chức năng";
@@ -80,6 +83,13 @@
             thànhViênToolStripMenuItem.Name = "thànhViênToolStripMenuItem";
             thànhViênToolStripMenuItem.Size = new Size(185, 22);
             thànhViênToolStripMenuItem.Text = "Thành viên";
+            // 
+            // nhomNguoiDung_mnst
+            // 
+            nhomNguoiDung_mnst.Name = "nhomNguoiDung_mnst";
+            nhomNguoiDung_mnst.Size = new Size(185, 22);
+            nhomNguoiDung_mnst.Text = "Nhóm người dùng";
+            nhomNguoiDung_mnst.Click += nhomNguoiDung_mnst_Click;
             // 
             // nhậtKýGiaoDịchToolStripMenuItem
             // 
@@ -187,21 +197,37 @@
             // 
             // lblHello
             // 
-            lblHello.AutoSize = true;
-            lblHello.Dock = DockStyle.Right;
+            lblHello.Dock = DockStyle.Top;
             lblHello.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblHello.Location = new Point(663, 24);
+            lblHello.Location = new Point(0, 24);
             lblHello.Name = "lblHello";
-            lblHello.Size = new Size(137, 21);
+            lblHello.Size = new Size(991, 21);
             lblHello.TabIndex = 1;
             lblHello.Text = "Hello .. 123123123";
             lblHello.TextAlign = ContentAlignment.TopRight;
+            // 
+            // nhomNguoiDung1
+            // 
+            nhomNguoiDung1.BackColor = SystemColors.ActiveCaption;
+            nhomNguoiDung1.Dock = DockStyle.Top;
+            nhomNguoiDung1.Location = new Point(0, 45);
+            nhomNguoiDung1.Name = "nhomNguoiDung1";
+            nhomNguoiDung1.Size = new Size(991, 353);
+            nhomNguoiDung1.TabIndex = 2;
+            // 
+            // themThanhVien_mnst
+            // 
+            themThanhVien_mnst.Name = "themThanhVien_mnst";
+            themThanhVien_mnst.Size = new Size(185, 22);
+            themThanhVien_mnst.Text = "Thêm thành viên";
+            themThanhVien_mnst.Click += themThanhVien_mnst_Click;
             // 
             // frmManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(991, 450);
+            Controls.Add(nhomNguoiDung1);
             Controls.Add(lblHello);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -238,5 +264,8 @@
         private ToolStripMenuItem doanhThuTheoMáyToolStripMenuItem;
         private ToolStripMenuItem thêmTàiKhoảnQuảnLýToolStripMenuItem;
         private Label lblHello;
+        private ToolStripMenuItem nhomNguoiDung_mnst;
+        private NhomNguoiDung nhomNguoiDung1;
+        private ToolStripMenuItem themThanhVien_mnst;
     }
 }

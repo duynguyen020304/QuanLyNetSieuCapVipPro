@@ -61,5 +61,15 @@ namespace QuanLyNetSieuCapVipPro
         {
 
         }
+
+        private void nhomNguoiDung_mnst_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void themThanhVien_mnst_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
