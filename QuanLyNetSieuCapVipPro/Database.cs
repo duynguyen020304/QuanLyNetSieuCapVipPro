@@ -12,7 +12,7 @@ namespace QuanLyNetSieuCapVipPro
     class Database
     {
         string createDBSQL = "Data Source=QuanLyNet123.db";
-        
+
         public void createDatabase()
         {
             SQLiteConnection conn = new SQLiteConnection(createDBSQL);
@@ -77,8 +77,8 @@ namespace QuanLyNetSieuCapVipPro
             cmd.ExecuteNonQuery();
 
             sql = "CREATE TABLE IF NOT EXISTS \"TAIKHOAN_USER\" (" +
-                  "\"MaTaiKhoan\"\tTEXT NOT NULL," +
-                  "\"MatKhau\"\tTEXT NOT NULL," +
+                  "\"MaTaiKhoan\" TEXT NOT NULL," +
+                  "\"MatKhau\" TEXT NOT NULL," +
                   "CONSTRAINT \"TKUSER_MaTaiKhoan_PK\" PRIMARY KEY(\"MaTaiKhoan\")" +
                   ")";
             cmd = new SQLiteCommand(sql, conn);
@@ -175,6 +175,28 @@ namespace QuanLyNetSieuCapVipPro
             sqReader.Close();
             conn.Close();
             return result;
+        }
+
+        public string getUserPassword(string MaNguoiChoi)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "SELECT MatKhau " +
+                             "FROM TAIKHOAN_USER " +
+                             "WHERE MaTaiKhoan = @UserAccount "; // Corrected parameter syntax
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@UserAccount", MaNguoiChoi);
+                var sqReader = cmd.ExecuteReader();
+                string result = "";
+                if (sqReader.Read()) // Use 'if' to check if there is a row
+                {
+                    result = sqReader.GetString(0);
+                }
+                sqReader.Close();
+                conn.Close();
+                return result;
+            }
         }
 
         public bool insertDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo, DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi, string thanhPho, string quanHuyen, string CMND)

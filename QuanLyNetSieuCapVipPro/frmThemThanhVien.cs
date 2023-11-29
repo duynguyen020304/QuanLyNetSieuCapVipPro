@@ -16,6 +16,7 @@ namespace QuanLyNetSieuCapVipPro
         private string nguoiTaoKhoan;
         private bool isAdd = false;
         private string maNguoiChoi;
+        Database db = new Database();
         public frmThemThanhVien(decimal donGia, string nguoiTaoTaiKhoan, bool isAdd)
         {
             InitializeComponent();
@@ -23,7 +24,19 @@ namespace QuanLyNetSieuCapVipPro
             this.nguoiTaoKhoan = nguoiTaoTaiKhoan;
             this.isAdd = isAdd;
         }
+        public frmThemThanhVien(decimal donGia, string nguoiTaoTaiKhoan, bool isAdd, string maNguoiChoi)
+        {
+            InitializeComponent();
+            this.donGia = donGia;
+            this.nguoiTaoKhoan = nguoiTaoTaiKhoan;
+            this.isAdd = isAdd;
+            this.maNguoiChoi = maNguoiChoi;
+        }
 
+        private void frmThemThanhVien_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
         private void txtHoTen_Leave(object sender, EventArgs e)
         {
             Control control = (Control)sender;
@@ -62,16 +75,6 @@ namespace QuanLyNetSieuCapVipPro
                 this.errorProvider3.Clear();
             }
         }
-
-        public frmThemThanhVien(decimal donGia, string nguoiTaoTaiKhoan, bool isAdd, string maNguoiChoi)
-        {
-            InitializeComponent();
-            this.donGia = donGia;
-            this.nguoiTaoKhoan = nguoiTaoTaiKhoan;
-            this.isAdd = isAdd;
-            this.maNguoiChoi = maNguoiChoi;
-        }
-
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (txtHoTen.Text.Trim().Length == 0 || txtNguoiSuDung.Text.Trim().Length == 0)
@@ -80,7 +83,6 @@ namespace QuanLyNetSieuCapVipPro
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            ChinhSuaThanhVien them = new ChinhSuaThanhVien();
             decimal result;
             if (!decimal.TryParse(txtNapTien.Text.Trim(), out result))
             {
@@ -92,8 +94,8 @@ namespace QuanLyNetSieuCapVipPro
                 result = 0;
             }
 
-            if (them.addThanhVien(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim()) && them.addTaiKhoanMatKhau(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
+            if (db.insertDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
+                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim()) && db.insertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
             {
                 MessageBox.Show("Thêm tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -108,7 +110,6 @@ namespace QuanLyNetSieuCapVipPro
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            ChinhSuaThanhVien sua = new ChinhSuaThanhVien();
             decimal result;
             if (!decimal.TryParse(txtNapTien.Text.Trim(), out result))
             {
@@ -119,7 +120,7 @@ namespace QuanLyNetSieuCapVipPro
             {
                 result = 0;
             }
-            if (sua.suaThongTinThanhVien(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
+            if (db.suaDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
                     dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim()))
             {
                 MessageBox.Show("Sửa tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
@@ -129,8 +130,7 @@ namespace QuanLyNetSieuCapVipPro
 
         private void loadDuLieu()
         {
-            ChinhSuaThanhVien sua = new ChinhSuaThanhVien();
-            DataTable dt = sua.LayDataSetThanhVien(maNguoiChoi).Tables[0];
+            DataTable dt = db.getSpecificUserData(maNguoiChoi).Tables[0];
             DataRow dr = dt.Rows[0];
             txtNguoiSuDung.Text = dr[0].ToString();
             txtHoTen.Text = dr[1].ToString();
@@ -142,6 +142,7 @@ namespace QuanLyNetSieuCapVipPro
             txtThanhPho.Text = dr[9].ToString();
             txtQuanHuyen.Text = dr[10].ToString();
             txtCMND.Text = dr[11].ToString();
+            txtMatKhau.Text = db.getUserPassword(maNguoiChoi);
         }
 
         private void frmThemThanhVien_Load(object sender, EventArgs e)
