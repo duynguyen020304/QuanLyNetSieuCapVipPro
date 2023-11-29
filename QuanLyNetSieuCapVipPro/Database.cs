@@ -267,7 +267,7 @@ namespace QuanLyNetSieuCapVipPro
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
-                string sql = "INSERT OR IGNORE INTO TAIKHOAN_ADMIN(MaTaiKhoan, MatKhau) " +
+                string sql = "INSERT OR IGNORE INTO TAIKHOAN_USER(MaTaiKhoan, MatKhau) " +
                              "VALUES(@MaTaiKhoan, @MatKhau) ";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaTaiKhoan", maNguoiChoi);
