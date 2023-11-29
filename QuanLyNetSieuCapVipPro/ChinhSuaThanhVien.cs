@@ -25,6 +25,11 @@ namespace QuanLyNetSieuCapVipPro
                 nguoiTaoTaiKhoan, nguoiNapTien, email, diaChi, thanhPho, quanHuyen, CMND);
         }
 
+        public bool addTaiKhoanMatKhau(string maNguoiChoi, string matKhau)
+        {
+            return db.insertDataIntoTAIKHOAN_USER(maNguoiChoi, matKhau);
+        }
+
         public DataSet LayDataSetThanhVien(string userName)
         {
             return db.getSpecificUserData(userName);

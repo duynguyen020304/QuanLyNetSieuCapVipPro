@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             groupBox1 = new GroupBox();
             txtEmail = new TextBox();
             txtCMND = new TextBox();
@@ -58,8 +59,14 @@
             label10 = new Label();
             btnThem = new Button();
             btnSua = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            errorProvider2 = new ErrorProvider(components);
+            errorProvider3 = new ErrorProvider(components);
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider3).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -80,9 +87,9 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(txtHoTen);
-            groupBox1.Location = new Point(12, 12);
+            groupBox1.Location = new Point(3, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(476, 372);
+            groupBox1.Size = new Size(485, 372);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin";
@@ -214,6 +221,7 @@
             txtHoTen.Name = "txtHoTen";
             txtHoTen.Size = new Size(375, 23);
             txtHoTen.TabIndex = 0;
+            txtHoTen.Leave += txtHoTen_Leave;
             // 
             // groupBox2
             // 
@@ -268,8 +276,10 @@
             // 
             txtMatKhau.Location = new Point(117, 62);
             txtMatKhau.Name = "txtMatKhau";
+            txtMatKhau.PasswordChar = '*';
             txtMatKhau.Size = new Size(216, 23);
             txtMatKhau.TabIndex = 6;
+            txtMatKhau.Leave += txtPassword_Leave;
             // 
             // txtNguoiSuDung
             // 
@@ -277,6 +287,7 @@
             txtNguoiSuDung.Name = "txtNguoiSuDung";
             txtNguoiSuDung.Size = new Size(216, 23);
             txtNguoiSuDung.TabIndex = 5;
+            txtNguoiSuDung.Leave += txtNguoiSuDung_Leave;
             // 
             // label14
             // 
@@ -340,6 +351,18 @@
             btnSua.Visible = false;
             btnSua.Click += btnSua_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            errorProvider3.ContainerControl = this;
+            // 
             // frmThemThanhVien
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -356,6 +379,9 @@
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider3).EndInit();
             ResumeLayout(false);
         }
 
@@ -394,5 +420,8 @@
         private Label label13;
         private TextBox txtSoTienNo;
         private Button btnSua;
+        private ErrorProvider errorProvider1;
+        private ErrorProvider errorProvider2;
+        private ErrorProvider errorProvider3;
     }
 }

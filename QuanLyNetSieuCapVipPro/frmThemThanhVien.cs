@@ -24,6 +24,45 @@ namespace QuanLyNetSieuCapVipPro
             this.isAdd = isAdd;
         }
 
+        private void txtHoTen_Leave(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            if (control.Text.Trim().Length == 0)
+            {
+                this.errorProvider1.SetError(control, "Vui lòng không để trống ô họ tên");
+            }
+            else
+            {
+                this.errorProvider1.Clear();
+            }
+        }
+
+        private void txtNguoiSuDung_Leave(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            if (control.Text.Trim().Length == 0)
+            {
+                this.errorProvider2.SetError(control, "Vui lòng không để trống ô người sử dụng");
+            }
+            else
+            {
+                this.errorProvider2.Clear();
+            }
+        }
+
+        private void txtPassword_Leave(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            if (control.Text.Trim().Length == 0)
+            {
+                this.errorProvider3.SetError(control, "Vui lòng không để trống ô mật khẩu");
+            }
+            else
+            {
+                this.errorProvider3.Clear();
+            }
+        }
+
         public frmThemThanhVien(decimal donGia, string nguoiTaoTaiKhoan, bool isAdd, string maNguoiChoi)
         {
             InitializeComponent();
@@ -35,6 +74,12 @@ namespace QuanLyNetSieuCapVipPro
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (txtHoTen.Text.Trim().Length == 0 || txtNguoiSuDung.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Vui lòng không để trống ô họ tên và ô người sử dụng", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             ChinhSuaThanhVien them = new ChinhSuaThanhVien();
             decimal result;
             if (!decimal.TryParse(txtNapTien.Text.Trim(), out result))
@@ -48,7 +93,7 @@ namespace QuanLyNetSieuCapVipPro
             }
 
             if (them.addThanhVien(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim()))
+                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim()) && them.addTaiKhoanMatKhau(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
             {
                 MessageBox.Show("Thêm tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -57,6 +102,12 @@ namespace QuanLyNetSieuCapVipPro
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            if (txtHoTen.Text.Trim().Length == 0 || txtNguoiSuDung.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Vui lòng không để trống ô họ tên và ô người sử dụng", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             ChinhSuaThanhVien sua = new ChinhSuaThanhVien();
             decimal result;
             if (!decimal.TryParse(txtNapTien.Text.Trim(), out result))

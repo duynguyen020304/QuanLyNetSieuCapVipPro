@@ -261,8 +261,9 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
-        public void insertDataIntoTAIKHOAN_USER(string maNguoiChoi, string password)
+        public bool insertDataIntoTAIKHOAN_USER(string maNguoiChoi, string password)
         {
+            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
@@ -271,8 +272,11 @@ namespace QuanLyNetSieuCapVipPro
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaTaiKhoan", maNguoiChoi);
                 cmd.Parameters.AddWithValue("@MatKhau", password);
-                cmd.ExecuteNonQuery();
+                i = cmd.ExecuteNonQuery();
+                conn.Close();
             }
+
+            return i > 0;
         }
 
         public DataSet GetAllUserDataSetForThanhVien()
