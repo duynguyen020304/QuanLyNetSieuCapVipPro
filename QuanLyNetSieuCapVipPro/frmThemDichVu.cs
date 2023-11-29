@@ -30,6 +30,11 @@ namespace QuanLyNetSieuCapVipPro
         private void btnDongY_Click(object sender, EventArgs e)
         {
             Database db = new Database();
+            if (db.insertDataIntoDichVu(txtTen.Text.Trim(), Decimal.Parse(txtGia.Text.Trim()), txtDonVi.Text.Trim()))
+            {
+                MessageBox.Show("Thêm dịch vụ thành công", "Thông báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
     }
 }

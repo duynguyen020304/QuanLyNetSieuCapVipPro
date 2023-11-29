@@ -267,8 +267,9 @@ namespace QuanLyNetSieuCapVipPro
             return i > 0;
         }
 
-        public void insertDataIntoDichVu(string tenDichVu, Decimal gia, string donVi)
+        public bool insertDataIntoDichVu(string tenDichVu, Decimal gia, string donVi)
         {
+            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
@@ -278,9 +279,11 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@TenDichVu", tenDichVu);
                 cmd.Parameters.AddWithValue("@Gia", gia);
                 cmd.Parameters.AddWithValue("@DonVi", donVi);
-                cmd.ExecuteNonQuery();
+                i = cmd.ExecuteNonQuery();
                 conn.Close();
             }
+
+            return i > 0;
         }
 
         public bool insertDataIntoTAIKHOAN_USER(string maNguoiChoi, string password)
