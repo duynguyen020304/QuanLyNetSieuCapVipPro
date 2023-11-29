@@ -24,8 +24,17 @@ namespace QuanLyNetSieuCapVipPro
         private void btnThem_Click(object sender, EventArgs e)
         {
             ThemThanhVien them = new ThemThanhVien();
-            long soGioChoi = Convert.ToInt64((Convert.ToDecimal(txtNapTien.Text.Trim()) / donGia) * 60);
-            them.addThanhVien(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, Convert.ToDecimal(txtSoTienNo.Text.Trim()), dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim());
+            decimal result;
+            if (!decimal.TryParse(txtNapTien.Text.Trim(), out result))
+            {
+                result = 0;
+            }
+            long soGioChoi = Convert.ToInt64((result / donGia) * 60);
+            if (!decimal.TryParse(txtSoTienNo.Text.Trim(), out result))
+            {
+                result = 0;
+            }
+            them.addThanhVien(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result, dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim());
         }
     }
 }

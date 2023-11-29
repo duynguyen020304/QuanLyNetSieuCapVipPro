@@ -72,12 +72,13 @@ namespace QuanLyNetSieuCapVipPro
         {
             frmThemThanhVien themthanhvien = new frmThemThanhVien(3000, userName);
             themthanhvien.ShowDialog();
+            thanhVien1.loadDgv();
         }
 
         private void thanhVien_mnst_Click(object sender, EventArgs e)
         {
             thanhVien1.Show();
-            
+            thanhVien1.loadDgv();
         }
 
         private void frmManagement_Load(object sender, EventArgs e)

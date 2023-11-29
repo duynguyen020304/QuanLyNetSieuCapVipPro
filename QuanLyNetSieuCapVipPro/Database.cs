@@ -177,8 +177,9 @@ namespace QuanLyNetSieuCapVipPro
             return result;
         }
 
-        public void insertDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo, DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi, string thanhPho, string quanHuyen, string CMND)
+        public bool insertDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo, DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi, string thanhPho, string quanHuyen, string CMND)
         {
+            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
@@ -198,9 +199,11 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@ThanhPho", thanhPho);
                 cmd.Parameters.AddWithValue("@QuanHuyen", quanHuyen);
                 cmd.Parameters.AddWithValue("@CMND", CMND);
-                cmd.ExecuteNonQuery();
+                i = cmd.ExecuteNonQuery();
                 conn.Close();
             }
+
+            return i > 0;
         }
 
         public void insertDataIntoDichVu(string tenDichVu, Decimal gia, string donVi)
@@ -248,5 +251,16 @@ namespace QuanLyNetSieuCapVipPro
             return data;
         }
 
+        public void removeUserFromNGUOICHOI(string username)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "DELETE FROM NGUOICHOI WHERE MaNguoiChoi = @MaNguoiChoi";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaNguoiChoi", username);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
