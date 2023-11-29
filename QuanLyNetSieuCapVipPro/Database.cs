@@ -275,13 +275,28 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
-        public DataSet GetAllUserDataSet()
+        public DataSet GetAllUserDataSetForThanhVien()
         {
             DataSet data = new DataSet();
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
                 string sql = "SELECT MaNguoiChoi as \"Mã Người Chơi\", TenNguoiDung as \"Tên Người Dùng\", SoGioChoiConLai as \"Số Giờ\", SoTienNo as \"Số Nợ\", NgayTaoTaiKhoan as \"Ngày Tạo Tài Khoản\"" +
+                             "From NGUOICHOI";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
+                adapter.Fill(data);
+                conn.Close();
+            }
+            return data;
+        }
+
+        public DataSet getSpecificUserData(string userName)
+        {
+            DataSet data = new DataSet();
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "SELECT *" +
                              "From NGUOICHOI";
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);

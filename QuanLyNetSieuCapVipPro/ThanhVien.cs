@@ -12,9 +12,11 @@ namespace QuanLyNetSieuCapVipPro
 {
     public partial class ThanhVien : UserControl
     {
-        public ThanhVien()
+        private string userName;
+        public ThanhVien(string userName)
         {
             InitializeComponent();
+            this.userName = userName;
         }
 
         Database db = new Database();
@@ -27,7 +29,7 @@ namespace QuanLyNetSieuCapVipPro
         public void loadDgv()
         {
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.DataSource = db.GetAllUserDataSet().Tables[0];
+            dataGridView1.DataSource = db.GetAllUserDataSetForThanhVien().Tables[0];
         }
 
         private void xoa_mnst_Click(object sender, EventArgs e)
@@ -39,7 +41,8 @@ namespace QuanLyNetSieuCapVipPro
 
         private void sua_mnst_Click(object sender, EventArgs e)
         {
-            frmThemThanhVien themThanhVien = new frmThemThanhVien(3000, )
+            frmThemThanhVien themThanhVien = new frmThemThanhVien(3000, userName, false);
+            themThanhVien.ShowDialog();
         }
     }
 }

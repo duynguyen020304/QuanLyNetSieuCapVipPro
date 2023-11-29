@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,11 @@ namespace QuanLyNetSieuCapVipPro
         {
             return db.suaDataNguoiChoi(maNguoiChoi, tenNguoiDung, soGioiChoiConLai, soTienNo, ngayTaoTaiKhoan,
                 nguoiTaoTaiKhoan, nguoiNapTien, email, diaChi, thanhPho, quanHuyen, CMND);
+        }
+
+        public DataSet LayDataSetThanhVien(string userName)
+        {
+            return db.getSpecificUserData(userName);
         }
     }
 }
