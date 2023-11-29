@@ -69,7 +69,19 @@ namespace QuanLyNetSieuCapVipPro
 
         private void themThanhVien_mnst_Click(object sender, EventArgs e)
         {
+            frmThemThanhVien themthanhvien = new frmThemThanhVien();
+            themthanhvien.ShowDialog();
+        }
 
+        private void thanhVien_mnst_Click(object sender, EventArgs e)
+        {
+            thanhVien1.Show();
+
+        }
+
+        private void frmManagement_Load(object sender, EventArgs e)
+        {
+            thanhVien1.Hide();
         }
     }
 }

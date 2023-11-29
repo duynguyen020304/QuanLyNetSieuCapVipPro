@@ -16,5 +16,13 @@ namespace QuanLyNetSieuCapVipPro
         {
             InitializeComponent();
         }
+
+        Database db = new Database();
+
+        private void ThanhVien_Load(object sender, EventArgs e)
+        {
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.DataSource = db.GetAllUserDataSet().Tables[0];
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,9 +41,14 @@ namespace QuanLyNetSieuCapVipPro
             sql = "CREATE TABLE IF NOT EXISTS \"NGUOICHOI\" ( " +
                   "\"MaNguoiChoi\" TEXT, " +
                   "\"TenNguoiDung\" TEXT NOT NULL, " +
-                  "\"SoGioChoiConLai\" TEXT, " +
+                  "\"SoGioChoiConLai\" INTEGER," +
                   "\"SoTienNo\" NUMERIC, " +
                   "\"NgayTaoTaiKhoan\" TEXT, " +
+                  "\"Email\" TEXT," +
+                  "\"DiaChi\" TEXT," +
+                  "\"ThanhPho\" TEXT," +
+                  "\"QuanHuyen\" TEXT," +
+                  "\"CMND\" TEXT," +
                   "\"NguoiTaoTaiKhoan\" TEXT, " +
                   "\"NguoiNapTien\" TEXT, " +
                   "CONSTRAINT \"NC_NguoiNapTien_FK\" FOREIGN KEY(\"NguoiNapTien\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
@@ -168,6 +174,51 @@ namespace QuanLyNetSieuCapVipPro
             sqReader.Close();
             conn.Close();
             return result;
+        }
+
+        public void insertDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo, DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi, string thanhPho, string quanHuyen, string CMND)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql =
+                    "INSERT OR IGNORE INTO NGUOICHOI(MaNguoiChoi, TenNguoiDung, SoGioChoiConLai, SoTienNo, NgayTaoTaiKhoan, NguoiTaoTaiKhoan, NguoiNapTien, Email, DiaChi, ThanhPho, QuanHuyen, CMND) " +
+                    "VALUES(@MaNguoiChoi, @TenNguoiDung, @SoGioChoiConLai, @SoTienNo, @NgayTaoTaiKhoan, @NguoiTaoTaiKhoan, @NguoiNapTien, @Email, @DiaChi, @ThanhPho, @QuanHuyen, @CMND)";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaNguoiChoi", maNguoiChoi);
+                cmd.Parameters.AddWithValue("@TenNguoiDung", tenNguoiDung);
+                cmd.Parameters.AddWithValue("@SoGioChoiConLai", soGioiChoiConLai);
+                cmd.Parameters.AddWithValue("@SoTienNo", soTienNo);
+                cmd.Parameters.AddWithValue("@NgayTaoTaiKhoan", ngayTaoTaiKhoan);
+                cmd.Parameters.AddWithValue("@NguoiTaoTaiKhoan", nguoiTaoTaiKhoan);
+                cmd.Parameters.AddWithValue("@NguoiNapTien", nguoiNapTien);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@DiaChi", diaChi);
+                cmd.Parameters.AddWithValue("@ThanhPho", thanhPho);
+                cmd.Parameters.AddWithValue("@QuanHuyen", quanHuyen);
+                cmd.Parameters.AddWithValue("@CMND", CMND);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+
+        public void insertDataIntoTAIKHOAN_USER(string maNguoiChoi, string password)
+        {
+
+        }
+
+        public DataSet GetAllUserDataSet()
+        {
+            DataSet data = new DataSet();
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM NGUOICHOI";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
+                adapter.Fill(data);
+                conn.Close();
+            }
+            return data;
         }
 
     }

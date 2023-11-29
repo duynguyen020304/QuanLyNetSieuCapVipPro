@@ -31,7 +31,8 @@
             menuStrip1 = new MenuStrip();
             chứcNăngToolStripMenuItem = new ToolStripMenuItem();
             máyTrạmToolStripMenuItem = new ToolStripMenuItem();
-            thànhViênToolStripMenuItem = new ToolStripMenuItem();
+            thanhVien_mnst = new ToolStripMenuItem();
+            themThanhVien_mnst = new ToolStripMenuItem();
             nhomNguoiDung_mnst = new ToolStripMenuItem();
             nhậtKýGiaoDịchToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
@@ -51,8 +52,7 @@
             doanhThuTheoMáyToolStripMenuItem = new ToolStripMenuItem();
             giúpĐỡToolStripMenuItem = new ToolStripMenuItem();
             lblHello = new Label();
-            nhomNguoiDung1 = new NhomNguoiDung();
-            themThanhVien_mnst = new ToolStripMenuItem();
+            thanhVien1 = new ThanhVien();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,13 +61,13 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { chứcNăngToolStripMenuItem, hệThốngToolStripMenuItem, báoCáoToolStripMenuItem, giúpĐỡToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(991, 24);
+            menuStrip1.Size = new Size(1051, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // chứcNăngToolStripMenuItem
             // 
-            chứcNăngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { máyTrạmToolStripMenuItem, thànhViênToolStripMenuItem, themThanhVien_mnst, nhomNguoiDung_mnst, nhậtKýGiaoDịchToolStripMenuItem, toolStripSeparator1, chuyenCaNhanVien_mnst, thoátToolStripMenuItem });
+            chứcNăngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { máyTrạmToolStripMenuItem, thanhVien_mnst, themThanhVien_mnst, nhomNguoiDung_mnst, nhậtKýGiaoDịchToolStripMenuItem, toolStripSeparator1, chuyenCaNhanVien_mnst, thoátToolStripMenuItem });
             chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
             chứcNăngToolStripMenuItem.Size = new Size(77, 20);
             chứcNăngToolStripMenuItem.Text = "Chức năng";
@@ -78,11 +78,19 @@
             máyTrạmToolStripMenuItem.Size = new Size(185, 22);
             máyTrạmToolStripMenuItem.Text = "Máy trạm";
             // 
-            // thànhViênToolStripMenuItem
+            // thanhVien_mnst
             // 
-            thànhViênToolStripMenuItem.Name = "thànhViênToolStripMenuItem";
-            thànhViênToolStripMenuItem.Size = new Size(185, 22);
-            thànhViênToolStripMenuItem.Text = "Thành viên";
+            thanhVien_mnst.Name = "thanhVien_mnst";
+            thanhVien_mnst.Size = new Size(185, 22);
+            thanhVien_mnst.Text = "Thành viên";
+            thanhVien_mnst.Click += thanhVien_mnst_Click;
+            // 
+            // themThanhVien_mnst
+            // 
+            themThanhVien_mnst.Name = "themThanhVien_mnst";
+            themThanhVien_mnst.Size = new Size(185, 22);
+            themThanhVien_mnst.Text = "Thêm thành viên";
+            themThanhVien_mnst.Click += themThanhVien_mnst_Click;
             // 
             // nhomNguoiDung_mnst
             // 
@@ -201,39 +209,32 @@
             lblHello.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblHello.Location = new Point(0, 24);
             lblHello.Name = "lblHello";
-            lblHello.Size = new Size(991, 21);
+            lblHello.Size = new Size(1051, 21);
             lblHello.TabIndex = 1;
             lblHello.Text = "Hello .. 123123123";
             lblHello.TextAlign = ContentAlignment.TopRight;
             // 
-            // nhomNguoiDung1
+            // thanhVien1
             // 
-            nhomNguoiDung1.BackColor = SystemColors.ActiveCaption;
-            nhomNguoiDung1.Dock = DockStyle.Top;
-            nhomNguoiDung1.Location = new Point(0, 45);
-            nhomNguoiDung1.Name = "nhomNguoiDung1";
-            nhomNguoiDung1.Size = new Size(991, 353);
-            nhomNguoiDung1.TabIndex = 2;
-            // 
-            // themThanhVien_mnst
-            // 
-            themThanhVien_mnst.Name = "themThanhVien_mnst";
-            themThanhVien_mnst.Size = new Size(185, 22);
-            themThanhVien_mnst.Text = "Thêm thành viên";
-            themThanhVien_mnst.Click += themThanhVien_mnst_Click;
+            thanhVien1.Anchor = AnchorStyles.Left;
+            thanhVien1.Location = new Point(0, 70);
+            thanhVien1.Name = "thanhVien1";
+            thanhVien1.Size = new Size(1051, 310);
+            thanhVien1.TabIndex = 2;
             // 
             // frmManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(991, 450);
-            Controls.Add(nhomNguoiDung1);
+            ClientSize = new Size(1051, 565);
+            Controls.Add(thanhVien1);
             Controls.Add(lblHello);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "frmManagement";
             Text = "Quản Lý Net Siêu Cấp Vip Pro";
             FormClosing += frmManagement_FormClosing;
+            Load += frmManagement_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -245,7 +246,7 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem chứcNăngToolStripMenuItem;
         private ToolStripMenuItem máyTrạmToolStripMenuItem;
-        private ToolStripMenuItem thànhViênToolStripMenuItem;
+        private ToolStripMenuItem thanhVien_mnst;
         private ToolStripMenuItem nhậtKýGiaoDịchToolStripMenuItem;
         private ToolStripMenuItem hệThốngToolStripMenuItem;
         private ToolStripMenuItem báoCáoToolStripMenuItem;
@@ -265,7 +266,7 @@
         private ToolStripMenuItem thêmTàiKhoảnQuảnLýToolStripMenuItem;
         private Label lblHello;
         private ToolStripMenuItem nhomNguoiDung_mnst;
-        private NhomNguoiDung nhomNguoiDung1;
         private ToolStripMenuItem themThanhVien_mnst;
+        private ThanhVien thanhVien1;
     }
 }
