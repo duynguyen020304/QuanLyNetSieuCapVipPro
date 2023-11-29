@@ -46,6 +46,8 @@
             label1 = new Label();
             txtHoTen = new TextBox();
             groupBox2 = new GroupBox();
+            txtSoTienNo = new TextBox();
+            label13 = new Label();
             textBox11 = new TextBox();
             txtNapTien = new TextBox();
             txtMatKhau = new TextBox();
@@ -55,8 +57,7 @@
             label11 = new Label();
             label10 = new Label();
             btnThem = new Button();
-            label13 = new Label();
-            txtSoTienNo = new TextBox();
+            btnSua = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -233,6 +234,22 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Tài khoản";
             // 
+            // txtSoTienNo
+            // 
+            txtSoTienNo.Location = new Point(117, 139);
+            txtSoTienNo.Name = "txtSoTienNo";
+            txtSoTienNo.Size = new Size(216, 23);
+            txtSoTienNo.TabIndex = 10;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(6, 142);
+            label13.Name = "label13";
+            label13.Size = new Size(60, 15);
+            label13.TabIndex = 9;
+            label13.Text = "Số tiền nợ";
+            // 
             // textBox11
             // 
             textBox11.Location = new Point(117, 176);
@@ -299,6 +316,7 @@
             // 
             // btnThem
             // 
+            btnThem.Enabled = false;
             btnThem.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             btnThem.Location = new Point(731, 402);
             btnThem.Name = "btnThem";
@@ -306,34 +324,34 @@
             btnThem.TabIndex = 2;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Visible = false;
             btnThem.Click += btnThem_Click;
             // 
-            // label13
+            // btnSua
             // 
-            label13.AutoSize = true;
-            label13.Location = new Point(6, 142);
-            label13.Name = "label13";
-            label13.Size = new Size(60, 15);
-            label13.TabIndex = 9;
-            label13.Text = "Số tiền nợ";
-            // 
-            // txtSoTienNo
-            // 
-            txtSoTienNo.Location = new Point(117, 139);
-            txtSoTienNo.Name = "txtSoTienNo";
-            txtSoTienNo.Size = new Size(216, 23);
-            txtSoTienNo.TabIndex = 10;
+            btnSua.Enabled = false;
+            btnSua.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSua.Location = new Point(603, 402);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(122, 36);
+            btnSua.TabIndex = 3;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = true;
+            btnSua.Visible = false;
+            btnSua.Click += btnSua_Click;
             // 
             // frmThemThanhVien
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(865, 450);
+            Controls.Add(btnSua);
             Controls.Add(btnThem);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmThemThanhVien";
             Text = "frmThemThanhVien";
+            Load += frmThemThanhVien_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -375,5 +393,6 @@
         private Button btnThem;
         private Label label13;
         private TextBox txtSoTienNo;
+        private Button btnSua;
     }
 }

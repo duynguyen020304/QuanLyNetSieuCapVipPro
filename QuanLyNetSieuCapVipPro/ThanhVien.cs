@@ -36,5 +36,10 @@ namespace QuanLyNetSieuCapVipPro
             db.removeUserFromNGUOICHOI(dataGridView1.Rows[i].Cells[0].Value.ToString());
             loadDgv();
         }
+
+        private void sua_mnst_Click(object sender, EventArgs e)
+        {
+            frmThemThanhVien themThanhVien = new frmThemThanhVien(3000, )
+        }
     }
 }

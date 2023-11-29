@@ -203,6 +203,45 @@ namespace QuanLyNetSieuCapVipPro
                 conn.Close();
             }
 
+
+            return i > 0;
+        }
+
+        public bool suaDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo,
+            DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi,
+            string thanhPho, string quanHuyen, string CMND)
+        {
+            int i = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "UPDATE NGUOICHOI set TenNguoiDung = @TenNguoiDung, " +
+                             "SoGioChoiConLai = @SoGioChoiConLai, " +
+                             "SoTienNo = @SoTienNo, " +
+                             "NgayTaoTaiKhoan = @NgayTaoTaiKhoan, " +
+                             "NguoiTaoTaiKhoan = @NguoiTaoTaiKhoan, " +
+                             "NguoiNapTien = @NguoiNapTien, " +
+                             "Email = @Email, " +
+                             "DiaChi = @DiaChi, " +
+                             "ThanhPho = @ThanhPho" +
+                             "QuanHuyen = @QuanHuyen" +
+                             "CMND = @CMND Where MaNguoiChoi = @MaNguoiChoi";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaNguoiChoi", maNguoiChoi);
+                cmd.Parameters.AddWithValue("@TenNguoiDung", tenNguoiDung);
+                cmd.Parameters.AddWithValue("@SoGioChoiConLai", soGioiChoiConLai);
+                cmd.Parameters.AddWithValue("@SoTienNo", soTienNo);
+                cmd.Parameters.AddWithValue("@NgayTaoTaiKhoan", ngayTaoTaiKhoan);
+                cmd.Parameters.AddWithValue("@NguoiTaoTaiKhoan", nguoiTaoTaiKhoan);
+                cmd.Parameters.AddWithValue("@NguoiNapTien", nguoiNapTien);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@DiaChi", diaChi);
+                cmd.Parameters.AddWithValue("@ThanhPho", thanhPho);
+                cmd.Parameters.AddWithValue("@QuanHuyen", quanHuyen);
+                cmd.Parameters.AddWithValue("@CMND", CMND);
+                i = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
             return i > 0;
         }
 

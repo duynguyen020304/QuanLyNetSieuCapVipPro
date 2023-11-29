@@ -6,14 +6,22 @@ using System.Threading.Tasks;
 
 namespace QuanLyNetSieuCapVipPro
 {
-    class ThemThanhVien
+    class ChinhSuaThanhVien
     {
+        Database db = new Database();
         public bool addThanhVien(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo,
             DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi,
             string thanhPho, string quanHuyen, string CMND)
         {
-            Database db = new Database();
             return db.insertDataNguoiChoi(maNguoiChoi, tenNguoiDung, soGioiChoiConLai, soTienNo, ngayTaoTaiKhoan, nguoiTaoTaiKhoan, nguoiNapTien, email, diaChi, thanhPho, quanHuyen, CMND);
+        }
+
+        public bool suaThongTinThanhVien(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo,
+            DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi,
+            string thanhPho, string quanHuyen, string CMND)
+        {
+            return db.suaDataNguoiChoi(maNguoiChoi, tenNguoiDung, soGioiChoiConLai, soTienNo, ngayTaoTaiKhoan,
+                nguoiTaoTaiKhoan, nguoiNapTien, email, diaChi, thanhPho, quanHuyen, CMND);
         }
     }
 }
