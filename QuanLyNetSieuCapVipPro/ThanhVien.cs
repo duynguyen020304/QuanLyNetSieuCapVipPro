@@ -21,6 +21,11 @@ namespace QuanLyNetSieuCapVipPro
 
         private void ThanhVien_Load(object sender, EventArgs e)
         {
+            loadDgv();
+        }
+
+        public void loadDgv()
+        {
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.DataSource = db.GetAllUserDataSet().Tables[0];
         }

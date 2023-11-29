@@ -21,9 +21,10 @@ namespace QuanLyNetSieuCapVipPro
         {
             InitializeComponent();
             lblHello.Text = "Hello " + userName;
+            this.userName = userName;
         }
 
-
+        private string userName;
         private bool nhanTinHieuDangNhap = false;
 
         private void frmManagement_FormClosing(object sender, FormClosingEventArgs e)
@@ -69,14 +70,14 @@ namespace QuanLyNetSieuCapVipPro
 
         private void themThanhVien_mnst_Click(object sender, EventArgs e)
         {
-            frmThemThanhVien themthanhvien = new frmThemThanhVien();
+            frmThemThanhVien themthanhvien = new frmThemThanhVien(3000, userName);
             themthanhvien.ShowDialog();
         }
 
         private void thanhVien_mnst_Click(object sender, EventArgs e)
         {
             thanhVien1.Show();
-
+            
         }
 
         private void frmManagement_Load(object sender, EventArgs e)

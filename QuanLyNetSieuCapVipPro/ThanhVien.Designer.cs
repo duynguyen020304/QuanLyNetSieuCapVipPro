@@ -40,7 +40,7 @@
             dataGridView1.Margin = new Padding(0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(897, 310);
+            dataGridView1.Size = new Size(862, 381);
             dataGridView1.TabIndex = 0;
             // 
             // ThanhVien
@@ -49,7 +49,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(dataGridView1);
             Name = "ThanhVien";
-            Size = new Size(897, 310);
+            Size = new Size(862, 381);
             Load += ThanhVien_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

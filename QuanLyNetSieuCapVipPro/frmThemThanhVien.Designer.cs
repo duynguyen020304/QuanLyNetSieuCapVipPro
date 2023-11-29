@@ -55,6 +55,8 @@
             label11 = new Label();
             label10 = new Label();
             btnThem = new Button();
+            label13 = new Label();
+            txtSoTienNo = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -214,6 +216,8 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(txtSoTienNo);
+            groupBox2.Controls.Add(label13);
             groupBox2.Controls.Add(textBox11);
             groupBox2.Controls.Add(txtNapTien);
             groupBox2.Controls.Add(txtMatKhau);
@@ -231,7 +235,7 @@
             // 
             // textBox11
             // 
-            textBox11.Location = new Point(117, 142);
+            textBox11.Location = new Point(117, 176);
             textBox11.Name = "textBox11";
             textBox11.Size = new Size(216, 23);
             textBox11.TabIndex = 8;
@@ -260,7 +264,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(6, 145);
+            label14.Location = new Point(6, 179);
             label14.Name = "label14";
             label14.Size = new Size(82, 15);
             label14.TabIndex = 4;
@@ -303,6 +307,22 @@
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
             btnThem.Click += btnThem_Click;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(6, 142);
+            label13.Name = "label13";
+            label13.Size = new Size(60, 15);
+            label13.TabIndex = 9;
+            label13.Text = "Số tiền nợ";
+            // 
+            // txtSoTienNo
+            // 
+            txtSoTienNo.Location = new Point(117, 139);
+            txtSoTienNo.Name = "txtSoTienNo";
+            txtSoTienNo.Size = new Size(216, 23);
+            txtSoTienNo.TabIndex = 10;
             // 
             // frmThemThanhVien
             // 
@@ -353,5 +373,7 @@
         private TextBox txtNguoiSuDung;
         private TextBox txtEmail;
         private Button btnThem;
+        private Label label13;
+        private TextBox txtSoTienNo;
     }
 }

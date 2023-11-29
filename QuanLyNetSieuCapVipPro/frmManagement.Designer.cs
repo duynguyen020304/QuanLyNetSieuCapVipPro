@@ -61,7 +61,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { chứcNăngToolStripMenuItem, hệThốngToolStripMenuItem, báoCáoToolStripMenuItem, giúpĐỡToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1051, 24);
+            menuStrip1.Size = new Size(1066, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -209,24 +209,23 @@
             lblHello.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblHello.Location = new Point(0, 24);
             lblHello.Name = "lblHello";
-            lblHello.Size = new Size(1051, 21);
+            lblHello.Size = new Size(1066, 21);
             lblHello.TabIndex = 1;
             lblHello.Text = "Hello .. 123123123";
             lblHello.TextAlign = ContentAlignment.TopRight;
             // 
             // thanhVien1
             // 
-            thanhVien1.Anchor = AnchorStyles.Left;
-            thanhVien1.Location = new Point(0, 70);
+            thanhVien1.Location = new Point(0, 59);
             thanhVien1.Name = "thanhVien1";
-            thanhVien1.Size = new Size(1051, 310);
+            thanhVien1.Size = new Size(1065, 310);
             thanhVien1.TabIndex = 2;
             // 
             // frmManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1051, 565);
+            ClientSize = new Size(1066, 489);
             Controls.Add(thanhVien1);
             Controls.Add(lblHello);
             Controls.Add(menuStrip1);

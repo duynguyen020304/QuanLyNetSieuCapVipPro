@@ -59,10 +59,11 @@ namespace QuanLyNetSieuCapVipPro
             cmd.ExecuteNonQuery();
 
             sql = "CREATE TABLE IF NOT EXISTS \"DICHVU\" ( " +
-                  "\"MaDichVu\" TEXT, " +
+                  "\"MaDichVu\" INTEGER, " +
                   "\"TenDichVu\" TEXT NOT NULL, " +
                   "\"Gia\" NUMERIC, " +
-                  "CONSTRAINT \"DV_MaDichVu_PK\" PRIMARY KEY(\"MaDichVu\") " +
+                  "\"DonVi\" TEXT, " +
+                  "CONSTRAINT \"DV_MaDichVu_PK\" PRIMARY KEY(\"MaDichVu\" AUTOINCREMENT) " +
                   ") ";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
@@ -202,9 +203,34 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
+        public void insertDataIntoDichVu(string tenDichVu, Decimal gia, string donVi)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "INSERT OR IGNORE INTO DICHVU(TenDichVu, Gia, DonVi) " +
+                             "VALUES(@TenDichVu, @Gia, @DonVi)";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@TenDichVu", tenDichVu);
+                cmd.Parameters.AddWithValue("@Gia", gia);
+                cmd.Parameters.AddWithValue("@DonVi", donVi);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+
         public void insertDataIntoTAIKHOAN_USER(string maNguoiChoi, string password)
         {
-
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "INSERT OR IGNORE INTO TAIKHOAN_ADMIN(MaTaiKhoan, MatKhau) " +
+                             "VALUES(@MaTaiKhoan, @MatKhau) ";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaTaiKhoan", maNguoiChoi);
+                cmd.Parameters.AddWithValue("@MatKhau", password);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public DataSet GetAllUserDataSet()
@@ -213,7 +239,8 @@ namespace QuanLyNetSieuCapVipPro
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
-                string sql = "SELECT * FROM NGUOICHOI";
+                string sql = "SELECT MaNguoiChoi as \"Mã Người Chơi\", TenNguoiDung as \"Tên Người Dùng\", SoGioChoiConLai as \"Số Giờ\", SoTienNo as \"Số Nợ\", NgayTaoTaiKhoan as \"Ngày Tạo Tài Khoản\"" +
+                             "From NGUOICHOI";
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
