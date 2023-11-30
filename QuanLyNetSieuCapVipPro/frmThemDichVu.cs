@@ -105,7 +105,7 @@ namespace QuanLyNetSieuCapVipPro
             {
                 gia = 0;
             }
-            if (db.insertDataIntoDichVu(txtMaDichVu.Text.Trim() ,txtTen.Text.Trim(), gia, txtDonVi.Text.Trim()))
+            if (db.insertDataIntoDichVu(txtMaDichVu.Text.Trim(), txtTen.Text.Trim(), gia, txtDonVi.Text.Trim()))
             {
                 MessageBox.Show("Thêm dịch vụ thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

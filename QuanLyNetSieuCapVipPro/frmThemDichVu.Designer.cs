@@ -87,14 +87,14 @@
             txtGia.Location = new Point(173, 159);
             txtGia.Name = "txtGia";
             txtGia.Size = new Size(370, 33);
-            txtGia.TabIndex = 4;
+            txtGia.TabIndex = 2;
             // 
             // txtDonVi
             // 
             txtDonVi.Location = new Point(173, 220);
             txtDonVi.Name = "txtDonVi";
             txtDonVi.Size = new Size(370, 33);
-            txtDonVi.TabIndex = 5;
+            txtDonVi.TabIndex = 3;
             // 
             // btnDongY
             // 
@@ -102,7 +102,7 @@
             btnDongY.Location = new Point(245, 270);
             btnDongY.Name = "btnDongY";
             btnDongY.Size = new Size(98, 40);
-            btnDongY.TabIndex = 6;
+            btnDongY.TabIndex = 4;
             btnDongY.Text = "Đồng ý";
             btnDongY.UseVisualStyleBackColor = true;
             btnDongY.Visible = false;
@@ -113,7 +113,7 @@
             btnThoat.Location = new Point(349, 270);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(98, 40);
-            btnThoat.TabIndex = 7;
+            btnThoat.TabIndex = 5;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
             btnThoat.Click += btnThoat_Click;
@@ -125,10 +125,10 @@
             // btnSua
             // 
             btnSua.Enabled = false;
-            btnSua.Location = new Point(131, 270);
+            btnSua.Location = new Point(245, 270);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(98, 40);
-            btnSua.TabIndex = 8;
+            btnSua.TabIndex = 4;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Visible = false;
@@ -149,7 +149,7 @@
             txtMaDichVu.Location = new Point(173, 43);
             txtMaDichVu.Name = "txtMaDichVu";
             txtMaDichVu.Size = new Size(370, 33);
-            txtMaDichVu.TabIndex = 10;
+            txtMaDichVu.TabIndex = 0;
             txtMaDichVu.Leave += txtMaDichVu_Leave;
             // 
             // frmThemDichVu

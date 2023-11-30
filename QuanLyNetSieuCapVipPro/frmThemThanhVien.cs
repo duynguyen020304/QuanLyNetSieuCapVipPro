@@ -91,7 +91,7 @@ namespace QuanLyNetSieuCapVipPro
             }
 
             if (db.insertDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim()) && db.insertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
+                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim()) && db.insertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
             {
                 MessageBox.Show("Thêm tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -117,7 +117,7 @@ namespace QuanLyNetSieuCapVipPro
                 result = 0;
             }
             if (db.suaDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim()))
+                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim()))
             {
                 MessageBox.Show("Sửa tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -138,6 +138,7 @@ namespace QuanLyNetSieuCapVipPro
             txtThanhPho.Text = dr[9].ToString();
             txtQuanHuyen.Text = dr[10].ToString();
             txtCMND.Text = dr[11].ToString();
+            txtSDT.Text = dr[12].ToString();
             txtMatKhau.Text = db.getUserPassword(maNguoiChoi);
         }
 

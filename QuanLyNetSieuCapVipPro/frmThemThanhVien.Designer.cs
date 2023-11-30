@@ -99,42 +99,42 @@
             txtEmail.Location = new Point(88, 139);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(375, 23);
-            txtEmail.TabIndex = 18;
+            txtEmail.TabIndex = 4;
             // 
             // txtCMND
             // 
             txtCMND.Location = new Point(88, 299);
             txtCMND.Name = "txtCMND";
             txtCMND.Size = new Size(375, 23);
-            txtCMND.TabIndex = 17;
+            txtCMND.TabIndex = 8;
             // 
             // txtQuanHuyen
             // 
             txtQuanHuyen.Location = new Point(88, 259);
             txtQuanHuyen.Name = "txtQuanHuyen";
             txtQuanHuyen.Size = new Size(375, 23);
-            txtQuanHuyen.TabIndex = 16;
+            txtQuanHuyen.TabIndex = 7;
             // 
             // txtThanhPho
             // 
             txtThanhPho.Location = new Point(88, 219);
             txtThanhPho.Name = "txtThanhPho";
             txtThanhPho.Size = new Size(375, 23);
-            txtThanhPho.TabIndex = 15;
+            txtThanhPho.TabIndex = 6;
             // 
             // txtDiaChi
             // 
             txtDiaChi.Location = new Point(88, 179);
             txtDiaChi.Name = "txtDiaChi";
             txtDiaChi.Size = new Size(375, 23);
-            txtDiaChi.TabIndex = 14;
+            txtDiaChi.TabIndex = 5;
             // 
             // txtSDT
             // 
             txtSDT.Location = new Point(88, 99);
             txtSDT.Name = "txtSDT";
             txtSDT.Size = new Size(375, 23);
-            txtSDT.TabIndex = 12;
+            txtSDT.TabIndex = 3;
             // 
             // label9
             // 
@@ -195,7 +195,7 @@
             dateTimePicker1.Location = new Point(88, 59);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 4;
+            dateTimePicker1.TabIndex = 2;
             // 
             // label2
             // 
@@ -220,7 +220,7 @@
             txtHoTen.Location = new Point(88, 22);
             txtHoTen.Name = "txtHoTen";
             txtHoTen.Size = new Size(375, 23);
-            txtHoTen.TabIndex = 0;
+            txtHoTen.TabIndex = 1;
             txtHoTen.Leave += txtHoTen_Leave;
             // 
             // groupBox2
@@ -247,7 +247,7 @@
             txtSoTienNo.Location = new Point(117, 139);
             txtSoTienNo.Name = "txtSoTienNo";
             txtSoTienNo.Size = new Size(216, 23);
-            txtSoTienNo.TabIndex = 10;
+            txtSoTienNo.TabIndex = 4;
             // 
             // label13
             // 
@@ -263,14 +263,14 @@
             txtSoGioChoiHienCo.Location = new Point(117, 176);
             txtSoGioChoiHienCo.Name = "txtSoGioChoiHienCo";
             txtSoGioChoiHienCo.Size = new Size(216, 23);
-            txtSoGioChoiHienCo.TabIndex = 8;
+            txtSoGioChoiHienCo.TabIndex = 5;
             // 
             // txtNapTien
             // 
             txtNapTien.Location = new Point(117, 102);
             txtNapTien.Name = "txtNapTien";
             txtNapTien.Size = new Size(216, 23);
-            txtNapTien.TabIndex = 7;
+            txtNapTien.TabIndex = 3;
             // 
             // txtMatKhau
             // 
@@ -278,7 +278,7 @@
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.PasswordChar = '*';
             txtMatKhau.Size = new Size(216, 23);
-            txtMatKhau.TabIndex = 6;
+            txtMatKhau.TabIndex = 2;
             txtMatKhau.Leave += txtPassword_Leave;
             // 
             // txtNguoiSuDung
@@ -286,7 +286,7 @@
             txtNguoiSuDung.Location = new Point(117, 19);
             txtNguoiSuDung.Name = "txtNguoiSuDung";
             txtNguoiSuDung.Size = new Size(216, 23);
-            txtNguoiSuDung.TabIndex = 5;
+            txtNguoiSuDung.TabIndex = 1;
             txtNguoiSuDung.Leave += txtNguoiSuDung_Leave;
             // 
             // label14
@@ -294,9 +294,9 @@
             label14.AutoSize = true;
             label14.Location = new Point(6, 179);
             label14.Name = "label14";
-            label14.Size = new Size(82, 15);
+            label14.Size = new Size(90, 15);
             label14.TabIndex = 4;
-            label14.Text = "Số giờ hiện có";
+            label14.Text = "Số phút hiện có";
             // 
             // label12
             // 
@@ -342,10 +342,10 @@
             // 
             btnSua.Enabled = false;
             btnSua.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSua.Location = new Point(603, 402);
+            btnSua.Location = new Point(731, 402);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(122, 36);
-            btnSua.TabIndex = 3;
+            btnSua.TabIndex = 2;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Visible = false;
