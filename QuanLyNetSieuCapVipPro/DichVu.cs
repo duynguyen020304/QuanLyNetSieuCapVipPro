@@ -35,7 +35,7 @@ namespace QuanLyNetSieuCapVipPro
         private void sua_mnst_Click(object sender, EventArgs e)
         {
             int i = dataGridView1.CurrentRow.Index;
-            frmThemDichVu dichvu = new frmThemDichVu();
+            frmThemDichVu dichvu = new frmThemDichVu(dataGridView1.Rows[i].Cells[0].Value.ToString(), false);
             dichvu.ShowDialog();
             loadDgv();
         }

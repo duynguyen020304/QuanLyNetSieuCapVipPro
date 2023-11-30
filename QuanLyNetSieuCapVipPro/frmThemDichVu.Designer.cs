@@ -38,13 +38,16 @@
             btnDongY = new Button();
             btnThoat = new Button();
             errorProvider1 = new ErrorProvider(components);
+            btnSua = new Button();
+            label4 = new Label();
+            txtMaDichVu = new TextBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(56, 26);
+            label1.Location = new Point(56, 104);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(41, 25);
@@ -53,7 +56,7 @@
             // 
             // txtTen
             // 
-            txtTen.Location = new Point(173, 23);
+            txtTen.Location = new Point(173, 98);
             txtTen.Name = "txtTen";
             txtTen.Size = new Size(370, 33);
             txtTen.TabIndex = 1;
@@ -62,7 +65,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(56, 87);
+            label2.Location = new Point(56, 162);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(105, 25);
@@ -72,7 +75,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(56, 148);
+            label3.Location = new Point(56, 223);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
             label3.Size = new Size(66, 25);
@@ -81,33 +84,33 @@
             // 
             // txtGia
             // 
-            txtGia.Location = new Point(173, 84);
+            txtGia.Location = new Point(173, 159);
             txtGia.Name = "txtGia";
             txtGia.Size = new Size(370, 33);
             txtGia.TabIndex = 4;
-            txtGia.Leave += txtGia_Leave;
             // 
             // txtDonVi
             // 
-            txtDonVi.Location = new Point(173, 145);
+            txtDonVi.Location = new Point(173, 220);
             txtDonVi.Name = "txtDonVi";
             txtDonVi.Size = new Size(370, 33);
             txtDonVi.TabIndex = 5;
-            txtDonVi.Leave += txtDonVi_Leave;
             // 
             // btnDongY
             // 
-            btnDongY.Location = new Point(238, 199);
+            btnDongY.Enabled = false;
+            btnDongY.Location = new Point(245, 270);
             btnDongY.Name = "btnDongY";
             btnDongY.Size = new Size(98, 40);
             btnDongY.TabIndex = 6;
             btnDongY.Text = "Đồng ý";
             btnDongY.UseVisualStyleBackColor = true;
+            btnDongY.Visible = false;
             btnDongY.Click += btnDongY_Click;
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(342, 199);
+            btnThoat.Location = new Point(349, 270);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(98, 40);
             btnThoat.TabIndex = 7;
@@ -119,11 +122,44 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // btnSua
+            // 
+            btnSua.Enabled = false;
+            btnSua.Location = new Point(131, 270);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(98, 40);
+            btnSua.TabIndex = 8;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = true;
+            btnSua.Visible = false;
+            btnSua.Click += btnSua_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(56, 46);
+            label4.Margin = new Padding(5, 0, 5, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(105, 25);
+            label4.TabIndex = 9;
+            label4.Text = "Mã dịch vụ";
+            // 
+            // txtMaDichVu
+            // 
+            txtMaDichVu.Location = new Point(173, 43);
+            txtMaDichVu.Name = "txtMaDichVu";
+            txtMaDichVu.Size = new Size(370, 33);
+            txtMaDichVu.TabIndex = 10;
+            txtMaDichVu.Leave += txtMaDichVu_Leave;
+            // 
             // frmThemDichVu
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(599, 251);
+            ClientSize = new Size(599, 322);
+            Controls.Add(txtMaDichVu);
+            Controls.Add(label4);
+            Controls.Add(btnSua);
             Controls.Add(btnThoat);
             Controls.Add(btnDongY);
             Controls.Add(txtDonVi);
@@ -136,6 +172,7 @@
             Margin = new Padding(5);
             Name = "frmThemDichVu";
             Text = "frmThemDichVu";
+            Load += frmThemDichVu_Load;
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -152,5 +189,8 @@
         private Button btnDongY;
         private Button btnThoat;
         private ErrorProvider errorProvider1;
+        private Button btnSua;
+        private TextBox txtMaDichVu;
+        private Label label4;
     }
 }

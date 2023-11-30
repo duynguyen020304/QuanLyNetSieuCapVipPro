@@ -59,11 +59,11 @@ namespace QuanLyNetSieuCapVipPro
             cmd.ExecuteNonQuery();
 
             sql = "CREATE TABLE IF NOT EXISTS \"DICHVU\" ( " +
-                  "\"MaDichVu\" INTEGER, " +
+                  "\"MaDichVu\" TEXT, " +
                   "\"TenDichVu\" TEXT NOT NULL, " +
                   "\"Gia\" NUMERIC, " +
                   "\"DonVi\" TEXT, " +
-                  "CONSTRAINT \"DV_MaDichVu_PK\" PRIMARY KEY(\"MaDichVu\" AUTOINCREMENT) " +
+                  "CONSTRAINT \"DV_MaDichVu_PK\" PRIMARY KEY(\"MaDichVu\") " +
                   ") ";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
@@ -267,15 +267,16 @@ namespace QuanLyNetSieuCapVipPro
             return i > 0;
         }
 
-        public bool insertDataIntoDichVu(string tenDichVu, Decimal gia, string donVi)
+        public bool insertDataIntoDichVu(string maDichVu, string tenDichVu, Decimal gia, string donVi)
         {
             int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
-                string sql = "INSERT OR IGNORE INTO DICHVU(TenDichVu, Gia, DonVi) " +
-                             "VALUES(@TenDichVu, @Gia, @DonVi)";
+                string sql = "INSERT OR IGNORE INTO DICHVU(MaDichVu, TenDichVu, Gia, DonVi) " +
+                             "VALUES(@MaDichVu, @TenDichVu, @Gia, @DonVi)";
                 var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaDichVu", maDichVu);
                 cmd.Parameters.AddWithValue("@TenDichVu", tenDichVu);
                 cmd.Parameters.AddWithValue("@Gia", gia);
                 cmd.Parameters.AddWithValue("@DonVi", donVi);
@@ -335,6 +336,27 @@ namespace QuanLyNetSieuCapVipPro
             return data;
         }
 
+        public bool modifiedSpecificElement(string maDichVu, string tenDichVu, Decimal gia, string donVi)
+        {
+            int i = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "UPDATE DICHVU set TenDichVu = @TenDichVu," +
+                             "Gia = @Gia, " +
+                             "DonVi = @DonVi where MaDichVu = @MaDichVu";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@TenDichVu", tenDichVu);
+                cmd.Parameters.AddWithValue("@Gia", gia);
+                cmd.Parameters.AddWithValue("@DonVi", donVi);
+                cmd.Parameters.AddWithValue("@MaDichVu", maDichVu);
+                i = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+
+            return i > 0;
+        }
+
         public DataSet getAllItemsFormDICHVU()
         {
             DataSet data = new DataSet();
@@ -346,6 +368,22 @@ namespace QuanLyNetSieuCapVipPro
                              "Gia as \"Giá\"," +
                              "DonVi as \"Đơn Vị\"" +
                              "FROM DICHVU ";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
+                adapter.Fill(data);
+                conn.Close();
+            }
+            return data;
+        }
+
+        public DataSet getSpecificItemFromDICHVU(string maDichVu)
+        {
+            DataSet data = new DataSet();
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "SELECT * " +
+                             "FROM DICHVU " +
+                             "WHERE MaDichVu = " + "\"" + maDichVu + "\"";
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
