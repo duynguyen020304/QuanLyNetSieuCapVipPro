@@ -13,17 +13,23 @@ namespace QuanLyNetSieuCapVipPro
     public partial class frmManagement : Form
     {
         private string userName;
+        public static frmManagement instance;
+        public string sendUserName;
         public frmManagement()
         {
             InitializeComponent();
+            instance = this;
         }
 
         public frmManagement(string userName)
         {
             this.userName = userName;
+            sendUserName = userName;
             InitializeComponent();
             lblHello.Text = "Hello " + userName;
+            instance = this;
         }
+
 
         private bool nhanTinHieuDangNhap = false;
 

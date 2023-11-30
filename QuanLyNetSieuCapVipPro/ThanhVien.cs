@@ -13,17 +13,21 @@ namespace QuanLyNetSieuCapVipPro
     public partial class ThanhVien : UserControl
     {
         private string adminUserName;
-        public ThanhVien(string adminUserName)
+        public ThanhVien()
         {
             InitializeComponent();
-            this.adminUserName = adminUserName;
         }
 
         Database db = new Database();
 
+        private void loadUserName(string adminUserName)
+        {
+            this.adminUserName = adminUserName;
+        }
+
         private void ThanhVien_Load(object sender, EventArgs e)
         {
-
+            adminUserName = frmManagement.instance.sendUserName;
         }
 
         public void loadDgv()

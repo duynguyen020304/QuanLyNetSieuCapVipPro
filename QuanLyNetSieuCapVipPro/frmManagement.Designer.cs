@@ -52,7 +52,7 @@
             doanhThuTheoMáyToolStripMenuItem = new ToolStripMenuItem();
             giúpĐỡToolStripMenuItem = new ToolStripMenuItem();
             lblHello = new Label();
-            thanhVien1 = new ThanhVien(this.userName);
+            thanhVien1 = new ThanhVien();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
