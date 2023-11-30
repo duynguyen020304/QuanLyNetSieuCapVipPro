@@ -15,10 +15,20 @@ namespace QuanLyNetSieuCapVipPro
         private string userName;
         public static frmManagement instance;
         public string sendUserName;
+
+        private bool isShowThanhVien = true;
+        private bool isShowDichVu = false;
+        private bool isShowNhomNguoiDung = false;
         public frmManagement()
         {
             InitializeComponent();
             instance = this;
+        }
+
+        private void frmManagement_Load(object sender, EventArgs e)
+        {
+            dichVu1.Hide();
+            nhomNguoiDung1.Hide();
         }
 
         public frmManagement(string userName)
@@ -69,10 +79,7 @@ namespace QuanLyNetSieuCapVipPro
 
         }
 
-        private void nhomNguoiDung_mnst_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void themThanhVien_mnst_Click(object sender, EventArgs e)
         {
@@ -81,15 +88,62 @@ namespace QuanLyNetSieuCapVipPro
             thanhVien1.loadDgv();
         }
 
+        private void themDichVu_mnst_Click(object sender, EventArgs e)
+        {
+            frmThemDichVu dichvu = new frmThemDichVu();
+            dichvu.ShowDialog();
+        }
+
+        private void nhomNguoiDung_mnst_Click(object sender, EventArgs e)
+        {
+            if (isShowDichVu)
+            {
+                isShowDichVu = false;
+                dichVu1.Hide();
+            }
+            if (isShowThanhVien)
+            {
+                isShowThanhVien = false;
+                thanhVien1.Hide();
+            }
+            isShowNhomNguoiDung = true;
+            nhomNguoiDung1.Show();
+            //nhomNguoiDung.loadDgv();
+        }
+
         private void thanhVien_mnst_Click(object sender, EventArgs e)
         {
+            if (isShowNhomNguoiDung)
+            {
+                isShowNhomNguoiDung = false;
+                nhomNguoiDung1.Hide();
+            }
+
+            if (isShowDichVu)
+            {
+                isShowDichVu = false;
+                dichVu1.Hide();
+            }
+            isShowThanhVien = true;
             thanhVien1.Show();
             thanhVien1.loadDgv();
         }
 
-        private void frmManagement_Load(object sender, EventArgs e)
+        private void dichVu_mnst_Click(object sender, EventArgs e)
         {
-            thanhVien1.Hide();
+            if (isShowThanhVien)
+            {
+                isShowThanhVien = false;
+                thanhVien1.Hide();
+            }
+            if (isShowNhomNguoiDung)
+            {
+                isShowNhomNguoiDung = false;
+                nhomNguoiDung1.Hide();
+            }
+            isShowDichVu = true;
+            dichVu1.Show();
+            dichVu1.loadDgv();
         }
     }
 }

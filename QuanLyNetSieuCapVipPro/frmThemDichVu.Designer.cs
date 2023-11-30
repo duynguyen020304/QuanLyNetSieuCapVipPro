@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             txtTen = new TextBox();
             label2 = new Label();
@@ -36,6 +37,8 @@
             txtDonVi = new TextBox();
             btnDongY = new Button();
             btnThoat = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -54,6 +57,7 @@
             txtTen.Name = "txtTen";
             txtTen.Size = new Size(370, 33);
             txtTen.TabIndex = 1;
+            txtTen.Leave += txtTen_Leave;
             // 
             // label2
             // 
@@ -81,6 +85,7 @@
             txtGia.Name = "txtGia";
             txtGia.Size = new Size(370, 33);
             txtGia.TabIndex = 4;
+            txtGia.Leave += txtGia_Leave;
             // 
             // txtDonVi
             // 
@@ -88,6 +93,7 @@
             txtDonVi.Name = "txtDonVi";
             txtDonVi.Size = new Size(370, 33);
             txtDonVi.TabIndex = 5;
+            txtDonVi.Leave += txtDonVi_Leave;
             // 
             // btnDongY
             // 
@@ -109,6 +115,10 @@
             btnThoat.UseVisualStyleBackColor = true;
             btnThoat.Click += btnThoat_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // frmThemDichVu
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
@@ -126,7 +136,7 @@
             Margin = new Padding(5);
             Name = "frmThemDichVu";
             Text = "frmThemDichVu";
-            FormClosing += frmThemDichVu_FormClosing;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -141,5 +151,6 @@
         private TextBox txtDonVi;
         private Button btnDongY;
         private Button btnThoat;
+        private ErrorProvider errorProvider1;
     }
 }

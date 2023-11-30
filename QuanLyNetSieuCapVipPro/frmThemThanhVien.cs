@@ -33,10 +33,6 @@ namespace QuanLyNetSieuCapVipPro
             this.maNguoiChoi = maNguoiChoi;
         }
 
-        private void frmThemThanhVien_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
         private void txtHoTen_Leave(object sender, EventArgs e)
         {
             Control control = (Control)sender;

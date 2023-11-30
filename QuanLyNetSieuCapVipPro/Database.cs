@@ -335,16 +335,51 @@ namespace QuanLyNetSieuCapVipPro
             return data;
         }
 
-        public void removeUserFromNGUOICHOI(string username)
+        public DataSet getAllItemsFormDICHVU()
         {
+            DataSet data = new DataSet();
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "SELECT MaDichVu as \"Mã Dịch Vụ\"," +
+                             "TenDichVu as \"Tên Dịch Vụ\"," +
+                             "Gia as \"Giá\"," +
+                             "DonVi as \"Đơn Vị\"" +
+                             "FROM DICHVU ";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
+                adapter.Fill(data);
+                conn.Close();
+            }
+            return data;
+        }
+
+        public bool removeItemsFromDICHVU(string maDichVu)
+        {
+            int i = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "DELETE FROM DICHVU WHERE MaDichVu = @MaDichVu";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaDichVu", maDichVu);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i > 0;
+        }
+
+
+        public bool removeUserFromNGUOICHOI(string username)
+        {
+            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
                 string sql = "DELETE FROM NGUOICHOI WHERE MaNguoiChoi = @MaNguoiChoi";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNguoiChoi", username);
-                cmd.ExecuteNonQuery();
+                i = cmd.ExecuteNonQuery();
             }
+            return i > 0;
         }
     }
 }

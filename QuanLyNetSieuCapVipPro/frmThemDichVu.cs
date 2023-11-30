@@ -17,14 +17,47 @@ namespace QuanLyNetSieuCapVipPro
             InitializeComponent();
         }
 
-        private void frmThemDichVu_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtTen_Leave(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            if (control.Text.Trim().Length == 0)
+            {
+                this.errorProvider1.SetError(control,"Vui lòng không bỏ trống ô tên");
+            }
+            else
+            {
+                this.errorProvider1.Clear();
+            }
+        }
+
+        private void txtGia_Leave(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            if (control.Text.Trim().Length == 0)
+            {
+                this.errorProvider1.SetError(control, "Vui lòng không bỏ trống ô giá");
+            }
+            else
+            {
+                this.errorProvider1.Clear();
+            }
+        }
+        private void txtDonVi_Leave(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            if (control.Text.Trim().Length == 0)
+            {
+                this.errorProvider1.SetError(control, "Vui lòng không bỏ trống ô đơn vị");
+            }
+            else
+            {
+                this.errorProvider1.Clear();
+            }
         }
 
         private void btnDongY_Click(object sender, EventArgs e)
