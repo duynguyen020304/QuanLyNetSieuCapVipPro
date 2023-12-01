@@ -84,14 +84,22 @@ namespace QuanLyNetSieuCapVipPro
             {
                 result = 0;
             }
-            long soGioChoi = Convert.ToInt64((result / donGia) * 60);
+
+            string maNhomNguoiDung = "";
+            if (cboLoaiNguoiDung.SelectedItem is DataRowView selectedRow)
+            {
+                maNhomNguoiDung = selectedRow["MaNhomNguoiDung"].ToString();
+            }
+
+            decimal giaTaiKhoan = db.getGiaTaiKhoan(maNhomNguoiDung);
+            long soGioChoi = Convert.ToInt64((result / giaTaiKhoan) * 60);
             if (!decimal.TryParse(txtSoTienNo.Text.Trim(), out result))
             {
                 result = 0;
             }
 
             if (db.insertDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim()) && db.insertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
+                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung) && db.insertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
             {
                 MessageBox.Show("Thêm tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -111,13 +119,19 @@ namespace QuanLyNetSieuCapVipPro
             {
                 result = 0;
             }
-            long soGioChoi = Convert.ToInt64((result / donGia) * 60);
+            string maNhomNguoiDung = "";
+            if (cboLoaiNguoiDung.SelectedItem is DataRowView selectedRow)
+            {
+                maNhomNguoiDung = selectedRow["MaNhomNguoiDung"].ToString();
+            }
+            decimal giaTaiKhoan = db.getGiaTaiKhoan(maNhomNguoiDung);
+            long soGioChoi = Convert.ToInt64((result / giaTaiKhoan) * 60);
             if (!decimal.TryParse(txtSoTienNo.Text.Trim(), out result))
             {
                 result = 0;
             }
             if (db.suaDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim()))
+                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung))
             {
                 MessageBox.Show("Sửa tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -140,10 +154,32 @@ namespace QuanLyNetSieuCapVipPro
             txtCMND.Text = dr[11].ToString();
             txtSDT.Text = dr[12].ToString();
             txtMatKhau.Text = db.getUserPassword(maNguoiChoi);
+            dt = db.getAllItemsFROMNHOMNGUOIDUNG().Tables[0];
+            cboLoaiNguoiDung.DataSource = dt;
+            cboLoaiNguoiDung.DisplayMember = "TenNhomNguoiDung";
+            cboLoaiNguoiDung.ValueMember = "MaNhomNguoiDung";
+            string loaiNguoiDung = dr[13].ToString();
+            for (int i = 0; i < cboLoaiNguoiDung.Items.Count; i++)
+            {
+                if (cboLoaiNguoiDung.Items[i] is DataRowView row)
+                {
+                    string maNhomNguoiDung = row["MaNhomNguoiDung"].ToString();
+                    if (maNhomNguoiDung == loaiNguoiDung)
+                    {
+                        cboLoaiNguoiDung.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
         }
 
         private void frmThemThanhVien_Load(object sender, EventArgs e)
         {
+            DataTable dt;
+            dt = db.getAllItemsFROMNHOMNGUOIDUNG().Tables[0];
+            cboLoaiNguoiDung.DataSource = dt;
+            cboLoaiNguoiDung.DisplayMember = "TenNhomNguoiDung"; //giá trị hiện ra comboBox
+            cboLoaiNguoiDung.ValueMember = "MaNhomNguoiDung"; //giá trị thực khi click vào sẽ trả về
             if (isAdd)
             {
                 btnThem.Enabled = true;

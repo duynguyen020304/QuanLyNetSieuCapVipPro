@@ -62,6 +62,8 @@
             errorProvider1 = new ErrorProvider(components);
             errorProvider2 = new ErrorProvider(components);
             errorProvider3 = new ErrorProvider(components);
+            label15 = new Label();
+            cboLoaiNguoiDung = new ComboBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
@@ -225,6 +227,8 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(cboLoaiNguoiDung);
+            groupBox2.Controls.Add(label15);
             groupBox2.Controls.Add(txtSoTienNo);
             groupBox2.Controls.Add(label13);
             groupBox2.Controls.Add(txtSoGioChoiHienCo);
@@ -244,7 +248,7 @@
             // 
             // txtSoTienNo
             // 
-            txtSoTienNo.Location = new Point(117, 139);
+            txtSoTienNo.Location = new Point(117, 181);
             txtSoTienNo.Name = "txtSoTienNo";
             txtSoTienNo.Size = new Size(216, 23);
             txtSoTienNo.TabIndex = 4;
@@ -252,7 +256,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(6, 142);
+            label13.Location = new Point(6, 184);
             label13.Name = "label13";
             label13.Size = new Size(60, 15);
             label13.TabIndex = 9;
@@ -260,14 +264,14 @@
             // 
             // txtSoGioChoiHienCo
             // 
-            txtSoGioChoiHienCo.Location = new Point(117, 176);
+            txtSoGioChoiHienCo.Location = new Point(117, 218);
             txtSoGioChoiHienCo.Name = "txtSoGioChoiHienCo";
             txtSoGioChoiHienCo.Size = new Size(216, 23);
             txtSoGioChoiHienCo.TabIndex = 5;
             // 
             // txtNapTien
             // 
-            txtNapTien.Location = new Point(117, 102);
+            txtNapTien.Location = new Point(117, 144);
             txtNapTien.Name = "txtNapTien";
             txtNapTien.Size = new Size(216, 23);
             txtNapTien.TabIndex = 3;
@@ -292,7 +296,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(6, 179);
+            label14.Location = new Point(6, 221);
             label14.Name = "label14";
             label14.Size = new Size(90, 15);
             label14.TabIndex = 4;
@@ -301,7 +305,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(6, 105);
+            label12.Location = new Point(6, 147);
             label12.Name = "label12";
             label12.Size = new Size(52, 15);
             label12.TabIndex = 2;
@@ -363,6 +367,23 @@
             // 
             errorProvider3.ContainerControl = this;
             // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(6, 107);
+            label15.Name = "label15";
+            label15.Size = new Size(94, 15);
+            label15.TabIndex = 10;
+            label15.Text = "Loại người dùng";
+            // 
+            // cboLoaiNguoiDung
+            // 
+            cboLoaiNguoiDung.FormattingEnabled = true;
+            cboLoaiNguoiDung.Location = new Point(117, 104);
+            cboLoaiNguoiDung.Name = "cboLoaiNguoiDung";
+            cboLoaiNguoiDung.Size = new Size(216, 23);
+            cboLoaiNguoiDung.TabIndex = 11;
+            // 
             // frmThemThanhVien
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -390,7 +411,7 @@
         private GroupBox groupBox1;
         private Label label5;
         private Label label4;
-        private ComboBox comboBox1;
+        private ComboBox cboLoaiNguoiDung;
         private DateTimePicker dateTimePicker1;
         private Label label3;
         private Label label2;
@@ -423,5 +444,6 @@
         private ErrorProvider errorProvider1;
         private ErrorProvider errorProvider2;
         private ErrorProvider errorProvider3;
+        private Label label15;
     }
 }

@@ -38,6 +38,15 @@ namespace QuanLyNetSieuCapVipPro
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
+            sql = "CREATE TABLE IF NOT EXISTS \"NHOMNGUOIDUNG\" ( " +
+                  "\"MaNhomNguoiDung\" TEXT, " +
+                  "\"TenNhomNguoiDung\" TEXT NOT NULL, " +
+                  "\"GiaNhomNguoiDung\" NUMERIC, " +
+                  "CONSTRAINT \"NND_MaNhomNguoiDung_PK\" PRIMARY KEY(\"MaNhomNguoiDung\") " +
+                  ")";
+            cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+
             sql = "CREATE TABLE IF NOT EXISTS \"NGUOICHOI\" ( " +
                   "\"MaNguoiChoi\" TEXT, " +
                   "\"TenNguoiDung\" TEXT NOT NULL, " +
@@ -52,9 +61,11 @@ namespace QuanLyNetSieuCapVipPro
                   "\"QuanHuyen\" TEXT," +
                   "\"CMND\" TEXT, " +
                   "\"SDT\" TEXT, "+
+                  "\"NhomNguoiDung\" TEXT, " +
                   "CONSTRAINT \"NC_NguoiNapTien_FK\" FOREIGN KEY(\"NguoiNapTien\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
                   "CONSTRAINT \"NC_NguoiTaoTaiKhoan_FK\" FOREIGN KEY(\"NguoiTaoTaiKhoan\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
-                  "CONSTRAINT \"NC_MaNguoiChoi_PK\" PRIMARY KEY(\"MaNguoiChoi\") " +
+                  "CONSTRAINT \"NC_MaNguoiChoi_PK\" PRIMARY KEY(\"MaNguoiChoi\"), " +
+                  "CONSTRAINT \"NC_NhomNguoiDung_FK\" FOREIGN KEY(\"NhomNguoiDung\") REFERENCES \"NHOMNGUOIDUNG\"(\"MaNhomNguoiDung\") " +
                   ") ";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
@@ -123,8 +134,18 @@ namespace QuanLyNetSieuCapVipPro
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
+            sql = "INSERT OR IGNORE INTO NHOMNGUOIDUNG(MaNhomNguoiDung, TenNhomNguoiDung, GiaNhomNguoiDung) " +
+                  "VALUES(\"hoivien\", \"Hội Viên\", 10000), (\"nhanvien\", \"Nhân Viên\", 7000), (\"vip\", \"VIP\", 8500), (\"vanglai\", \"Vãng Lai\", 11500)";
+            cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+
             sql = "INSERT OR IGNORE INTO TAIKHOAN_ADMIN(MaTaiKhoan, MatKhau) " +
                       "VALUES(\"admin\", \"admin\") ";
+            cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+
+            sql = "INSERT OR IGNORE INTO ADMIN(MaAdmin, TenAdmin) " +
+                  "VALUES(\"admin\", \"admin\")";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
@@ -200,15 +221,15 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
-        public bool insertDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo, DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi, string thanhPho, string quanHuyen, string CMND, string SDT)
+        public bool insertDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo, DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi, string thanhPho, string quanHuyen, string CMND, string SDT, string loaiNguoiDung)
         {
             int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 conn.Open();
                 string sql =
-                    "INSERT OR IGNORE INTO NGUOICHOI(MaNguoiChoi, TenNguoiDung, SoGioChoiConLai, SoTienNo, NgayTaoTaiKhoan, NguoiTaoTaiKhoan, NguoiNapTien, Email, DiaChi, ThanhPho, QuanHuyen, CMND, SDT) " +
-                    "VALUES(@MaNguoiChoi, @TenNguoiDung, @SoGioChoiConLai, @SoTienNo, @NgayTaoTaiKhoan, @NguoiTaoTaiKhoan, @NguoiNapTien, @Email, @DiaChi, @ThanhPho, @QuanHuyen, @CMND, @SDT)";
+                    "INSERT OR IGNORE INTO NGUOICHOI(MaNguoiChoi, TenNguoiDung, SoGioChoiConLai, SoTienNo, NgayTaoTaiKhoan, NguoiTaoTaiKhoan, NguoiNapTien, Email, DiaChi, ThanhPho, QuanHuyen, CMND, SDT, NhomNguoiDung) " +
+                    "VALUES(@MaNguoiChoi, @TenNguoiDung, @SoGioChoiConLai, @SoTienNo, @NgayTaoTaiKhoan, @NguoiTaoTaiKhoan, @NguoiNapTien, @Email, @DiaChi, @ThanhPho, @QuanHuyen, @CMND, @SDT, @NhomNguoiDung)";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNguoiChoi", maNguoiChoi);
                 cmd.Parameters.AddWithValue("@TenNguoiDung", tenNguoiDung);
@@ -223,17 +244,15 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@QuanHuyen", quanHuyen);
                 cmd.Parameters.AddWithValue("@CMND", CMND);
                 cmd.Parameters.AddWithValue("@SDT", SDT);
+                cmd.Parameters.AddWithValue("@NhomNguoiDung", loaiNguoiDung);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
             }
-
-
             return i > 0;
         }
-
         public bool suaDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo,
             DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi,
-            string thanhPho, string quanHuyen, string CMND, string SDT)
+            string thanhPho, string quanHuyen, string CMND, string SDT, string loaiNguoiDung)
         {
             int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
@@ -250,7 +269,9 @@ namespace QuanLyNetSieuCapVipPro
                              "ThanhPho = @ThanhPho, " +
                              "QuanHuyen = @QuanHuyen, " +
                              "CMND = @CMND, " +
-                             "SDT = @SDT Where MaNguoiChoi = @MaNguoiChoi";
+                             "SDT = @SDT, " +
+                             "NhomNguoiDung = @NhomNguoiDung " +
+                             "Where MaNguoiChoi = @MaNguoiChoi";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNguoiChoi", maNguoiChoi);
                 cmd.Parameters.AddWithValue("@TenNguoiDung", tenNguoiDung);
@@ -265,6 +286,7 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@QuanHuyen", quanHuyen);
                 cmd.Parameters.AddWithValue("@CMND", CMND);
                 cmd.Parameters.AddWithValue("@SDT", SDT);
+                cmd.Parameters.AddWithValue("@NhomNguoiDung", loaiNguoiDung);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
             }
@@ -409,6 +431,68 @@ namespace QuanLyNetSieuCapVipPro
             return i > 0;
         }
 
+        public DataSet getAllItemsFROMNHOMNGUOIDUNG()
+        {
+            DataSet data = new DataSet();
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM NHOMNGUOIDUNG";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
+                adapter.Fill(data);
+                conn.Close();
+            }
+            return data;
+        }
+
+        public Decimal getGiaTaiKhoan(string maNhomNguoiDung)
+        {
+            Decimal rs = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "SELECT GiaNhomNguoiDung FROM NHOMNGUOIDUNG WHERE MaNhomNguoiDung = @MaNhomNguoiDung";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaNhomNguoiDung", maNhomNguoiDung);
+                rs = Convert.ToDecimal(cmd.ExecuteScalar());
+                conn.Close();
+            }
+
+            return rs;
+        }
+
+        public string getLoaiTaiKhoan(string maNhomNguoiDung)
+        {
+            string rs = "";
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "SELECT TenNhomNguoiDung FROM NHOMNGUOIDUNG WHERE MaNhomNguoiDung = @MaNhomNguoiDung";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaNhomNguoiDung", maNhomNguoiDung);
+                rs = Convert.ToString(cmd.ExecuteScalar());
+                conn.Close();
+            }
+
+            return rs;
+        }
+
+        public bool modifiedItemInNHOMNGUOIDUNG(string maNhomNguoiDung, string tenNhomNguoiDung, decimal gia)
+        {
+            int i = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "UPDATE NHOMNGUOIDUNG set TenNhomNguoiDung = @TenNhomNguoiDung" +
+                             "GiaNhomNguoiDung = @GiaNhomNguoiDung WHERE MaNhomNguoiDung = @MaNhomNguoiDung";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@TenNhomNguoiDung", tenNhomNguoiDung);
+                cmd.Parameters.AddWithValue("@GiaNhomNguoiDung", gia);
+                cmd.Parameters.AddWithValue("@MaNhomNguoiDung", maNhomNguoiDung);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i > 0;
+        }
 
         public bool removeUserFromNGUOICHOI(string username)
         {

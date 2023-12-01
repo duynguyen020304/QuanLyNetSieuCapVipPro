@@ -12,9 +12,17 @@ namespace QuanLyNetSieuCapVipPro
 {
     public partial class NhomNguoiDung : UserControl
     {
+        private Database db = new Database();
         public NhomNguoiDung()
         {
             InitializeComponent();
+            loadDgv();
         }
+        public void loadDgv()
+        {
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.DataSource = db.getAllItemsFROMNHOMNGUOIDUNG().Tables[0];
+        }
+
     }
 }

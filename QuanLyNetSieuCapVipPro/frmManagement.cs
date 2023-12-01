@@ -109,7 +109,7 @@ namespace QuanLyNetSieuCapVipPro
             }
             isShowNhomNguoiDung = true;
             nhomNguoiDung1.Show();
-            //nhomNguoiDung.loadDgv();
+            nhomNguoiDung1.loadDgv();
         }
 
         private void thanhVien_mnst_Click(object sender, EventArgs e)
