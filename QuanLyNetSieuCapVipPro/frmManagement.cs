@@ -12,6 +12,7 @@ namespace QuanLyNetSieuCapVipPro
 {
     public partial class frmManagement : Form
     {
+        private Database db = new Database();
         private string userName;
         public static frmManagement instance;
         public string sendUserName;
@@ -19,6 +20,7 @@ namespace QuanLyNetSieuCapVipPro
         private bool isShowThanhVien = true;
         private bool isShowDichVu = false;
         private bool isShowNhomNguoiDung = false;
+        private bool isShowPnlChat = false;
         public frmManagement()
         {
             InitializeComponent();
@@ -29,6 +31,9 @@ namespace QuanLyNetSieuCapVipPro
         {
             dichVu1.Hide();
             nhomNguoiDung1.Hide();
+            pnlChat.Visible = false;
+            pnlChat.Enabled = false;
+            loadMayTram();
         }
 
         public frmManagement(string userName)
@@ -73,13 +78,6 @@ namespace QuanLyNetSieuCapVipPro
                 this.Close();
             }
         }
-
-        private void lblHello_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private void themThanhVien_mnst_Click(object sender, EventArgs e)
         {
@@ -145,6 +143,64 @@ namespace QuanLyNetSieuCapVipPro
             isShowDichVu = true;
             dichVu1.Show();
             dichVu1.loadDgv();
+        }
+
+        private void btnChat_Click(object sender, EventArgs e)
+        {
+            if (isShowPnlChat)
+            {
+                isShowPnlChat = false;
+                pnlChat.Visible = false;
+                pnlChat.Enabled = false;
+            }
+            else
+            {
+                isShowPnlChat = true;
+                pnlChat.Visible = true;
+                pnlChat.Enabled = true;
+            }
+        }
+        public void syncChat(string userID, string userChat)
+        {
+            rtxtShowChat.Text += userID + ": " + userChat + "\n";
+        }
+
+        private void loadMayTram()
+        {
+            DataTable dt = db.getAllItemsFromMAYTINH().Tables[0];
+            List<string> items = new List<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                items.Add(row["MaMay"].ToString());
+            }
+            if (cboMayTram_mnst.ComboBox != null)
+            {
+                cboMayTram_mnst.ComboBox.Items.Clear();
+                cboMayTram_mnst.ComboBox.Items.Add("Chọn máy");
+                cboMayTram_mnst.ComboBox.Items.AddRange(items.ToArray());
+                cboMayTram_mnst.SelectedIndex = 0;
+            }
+        }
+
+        private void cboMayTram_mnst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtChat_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && txtChat.Text.Trim().Length != 0)
+            {
+                rtxtShowChat.Text += "Bạn: " + txtChat.Text.Trim() + "\n";
+                frmGuiTinNhan.instance.syncChat(userName, txtChat.Text.Trim());
+                txtChat.Clear();
+            }
+        }
+
+        private void khoiDongMayTram_mnst_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

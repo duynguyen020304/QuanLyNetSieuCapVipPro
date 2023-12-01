@@ -12,9 +12,16 @@ namespace QuanLyNetSieuCapVipPro
 {
     public partial class frmMayTinh : Form
     {
+        private string maMay;
         public frmMayTinh()
         {
             InitializeComponent();
+        }
+
+        public frmMayTinh(string maMay)
+        {
+            InitializeComponent();
+            this.maMay = maMay;
         }
 
         private void lblTinNhan_Click(object sender, EventArgs e)

@@ -19,10 +19,8 @@ namespace QuanLyNetSieuCapVipPro
             conn.Open();
             string sql = "CREATE TABLE IF NOT EXISTS \"MAYTINH\" ( " +
                          "\"MaMay\" TEXT, " +
-                         "\"CPU\" TEXT, " +
-                         "\"GPU\" TEXT, " +
-                         "\"RAM\" TEXT, " +
-                         "\"DISK\" TEXT, " +
+                         "\"LanKhoiDongGanNhat\" TEXT, " +
+                         "\"TrangThaiMay\" TEXT NOT NULL, " +
                          "CONSTRAINT \"MT_MaMay_PK\" PRIMARY KEY(\"MaMay\") " +
                          ")";
             var cmd = new SQLiteCommand(sql, conn);
@@ -146,6 +144,10 @@ namespace QuanLyNetSieuCapVipPro
 
             sql = "INSERT OR IGNORE INTO ADMIN(MaAdmin, TenAdmin) " +
                   "VALUES(\"admin\", \"admin\")";
+            cmd = new SQLiteCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+
+            sql = "INSERT OR IGNORE INTO MAYTINH(MaMay, TrangThaiMay) VALUES ('MAY001', 'off'), ('MAY002', 'off'), ('MAY003', 'off')";
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
@@ -445,6 +447,20 @@ namespace QuanLyNetSieuCapVipPro
             return data;
         }
 
+        public DataSet getAllItemsFromMAYTINH()
+        {
+            DataSet data = new DataSet();
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM MAYTINH";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
+                adapter.Fill(data);
+                conn.Close();
+            }
+            return data;
+        }
+
         public Decimal getGiaTaiKhoan(string maNhomNguoiDung)
         {
             Decimal rs = 0;
@@ -457,7 +473,6 @@ namespace QuanLyNetSieuCapVipPro
                 rs = Convert.ToDecimal(cmd.ExecuteScalar());
                 conn.Close();
             }
-
             return rs;
         }
 

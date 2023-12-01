@@ -42,7 +42,8 @@
             thoátToolStripMenuItem = new ToolStripMenuItem();
             hệThốngToolStripMenuItem = new ToolStripMenuItem();
             quảnLýThôngTinKháchVãngLaiToolStripMenuItem = new ToolStripMenuItem();
-            khởiĐộngMáyTrạmToolStripMenuItem = new ToolStripMenuItem();
+            khoiDongMayTram_mnst = new ToolStripMenuItem();
+            cboMayTram_mnst = new ToolStripComboBox();
             toolStripSeparator2 = new ToolStripSeparator();
             quảnLýCơSởDữLiêuToolStripMenuItem = new ToolStripMenuItem();
             saoLưuCơSởDữLiệuToolStripMenuItem = new ToolStripMenuItem();
@@ -148,7 +149,7 @@
             // 
             // hệThốngToolStripMenuItem
             // 
-            hệThốngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { quảnLýThôngTinKháchVãngLaiToolStripMenuItem, khởiĐộngMáyTrạmToolStripMenuItem, toolStripSeparator2, quảnLýCơSởDữLiêuToolStripMenuItem, thêmTàiKhoảnQuảnLýToolStripMenuItem });
+            hệThốngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { quảnLýThôngTinKháchVãngLaiToolStripMenuItem, khoiDongMayTram_mnst, toolStripSeparator2, quảnLýCơSởDữLiêuToolStripMenuItem, thêmTàiKhoảnQuảnLýToolStripMenuItem });
             hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
             hệThốngToolStripMenuItem.Size = new Size(69, 20);
             hệThốngToolStripMenuItem.Text = "Hệ thống";
@@ -159,11 +160,18 @@
             quảnLýThôngTinKháchVãngLaiToolStripMenuItem.Size = new Size(246, 22);
             quảnLýThôngTinKháchVãngLaiToolStripMenuItem.Text = "Quản lý thông tin khách vãng lai";
             // 
-            // khởiĐộngMáyTrạmToolStripMenuItem
+            // khoiDongMayTram_mnst
             // 
-            khởiĐộngMáyTrạmToolStripMenuItem.Name = "khởiĐộngMáyTrạmToolStripMenuItem";
-            khởiĐộngMáyTrạmToolStripMenuItem.Size = new Size(246, 22);
-            khởiĐộngMáyTrạmToolStripMenuItem.Text = "Khởi động máy trạm";
+            khoiDongMayTram_mnst.DropDownItems.AddRange(new ToolStripItem[] { cboMayTram_mnst });
+            khoiDongMayTram_mnst.Name = "khoiDongMayTram_mnst";
+            khoiDongMayTram_mnst.Size = new Size(246, 22);
+            khoiDongMayTram_mnst.Text = "Khởi động máy trạm";
+            khoiDongMayTram_mnst.Click += khoiDongMayTram_mnst_Click;
+            // 
+            // cboMayTram_mnst
+            // 
+            cboMayTram_mnst.Name = "cboMayTram_mnst";
+            cboMayTram_mnst.Size = new Size(121, 23);
             // 
             // toolStripSeparator2
             // 
@@ -274,6 +282,7 @@
             btnChat.TabIndex = 5;
             btnChat.Text = "Chat";
             btnChat.UseVisualStyleBackColor = true;
+            btnChat.Click += btnChat_Click;
             // 
             // rtxtShowChat
             // 
@@ -307,6 +316,7 @@
             txtChat.Name = "txtChat";
             txtChat.Size = new Size(385, 27);
             txtChat.TabIndex = 7;
+            txtChat.KeyDown += txtChat_KeyDown;
             // 
             // frmManagement
             // 
@@ -347,7 +357,7 @@
         private ToolStripMenuItem chuyenCaNhanVien_mnst;
         private ToolStripMenuItem thoátToolStripMenuItem;
         private ToolStripMenuItem quảnLýThôngTinKháchVãngLaiToolStripMenuItem;
-        private ToolStripMenuItem khởiĐộngMáyTrạmToolStripMenuItem;
+        private ToolStripMenuItem khoiDongMayTram_mnst;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem quảnLýCơSởDữLiêuToolStripMenuItem;
         private ToolStripMenuItem saoLưuCơSởDữLiệuToolStripMenuItem;
@@ -368,5 +378,6 @@
         private RichTextBox rtxtShowChat;
         private Panel pnlChat;
         private TextBox txtChat;
+        private ToolStripComboBox cboMayTram_mnst;
     }
 }

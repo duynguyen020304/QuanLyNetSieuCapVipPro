@@ -28,36 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            richTextBox1 = new RichTextBox();
-            textBox1 = new TextBox();
+            rtxtChat = new RichTextBox();
+            txtChat = new TextBox();
             SuspendLayout();
             // 
-            // richTextBox1
+            // rtxtChat
             // 
-            richTextBox1.BackColor = Color.PapayaWhip;
-            richTextBox1.Location = new Point(0, -1);
-            richTextBox1.Margin = new Padding(0);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(422, 245);
-            richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "";
+            rtxtChat.BackColor = Color.PapayaWhip;
+            rtxtChat.Location = new Point(0, -1);
+            rtxtChat.Margin = new Padding(0);
+            rtxtChat.Name = "rtxtChat";
+            rtxtChat.Size = new Size(422, 245);
+            rtxtChat.TabIndex = 0;
+            rtxtChat.Text = "";
             // 
-            // textBox1
+            // txtChat
             // 
-            textBox1.BackColor = SystemColors.HotTrack;
-            textBox1.ForeColor = Color.Yellow;
-            textBox1.Location = new Point(0, 247);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(422, 27);
-            textBox1.TabIndex = 1;
+            txtChat.BackColor = SystemColors.HotTrack;
+            txtChat.ForeColor = Color.Yellow;
+            txtChat.Location = new Point(0, 247);
+            txtChat.Name = "txtChat";
+            txtChat.Size = new Size(422, 27);
+            txtChat.TabIndex = 1;
+            txtChat.KeyDown += txtChat_KeyDown;
             // 
             // frmGuiTinNhan
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(422, 278);
-            Controls.Add(textBox1);
-            Controls.Add(richTextBox1);
+            Controls.Add(txtChat);
+            Controls.Add(rtxtChat);
             Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmGuiTinNhan";
@@ -68,7 +69,7 @@
 
         #endregion
 
-        private RichTextBox richTextBox1;
-        private TextBox textBox1;
+        private RichTextBox rtxtChat;
+        private TextBox txtChat;
     }
 }
