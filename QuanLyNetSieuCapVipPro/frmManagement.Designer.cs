@@ -58,9 +58,9 @@
             dichVu1 = new DichVu();
             nhomNguoiDung1 = new NhomNguoiDung();
             btnChat = new Button();
-            richTextBox1 = new RichTextBox();
+            rtxtShowChat = new RichTextBox();
             pnlChat = new Panel();
-            textBox1 = new TextBox();
+            txtChat = new TextBox();
             menuStrip1.SuspendLayout();
             pnlChat.SuspendLayout();
             SuspendLayout();
@@ -275,38 +275,38 @@
             btnChat.Text = "Chat";
             btnChat.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // rtxtShowChat
             // 
-            richTextBox1.BorderStyle = BorderStyle.FixedSingle;
-            richTextBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBox1.Location = new Point(0, 0);
-            richTextBox1.Margin = new Padding(0);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(385, 225);
-            richTextBox1.TabIndex = 6;
-            richTextBox1.Text = "";
+            rtxtShowChat.BorderStyle = BorderStyle.FixedSingle;
+            rtxtShowChat.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            rtxtShowChat.Location = new Point(0, 0);
+            rtxtShowChat.Margin = new Padding(0);
+            rtxtShowChat.Name = "rtxtShowChat";
+            rtxtShowChat.Size = new Size(385, 225);
+            rtxtShowChat.TabIndex = 6;
+            rtxtShowChat.Text = "";
             // 
             // pnlChat
             // 
             pnlChat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pnlChat.Controls.Add(textBox1);
-            pnlChat.Controls.Add(richTextBox1);
+            pnlChat.Controls.Add(txtChat);
+            pnlChat.Controls.Add(rtxtShowChat);
             pnlChat.Location = new Point(540, 204);
             pnlChat.Margin = new Padding(0);
             pnlChat.Name = "pnlChat";
             pnlChat.Size = new Size(385, 252);
             pnlChat.TabIndex = 7;
             // 
-            // textBox1
+            // txtChat
             // 
-            textBox1.BackColor = SystemColors.HotTrack;
-            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.ForeColor = Color.Yellow;
-            textBox1.Location = new Point(0, 225);
-            textBox1.Margin = new Padding(0);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(385, 27);
-            textBox1.TabIndex = 7;
+            txtChat.BackColor = SystemColors.HotTrack;
+            txtChat.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtChat.ForeColor = Color.Yellow;
+            txtChat.Location = new Point(0, 225);
+            txtChat.Margin = new Padding(0);
+            txtChat.Name = "txtChat";
+            txtChat.Size = new Size(385, 27);
+            txtChat.TabIndex = 7;
             // 
             // frmManagement
             // 
@@ -365,8 +365,8 @@
         private DichVu dichVu1;
         private NhomNguoiDung nhomNguoiDung1;
         private Button btnChat;
-        private RichTextBox richTextBox1;
+        private RichTextBox rtxtShowChat;
         private Panel pnlChat;
-        private TextBox textBox1;
+        private TextBox txtChat;
     }
 }

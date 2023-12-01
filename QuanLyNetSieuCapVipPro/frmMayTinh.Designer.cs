@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
             textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             pctbTinNhan = new PictureBox();
             pctbDichVu = new PictureBox();
             pctbDangXuat = new PictureBox();
             pictureBox5 = new PictureBox();
-            pictureBox6 = new PictureBox();
+            pctbMatKhau = new PictureBox();
             lblTinNhan = new Label();
             lblDichVu = new Label();
             lblDangXuat = new Label();
-            label7 = new Label();
+            lblMatKhau = new Label();
             label8 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pctbTinNhan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctbDichVu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctbDangXuat).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctbMatKhau).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -66,25 +66,26 @@
             panel1.Size = new Size(325, 141);
             panel1.TabIndex = 0;
             // 
-            // label1
+            // textBox3
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(14, 14);
-            label1.Name = "label1";
-            label1.Size = new Size(114, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Tổng thời gian:";
+            textBox3.Location = new Point(188, 94);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(123, 23);
+            textBox3.TabIndex = 5;
             // 
-            // label2
+            // textBox2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(14, 55);
-            label2.Name = "label2";
-            label2.Size = new Size(174, 21);
-            label2.TabIndex = 1;
-            label2.Text = "Tổng thời gian sử dụng:";
+            textBox2.Location = new Point(188, 55);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(123, 23);
+            textBox2.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(188, 11);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(123, 23);
+            textBox1.TabIndex = 3;
             // 
             // label3
             // 
@@ -96,26 +97,25 @@
             label3.TabIndex = 2;
             label3.Text = "Tổng thời gian còn lại:";
             // 
-            // textBox1
+            // label2
             // 
-            textBox1.Location = new Point(188, 11);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(123, 23);
-            textBox1.TabIndex = 3;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(14, 55);
+            label2.Name = "label2";
+            label2.Size = new Size(174, 21);
+            label2.TabIndex = 1;
+            label2.Text = "Tổng thời gian sử dụng:";
             // 
-            // textBox2
+            // label1
             // 
-            textBox2.Location = new Point(188, 55);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(123, 23);
-            textBox2.TabIndex = 4;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(188, 94);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(123, 23);
-            textBox3.TabIndex = 5;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(14, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(114, 21);
+            label1.TabIndex = 0;
+            label1.Text = "Tổng thời gian:";
             // 
             // pctbTinNhan
             // 
@@ -126,6 +126,7 @@
             pctbTinNhan.Size = new Size(80, 74);
             pctbTinNhan.TabIndex = 1;
             pctbTinNhan.TabStop = false;
+            pctbTinNhan.Click += lblTinNhan_Click;
             // 
             // pctbDichVu
             // 
@@ -157,15 +158,15 @@
             pictureBox5.TabIndex = 5;
             pictureBox5.TabStop = false;
             // 
-            // pictureBox6
+            // pctbMatKhau
             // 
-            pictureBox6.BackgroundImage = Properties.Resources.reset_password;
-            pictureBox6.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox6.Location = new Point(65, 290);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(80, 74);
-            pictureBox6.TabIndex = 4;
-            pictureBox6.TabStop = false;
+            pctbMatKhau.BackgroundImage = Properties.Resources.reset_password;
+            pctbMatKhau.BackgroundImageLayout = ImageLayout.Stretch;
+            pctbMatKhau.Location = new Point(65, 290);
+            pctbMatKhau.Name = "pctbMatKhau";
+            pctbMatKhau.Size = new Size(80, 74);
+            pctbMatKhau.TabIndex = 4;
+            pctbMatKhau.TabStop = false;
             // 
             // lblTinNhan
             // 
@@ -176,6 +177,7 @@
             lblTinNhan.Size = new Size(73, 21);
             lblTinNhan.TabIndex = 7;
             lblTinNhan.Text = "Tin Nhắn";
+            lblTinNhan.Click += lblTinNhan_Click;
             // 
             // lblDichVu
             // 
@@ -197,15 +199,15 @@
             lblDangXuat.TabIndex = 9;
             lblDangXuat.Text = "Đăng xuất";
             // 
-            // label7
+            // lblMatKhau
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(67, 367);
-            label7.Name = "label7";
-            label7.Size = new Size(75, 21);
-            label7.TabIndex = 10;
-            label7.Text = "Mật khẩu";
+            lblMatKhau.AutoSize = true;
+            lblMatKhau.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblMatKhau.Location = new Point(67, 367);
+            lblMatKhau.Name = "lblMatKhau";
+            lblMatKhau.Size = new Size(75, 21);
+            lblMatKhau.TabIndex = 10;
+            lblMatKhau.Text = "Mật khẩu";
             // 
             // label8
             // 
@@ -221,14 +223,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(349, 450);
+            ClientSize = new Size(349, 412);
             Controls.Add(label8);
-            Controls.Add(label7);
+            Controls.Add(lblMatKhau);
             Controls.Add(lblDangXuat);
             Controls.Add(lblDichVu);
             Controls.Add(lblTinNhan);
             Controls.Add(pictureBox5);
-            Controls.Add(pictureBox6);
+            Controls.Add(pctbMatKhau);
             Controls.Add(pctbDangXuat);
             Controls.Add(pctbDichVu);
             Controls.Add(pctbTinNhan);
@@ -242,7 +244,7 @@
             ((System.ComponentModel.ISupportInitialize)pctbDichVu).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctbDangXuat).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctbMatKhau).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -260,11 +262,11 @@
         private PictureBox pctbDichVu;
         private PictureBox pctbDangXuat;
         private PictureBox pictureBox5;
-        private PictureBox pictureBox6;
+        private PictureBox pctbMatKhau;
         private Label lblTinNhan;
         private Label lblDichVu;
         private Label lblDangXuat;
-        private Label label7;
+        private Label lblMatKhau;
         private Label label8;
     }
 }

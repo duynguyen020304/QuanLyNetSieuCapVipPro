@@ -10,17 +10,12 @@ using System.Windows.Forms;
 
 namespace QuanLyNetSieuCapVipPro
 {
-    public partial class frmMayTinh : Form
+    public partial class frmGuiTinNhan : Form
     {
-        public frmMayTinh()
+        public frmGuiTinNhan()
         {
             InitializeComponent();
         }
 
-        private void lblTinNhan_Click(object sender, EventArgs e)
-        {
-            frmGuiTinNhan guitinnhan = new frmGuiTinNhan();
-            guitinnhan.ShowDialog();
-        }
     }
 }
