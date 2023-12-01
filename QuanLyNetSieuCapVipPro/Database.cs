@@ -38,7 +38,7 @@ namespace QuanLyNetSieuCapVipPro
             cmd = new SQLiteCommand(sql, conn);
             cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"NHOMNGUOIDUNG\" ( " +
+            sql = "CREATE TABLE IF NOT EXISTS 'NHOMNGUOIDUNG' ( " +
                   "\"MaNhomNguoiDung\" TEXT, " +
                   "\"TenNhomNguoiDung\" TEXT NOT NULL, " +
                   "\"GiaNhomNguoiDung\" NUMERIC, " +

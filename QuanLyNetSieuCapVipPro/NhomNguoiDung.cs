@@ -12,11 +12,11 @@ namespace QuanLyNetSieuCapVipPro
 {
     public partial class NhomNguoiDung : UserControl
     {
-        private Database db = new Database();
+        Database db = new Database();
         public NhomNguoiDung()
         {
             InitializeComponent();
-            loadDgv();
+            //loadDgv();
         }
         public void loadDgv()
         {

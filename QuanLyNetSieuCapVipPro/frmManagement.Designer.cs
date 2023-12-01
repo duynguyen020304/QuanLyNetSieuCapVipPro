@@ -57,7 +57,12 @@
             thanhVien1 = new ThanhVien();
             dichVu1 = new DichVu();
             nhomNguoiDung1 = new NhomNguoiDung();
+            btnChat = new Button();
+            richTextBox1 = new RichTextBox();
+            pnlChat = new Panel();
+            textBox1 = new TextBox();
             menuStrip1.SuspendLayout();
+            pnlChat.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -234,7 +239,7 @@
             // 
             // thanhVien1
             // 
-            thanhVien1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            thanhVien1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             thanhVien1.Location = new Point(1, 66);
             thanhVien1.Name = "thanhVien1";
             thanhVien1.Size = new Size(1065, 310);
@@ -242,7 +247,7 @@
             // 
             // dichVu1
             // 
-            dichVu1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dichVu1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dichVu1.Location = new Point(1, 66);
             dichVu1.Margin = new Padding(0);
             dichVu1.Name = "dichVu1";
@@ -251,7 +256,7 @@
             // 
             // nhomNguoiDung1
             // 
-            nhomNguoiDung1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            nhomNguoiDung1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nhomNguoiDung1.BackColor = SystemColors.ActiveCaption;
             nhomNguoiDung1.Location = new Point(1, 66);
             nhomNguoiDung1.Margin = new Padding(0);
@@ -259,11 +264,57 @@
             nhomNguoiDung1.Size = new Size(1065, 310);
             nhomNguoiDung1.TabIndex = 4;
             // 
+            // btnChat
+            // 
+            btnChat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnChat.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnChat.Location = new Point(928, 416);
+            btnChat.Name = "btnChat";
+            btnChat.Size = new Size(138, 40);
+            btnChat.TabIndex = 5;
+            btnChat.Text = "Chat";
+            btnChat.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.BorderStyle = BorderStyle.FixedSingle;
+            richTextBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            richTextBox1.Location = new Point(0, 0);
+            richTextBox1.Margin = new Padding(0);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(385, 225);
+            richTextBox1.TabIndex = 6;
+            richTextBox1.Text = "";
+            // 
+            // pnlChat
+            // 
+            pnlChat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pnlChat.Controls.Add(textBox1);
+            pnlChat.Controls.Add(richTextBox1);
+            pnlChat.Location = new Point(540, 204);
+            pnlChat.Margin = new Padding(0);
+            pnlChat.Name = "pnlChat";
+            pnlChat.Size = new Size(385, 252);
+            pnlChat.TabIndex = 7;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = SystemColors.HotTrack;
+            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.ForeColor = Color.Yellow;
+            textBox1.Location = new Point(0, 225);
+            textBox1.Margin = new Padding(0);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(385, 27);
+            textBox1.TabIndex = 7;
+            // 
             // frmManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1066, 489);
+            ClientSize = new Size(1066, 457);
+            Controls.Add(pnlChat);
+            Controls.Add(btnChat);
             Controls.Add(nhomNguoiDung1);
             Controls.Add(dichVu1);
             Controls.Add(thanhVien1);
@@ -276,6 +327,8 @@
             Load += frmManagement_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            pnlChat.ResumeLayout(false);
+            pnlChat.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -311,5 +364,9 @@
         private ToolStripMenuItem dichVu_mnst;
         private DichVu dichVu1;
         private NhomNguoiDung nhomNguoiDung1;
+        private Button btnChat;
+        private RichTextBox richTextBox1;
+        private Panel pnlChat;
+        private TextBox textBox1;
     }
 }
