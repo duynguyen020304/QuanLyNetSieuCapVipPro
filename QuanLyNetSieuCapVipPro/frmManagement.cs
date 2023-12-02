@@ -251,5 +251,11 @@ namespace QuanLyNetSieuCapVipPro
                 }
             }
         }
+
+        private void backupCSDL_mnst_Click(object sender, EventArgs e)
+        {
+            frmBackupRestoreDB backupRestoreDb = new frmBackupRestoreDB();
+            backupRestoreDb.Show();
+        }
     }
 }

@@ -11,7 +11,14 @@ namespace QuanLyNetSieuCapVipPro
 {
     class Database
     {
-        string createDBSQL = "Data Source=QuanLyNet123.db";
+        public string dbName = "QuanLyNet123.db";
+
+        private string createDBSQL;
+
+        public Database()
+        {
+            createDBSQL = "Data Source=" + dbName;
+        }
 
         public void createDatabase()
         {
@@ -153,6 +160,37 @@ namespace QuanLyNetSieuCapVipPro
 
             conn.Close();
         }
+
+        public void backUpDB(string currentFilePath, string currentDBName, string destFilePath)
+        {
+            var srcFile = Path.Combine(currentFilePath, currentDBName);
+            if (File.Exists(destFilePath))
+            {
+                File.Delete(destFilePath);
+            }
+            File.Copy(srcFile, destFilePath);
+        }
+
+        public void restoreDB(string filePath, string srcFileName, string destFileName, bool isCopy)
+        {
+            var srcFile = Path.Combine(filePath, srcFileName);
+            var destFile = Path.Combine(destFileName, srcFileName);
+            if (File.Exists(destFile))
+            {
+                File.Delete(destFile);
+            }
+
+            if (isCopy)
+            {
+                backUpDB(filePath, srcFileName, destFileName);
+            }
+            else
+            {
+                File.Move(srcFileName, destFileName);
+            }
+        }
+
+
         public void insertDataIntoTaiKhoanAdmin(string UserAccount, string Password)
         {
             SQLiteConnection conn = new SQLiteConnection(createDBSQL);

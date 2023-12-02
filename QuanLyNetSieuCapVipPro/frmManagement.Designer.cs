@@ -48,7 +48,7 @@
             cboShutDownMayTram_mnst = new ToolStripComboBox();
             toolStripSeparator2 = new ToolStripSeparator();
             quảnLýCơSởDữLiêuToolStripMenuItem = new ToolStripMenuItem();
-            saoLưuCơSởDữLiệuToolStripMenuItem = new ToolStripMenuItem();
+            backupCSDL_mnst = new ToolStripMenuItem();
             nhậpCơSởDữLiệuToolStripMenuItem = new ToolStripMenuItem();
             lịchSaoCSDLToolStripMenuItem = new ToolStripMenuItem();
             thêmTàiKhoảnQuảnLýToolStripMenuItem = new ToolStripMenuItem();
@@ -196,27 +196,28 @@
             // 
             // quảnLýCơSởDữLiêuToolStripMenuItem
             // 
-            quảnLýCơSởDữLiêuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saoLưuCơSởDữLiệuToolStripMenuItem, nhậpCơSởDữLiệuToolStripMenuItem, lịchSaoCSDLToolStripMenuItem });
+            quảnLýCơSởDữLiêuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { backupCSDL_mnst, nhậpCơSởDữLiệuToolStripMenuItem, lịchSaoCSDLToolStripMenuItem });
             quảnLýCơSởDữLiêuToolStripMenuItem.Name = "quảnLýCơSởDữLiêuToolStripMenuItem";
             quảnLýCơSởDữLiêuToolStripMenuItem.Size = new Size(246, 22);
             quảnLýCơSởDữLiêuToolStripMenuItem.Text = "Quản lý cơ sở dữ liêu";
             // 
-            // saoLưuCơSởDữLiệuToolStripMenuItem
+            // backupCSDL_mnst
             // 
-            saoLưuCơSởDữLiệuToolStripMenuItem.Name = "saoLưuCơSởDữLiệuToolStripMenuItem";
-            saoLưuCơSởDữLiệuToolStripMenuItem.Size = new Size(159, 22);
-            saoLưuCơSởDữLiệuToolStripMenuItem.Text = "Khôi phục CSDL";
+            backupCSDL_mnst.Name = "backupCSDL_mnst";
+            backupCSDL_mnst.Size = new Size(180, 22);
+            backupCSDL_mnst.Text = "Sao lưu CSDL";
+            backupCSDL_mnst.Click += backupCSDL_mnst_Click;
             // 
             // nhậpCơSởDữLiệuToolStripMenuItem
             // 
             nhậpCơSởDữLiệuToolStripMenuItem.Name = "nhậpCơSởDữLiệuToolStripMenuItem";
-            nhậpCơSởDữLiệuToolStripMenuItem.Size = new Size(159, 22);
+            nhậpCơSởDữLiệuToolStripMenuItem.Size = new Size(180, 22);
             nhậpCơSởDữLiệuToolStripMenuItem.Text = "Khôi phục CSDL";
             // 
             // lịchSaoCSDLToolStripMenuItem
             // 
             lịchSaoCSDLToolStripMenuItem.Name = "lịchSaoCSDLToolStripMenuItem";
-            lịchSaoCSDLToolStripMenuItem.Size = new Size(159, 22);
+            lịchSaoCSDLToolStripMenuItem.Size = new Size(180, 22);
             lịchSaoCSDLToolStripMenuItem.Text = "Lịch sao CSDL";
             // 
             // thêmTàiKhoảnQuảnLýToolStripMenuItem
@@ -388,7 +389,7 @@
         private ToolStripMenuItem khoiDongMayTram_mnst;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem quảnLýCơSởDữLiêuToolStripMenuItem;
-        private ToolStripMenuItem saoLưuCơSởDữLiệuToolStripMenuItem;
+        private ToolStripMenuItem backupCSDL_mnst;
         private ToolStripMenuItem nhậpCơSởDữLiệuToolStripMenuItem;
         private ToolStripMenuItem lịchSaoCSDLToolStripMenuItem;
         private ToolStripMenuItem doanhThuToolStripMenuItem;
