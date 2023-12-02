@@ -509,6 +509,36 @@ namespace QuanLyNetSieuCapVipPro
             return i > 0;
         }
 
+        public bool modifiedComputerStateInMAYTINH(string maMay, string trangThai)
+        {
+            int i = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "UPDATE MAYTINH set TrangThaiMay = @TrangThaiMay WHERE MaMay = @MaMay";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@TrangThaiMay", trangThai);
+                cmd.Parameters.AddWithValue("@MaMay", maMay);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i > 0;
+        }
+
+        public string getComputerStateINMAYTINH(string maMay)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                string rs = "";
+                conn.Open();
+                string sql = "SELECT TrangThaiMay FROM MAYTINH WHERE MaMay = @MaMay";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaMay", maMay);
+                rs = Convert.ToString(cmd.ExecuteScalar());
+                conn.Close();
+                return rs;
+            }
+        }
+
         public bool removeUserFromNGUOICHOI(string username)
         {
             int i = 0;

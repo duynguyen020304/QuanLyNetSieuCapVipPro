@@ -44,6 +44,8 @@
             quảnLýThôngTinKháchVãngLaiToolStripMenuItem = new ToolStripMenuItem();
             khoiDongMayTram_mnst = new ToolStripMenuItem();
             cboMayTram_mnst = new ToolStripComboBox();
+            shutDown_mnst = new ToolStripMenuItem();
+            cboShutDownMayTram_mnst = new ToolStripComboBox();
             toolStripSeparator2 = new ToolStripSeparator();
             quảnLýCơSởDữLiêuToolStripMenuItem = new ToolStripMenuItem();
             saoLưuCơSởDữLiệuToolStripMenuItem = new ToolStripMenuItem();
@@ -61,6 +63,7 @@
             btnChat = new Button();
             rtxtShowChat = new RichTextBox();
             pnlChat = new Panel();
+            cboChonNguoiChat = new ComboBox();
             txtChat = new TextBox();
             menuStrip1.SuspendLayout();
             pnlChat.SuspendLayout();
@@ -71,7 +74,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { chứcNăngToolStripMenuItem, hệThốngToolStripMenuItem, báoCáoToolStripMenuItem, giúpĐỡToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1066, 24);
+            menuStrip1.Size = new Size(1080, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -149,7 +152,7 @@
             // 
             // hệThốngToolStripMenuItem
             // 
-            hệThốngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { quảnLýThôngTinKháchVãngLaiToolStripMenuItem, khoiDongMayTram_mnst, toolStripSeparator2, quảnLýCơSởDữLiêuToolStripMenuItem, thêmTàiKhoảnQuảnLýToolStripMenuItem });
+            hệThốngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { quảnLýThôngTinKháchVãngLaiToolStripMenuItem, khoiDongMayTram_mnst, shutDown_mnst, toolStripSeparator2, quảnLýCơSởDữLiêuToolStripMenuItem, thêmTàiKhoảnQuảnLýToolStripMenuItem });
             hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
             hệThốngToolStripMenuItem.Size = new Size(69, 20);
             hệThốngToolStripMenuItem.Text = "Hệ thống";
@@ -166,12 +169,25 @@
             khoiDongMayTram_mnst.Name = "khoiDongMayTram_mnst";
             khoiDongMayTram_mnst.Size = new Size(246, 22);
             khoiDongMayTram_mnst.Text = "Khởi động máy trạm";
-            khoiDongMayTram_mnst.Click += khoiDongMayTram_mnst_Click;
             // 
             // cboMayTram_mnst
             // 
             cboMayTram_mnst.Name = "cboMayTram_mnst";
             cboMayTram_mnst.Size = new Size(121, 23);
+            cboMayTram_mnst.SelectedIndexChanged += cboMayTram_mnst_SelectedIndexChanged;
+            // 
+            // shutDown_mnst
+            // 
+            shutDown_mnst.DropDownItems.AddRange(new ToolStripItem[] { cboShutDownMayTram_mnst });
+            shutDown_mnst.Name = "shutDown_mnst";
+            shutDown_mnst.Size = new Size(246, 22);
+            shutDown_mnst.Text = "Tắt máy trạm";
+            // 
+            // cboShutDownMayTram_mnst
+            // 
+            cboShutDownMayTram_mnst.Name = "cboShutDownMayTram_mnst";
+            cboShutDownMayTram_mnst.Size = new Size(121, 23);
+            cboShutDownMayTram_mnst.SelectedIndexChanged += cboShutDownMayTram_mnst_SelectedIndexChanged;
             // 
             // toolStripSeparator2
             // 
@@ -240,7 +256,7 @@
             lblHello.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblHello.Location = new Point(0, 24);
             lblHello.Name = "lblHello";
-            lblHello.Size = new Size(1066, 21);
+            lblHello.Size = new Size(1080, 21);
             lblHello.TabIndex = 1;
             lblHello.Text = "Hello .. 123123123";
             lblHello.TextAlign = ContentAlignment.TopRight;
@@ -250,7 +266,7 @@
             thanhVien1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             thanhVien1.Location = new Point(1, 66);
             thanhVien1.Name = "thanhVien1";
-            thanhVien1.Size = new Size(1065, 310);
+            thanhVien1.Size = new Size(1079, 310);
             thanhVien1.TabIndex = 2;
             // 
             // dichVu1
@@ -259,7 +275,7 @@
             dichVu1.Location = new Point(1, 66);
             dichVu1.Margin = new Padding(0);
             dichVu1.Name = "dichVu1";
-            dichVu1.Size = new Size(1065, 310);
+            dichVu1.Size = new Size(1079, 310);
             dichVu1.TabIndex = 3;
             // 
             // nhomNguoiDung1
@@ -269,14 +285,14 @@
             nhomNguoiDung1.Location = new Point(1, 66);
             nhomNguoiDung1.Margin = new Padding(0);
             nhomNguoiDung1.Name = "nhomNguoiDung1";
-            nhomNguoiDung1.Size = new Size(1065, 310);
+            nhomNguoiDung1.Size = new Size(1079, 310);
             nhomNguoiDung1.TabIndex = 4;
             // 
             // btnChat
             // 
             btnChat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnChat.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnChat.Location = new Point(928, 416);
+            btnChat.Location = new Point(942, 476);
             btnChat.Name = "btnChat";
             btnChat.Size = new Size(138, 40);
             btnChat.TabIndex = 5;
@@ -291,30 +307,42 @@
             rtxtShowChat.Location = new Point(0, 0);
             rtxtShowChat.Margin = new Padding(0);
             rtxtShowChat.Name = "rtxtShowChat";
-            rtxtShowChat.Size = new Size(385, 225);
+            rtxtShowChat.Size = new Size(319, 162);
             rtxtShowChat.TabIndex = 6;
             rtxtShowChat.Text = "";
             // 
             // pnlChat
             // 
             pnlChat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pnlChat.Controls.Add(cboChonNguoiChat);
             pnlChat.Controls.Add(txtChat);
             pnlChat.Controls.Add(rtxtShowChat);
-            pnlChat.Location = new Point(540, 204);
+            pnlChat.Location = new Point(620, 313);
             pnlChat.Margin = new Padding(0);
             pnlChat.Name = "pnlChat";
-            pnlChat.Size = new Size(385, 252);
+            pnlChat.Size = new Size(319, 203);
             pnlChat.TabIndex = 7;
+            // 
+            // cboChonNguoiChat
+            // 
+            cboChonNguoiChat.Anchor = AnchorStyles.Bottom;
+            cboChonNguoiChat.FormattingEnabled = true;
+            cboChonNguoiChat.Location = new Point(215, 176);
+            cboChonNguoiChat.Margin = new Padding(0);
+            cboChonNguoiChat.Name = "cboChonNguoiChat";
+            cboChonNguoiChat.Size = new Size(104, 23);
+            cboChonNguoiChat.TabIndex = 8;
             // 
             // txtChat
             // 
+            txtChat.Anchor = AnchorStyles.Bottom;
             txtChat.BackColor = SystemColors.HotTrack;
             txtChat.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtChat.ForeColor = Color.Yellow;
-            txtChat.Location = new Point(0, 225);
+            txtChat.Location = new Point(0, 173);
             txtChat.Margin = new Padding(0);
             txtChat.Name = "txtChat";
-            txtChat.Size = new Size(385, 27);
+            txtChat.Size = new Size(215, 27);
             txtChat.TabIndex = 7;
             txtChat.KeyDown += txtChat_KeyDown;
             // 
@@ -322,7 +350,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1066, 457);
+            ClientSize = new Size(1080, 517);
             Controls.Add(pnlChat);
             Controls.Add(btnChat);
             Controls.Add(nhomNguoiDung1);
@@ -379,5 +407,8 @@
         private Panel pnlChat;
         private TextBox txtChat;
         private ToolStripComboBox cboMayTram_mnst;
+        private ComboBox cboChonNguoiChat;
+        private ToolStripMenuItem shutDown_mnst;
+        private ToolStripComboBox cboShutDownMayTram_mnst;
     }
 }

@@ -13,6 +13,8 @@ namespace QuanLyNetSieuCapVipPro
     public partial class frmMayTinh : Form
     {
         private string maMay;
+        public static frmMayTinh instance;
+        public frmGuiTinNhan _guiTinNhan;
         public frmMayTinh()
         {
             InitializeComponent();
@@ -22,12 +24,20 @@ namespace QuanLyNetSieuCapVipPro
         {
             InitializeComponent();
             this.maMay = maMay;
+            this.Text = maMay;
+            instance = this;
+        }
+
+        public void shutDown()
+        {
+            this.Close();
         }
 
         private void lblTinNhan_Click(object sender, EventArgs e)
         {
-            frmGuiTinNhan guitinnhan = new frmGuiTinNhan();
-            guitinnhan.ShowDialog();
+            frmGuiTinNhan guitinnhan = new frmGuiTinNhan(maMay);
+            _guiTinNhan = guitinnhan;
+            guitinnhan.Show();
         }
     }
 }

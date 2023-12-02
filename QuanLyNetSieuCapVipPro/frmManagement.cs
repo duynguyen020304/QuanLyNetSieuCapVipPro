@@ -13,6 +13,7 @@ namespace QuanLyNetSieuCapVipPro
     public partial class frmManagement : Form
     {
         private Database db = new Database();
+        private List<frmMayTinh> listMayTinh = new List<frmMayTinh>();
         private string userName;
         public static frmManagement instance;
         public string sendUserName;
@@ -34,6 +35,7 @@ namespace QuanLyNetSieuCapVipPro
             pnlChat.Visible = false;
             pnlChat.Enabled = false;
             loadMayTram();
+            loadMayTramShutDown();
         }
 
         public frmManagement(string userName)
@@ -58,15 +60,6 @@ namespace QuanLyNetSieuCapVipPro
             nhanTinHieuDangNhap = tinHieu;
         }
 
-        private void saoLưuCơSởDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void doanhThuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void chuyenCaNhanVien_mnst_Click(object sender, EventArgs e)
         {
@@ -183,9 +176,41 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
+        private void loadMayTramShutDown()
+        {
+            DataTable dt = db.getAllItemsFromMAYTINH().Tables[0];
+            List<string> items = new List<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                items.Add(row["MaMay"].ToString());
+            }
+            if (cboShutDownMayTram_mnst.ComboBox != null)
+            {
+                cboShutDownMayTram_mnst.ComboBox.Items.Clear();
+                cboShutDownMayTram_mnst.ComboBox.Items.Add("Chọn máy");
+                cboShutDownMayTram_mnst.ComboBox.Items.AddRange(items.ToArray());
+                cboShutDownMayTram_mnst.SelectedIndex = 0;
+            }
+        }
+
         private void cboMayTram_mnst_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboMayTram_mnst.SelectedIndex == 0)
+            {
+                return;
+            }
 
+            if (db.getComputerStateINMAYTINH(cboMayTram_mnst.SelectedItem.ToString()) == "on")
+            {
+                MessageBox.Show("Máy tính đã được bật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            frmMayTinh mt = new frmMayTinh(cboMayTram_mnst.SelectedItem.ToString());
+            listMayTinh.Add(mt);
+            cboChonNguoiChat.Items.Add(mt.Text);
+            db.modifiedComputerStateInMAYTINH(cboMayTram_mnst.SelectedItem.ToString(), "on");
+            mt.Show();
         }
 
         private void txtChat_KeyDown(object sender, KeyEventArgs e)
@@ -193,14 +218,38 @@ namespace QuanLyNetSieuCapVipPro
             if (e.KeyCode == Keys.Enter && txtChat.Text.Trim().Length != 0)
             {
                 rtxtShowChat.Text += "Bạn: " + txtChat.Text.Trim() + "\n";
-                frmGuiTinNhan.instance.syncChat(userName, txtChat.Text.Trim());
-                txtChat.Clear();
+                string userGuiTinNhan = cboChonNguoiChat.SelectedItem.ToString();
+                foreach (frmMayTinh item in listMayTinh)
+                {
+                    if (item.Text == userGuiTinNhan)
+                    {
+                        item._guiTinNhan.syncChat(userName, txtChat.Text.Trim());
+                        txtChat.Clear();
+                    }
+                }
             }
         }
 
-        private void khoiDongMayTram_mnst_Click(object sender, EventArgs e)
+        private void cboShutDownMayTram_mnst_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (cboShutDownMayTram_mnst.SelectedIndex == 0)
+            {
+                return;
+            }
+            string userTatMayTinh = cboShutDownMayTram_mnst.SelectedItem.ToString();
+            if (db.getComputerStateINMAYTINH(userTatMayTinh) == "off")
+            {
+                MessageBox.Show("Máy tính đang tắt", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                if (db.modifiedComputerStateInMAYTINH(userTatMayTinh, "off"))
+                {
+                    MessageBox.Show("Tắt máy tính thành công", "Thông báo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }
