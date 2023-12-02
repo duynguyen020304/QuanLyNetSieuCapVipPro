@@ -171,24 +171,20 @@ namespace QuanLyNetSieuCapVipPro
             File.Copy(srcFile, destFilePath);
         }
 
-        public void restoreDB(string filePath, string srcFileName, string destFileName, bool isCopy)
+        public void restoreDB(string filePath, string destFileName)
         {
-            var srcFile = Path.Combine(filePath, srcFileName);
-            var destFile = Path.Combine(destFileName, srcFileName);
-            if (File.Exists(destFile))
+            SQLiteConnection conn = new SQLiteConnection(createDBSQL);
+            conn.Close();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            if (File.Exists(destFileName))
             {
-                File.Delete(destFile);
+                File.Delete(destFileName);
             }
-
-            if (isCopy)
-            {
-                backUpDB(filePath, srcFileName, destFileName);
-            }
-            else
-            {
-                File.Move(srcFileName, destFileName);
-            }
+            File.Move(filePath, destFileName);
+            
         }
+
 
 
         public void insertDataIntoTaiKhoanAdmin(string UserAccount, string Password)
@@ -467,6 +463,7 @@ namespace QuanLyNetSieuCapVipPro
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaDichVu", maDichVu);
                 i = cmd.ExecuteNonQuery();
+                conn.Close();
             }
             return i > 0;
         }
@@ -543,6 +540,7 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@GiaNhomNguoiDung", gia);
                 cmd.Parameters.AddWithValue("@MaNhomNguoiDung", maNhomNguoiDung);
                 i = cmd.ExecuteNonQuery();
+                conn.Close();
             }
             return i > 0;
         }
@@ -558,6 +556,7 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@TrangThaiMay", trangThai);
                 cmd.Parameters.AddWithValue("@MaMay", maMay);
                 i = cmd.ExecuteNonQuery();
+                conn.Close();
             }
             return i > 0;
         }
@@ -587,6 +586,7 @@ namespace QuanLyNetSieuCapVipPro
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNguoiChoi", username);
                 i = cmd.ExecuteNonQuery();
+                conn.Close();
             }
             return i > 0;
         }

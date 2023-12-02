@@ -49,7 +49,6 @@
             toolStripSeparator2 = new ToolStripSeparator();
             quảnLýCơSởDữLiêuToolStripMenuItem = new ToolStripMenuItem();
             backupCSDL_mnst = new ToolStripMenuItem();
-            nhậpCơSởDữLiệuToolStripMenuItem = new ToolStripMenuItem();
             lịchSaoCSDLToolStripMenuItem = new ToolStripMenuItem();
             thêmTàiKhoảnQuảnLýToolStripMenuItem = new ToolStripMenuItem();
             báoCáoToolStripMenuItem = new ToolStripMenuItem();
@@ -65,6 +64,7 @@
             pnlChat = new Panel();
             cboChonNguoiChat = new ComboBox();
             txtChat = new TextBox();
+            khoiPhucCSDL_mnst = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             pnlChat.SuspendLayout();
             SuspendLayout();
@@ -196,7 +196,7 @@
             // 
             // quảnLýCơSởDữLiêuToolStripMenuItem
             // 
-            quảnLýCơSởDữLiêuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { backupCSDL_mnst, nhậpCơSởDữLiệuToolStripMenuItem, lịchSaoCSDLToolStripMenuItem });
+            quảnLýCơSởDữLiêuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { backupCSDL_mnst, khoiPhucCSDL_mnst, lịchSaoCSDLToolStripMenuItem });
             quảnLýCơSởDữLiêuToolStripMenuItem.Name = "quảnLýCơSởDữLiêuToolStripMenuItem";
             quảnLýCơSởDữLiêuToolStripMenuItem.Size = new Size(246, 22);
             quảnLýCơSởDữLiêuToolStripMenuItem.Text = "Quản lý cơ sở dữ liêu";
@@ -207,12 +207,6 @@
             backupCSDL_mnst.Size = new Size(180, 22);
             backupCSDL_mnst.Text = "Sao lưu CSDL";
             backupCSDL_mnst.Click += backupCSDL_mnst_Click;
-            // 
-            // nhậpCơSởDữLiệuToolStripMenuItem
-            // 
-            nhậpCơSởDữLiệuToolStripMenuItem.Name = "nhậpCơSởDữLiệuToolStripMenuItem";
-            nhậpCơSởDữLiệuToolStripMenuItem.Size = new Size(180, 22);
-            nhậpCơSởDữLiệuToolStripMenuItem.Text = "Khôi phục CSDL";
             // 
             // lịchSaoCSDLToolStripMenuItem
             // 
@@ -347,6 +341,13 @@
             txtChat.TabIndex = 7;
             txtChat.KeyDown += txtChat_KeyDown;
             // 
+            // khoiPhucCSDL_mnst
+            // 
+            khoiPhucCSDL_mnst.Name = "khoiPhucCSDL_mnst";
+            khoiPhucCSDL_mnst.Size = new Size(180, 22);
+            khoiPhucCSDL_mnst.Text = "Khôi phục CSDL";
+            khoiPhucCSDL_mnst.Click += backupCSDL_mnst_Click;
+            // 
             // frmManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -390,7 +391,6 @@
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem quảnLýCơSởDữLiêuToolStripMenuItem;
         private ToolStripMenuItem backupCSDL_mnst;
-        private ToolStripMenuItem nhậpCơSởDữLiệuToolStripMenuItem;
         private ToolStripMenuItem lịchSaoCSDLToolStripMenuItem;
         private ToolStripMenuItem doanhThuToolStripMenuItem;
         private ToolStripMenuItem doanhThuTheoMáyToolStripMenuItem;
@@ -411,5 +411,6 @@
         private ComboBox cboChonNguoiChat;
         private ToolStripMenuItem shutDown_mnst;
         private ToolStripComboBox cboShutDownMayTram_mnst;
+        private ToolStripMenuItem khoiPhucCSDL_mnst;
     }
 }

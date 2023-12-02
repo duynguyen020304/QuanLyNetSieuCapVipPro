@@ -37,6 +37,14 @@ namespace QuanLyNetSieuCapVipPro
 
         private void btnRestoreDB_Click(object sender, EventArgs e)
         {
+            OpenFileDialog opendiDialog = new OpenFileDialog();
+            if (opendiDialog.ShowDialog() == DialogResult.OK)
+            {
+                string dbname = db.dbName;
+                string restoreDatabaseFrom = opendiDialog.FileName;
+                var restoreDatabaseTo = Environment.CurrentDirectory + "\\" + db.dbName;
+                db.restoreDB(restoreDatabaseFrom, restoreDatabaseTo);
+            }
         }
     }
 }
