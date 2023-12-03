@@ -11,15 +11,7 @@ namespace QuanLyNetSieuCapVipPro
 {
     class Database
     {
-        public string dbName = "QuanLyNet123.db";
-
-        private string createDBSQL;
-
-        public Database()
-        {
-            createDBSQL = "Data Source=" + dbName;
-        }
-
+        private string createDBSQL = "Data Source=QuanLyNet123.db";
         public void createDatabase()
         {
             SQLiteConnection conn = new SQLiteConnection(createDBSQL);
@@ -184,9 +176,6 @@ namespace QuanLyNetSieuCapVipPro
             File.Move(filePath, destFileName);
             
         }
-
-
-
         public void insertDataIntoTaiKhoanAdmin(string UserAccount, string Password)
         {
             SQLiteConnection conn = new SQLiteConnection(createDBSQL);
