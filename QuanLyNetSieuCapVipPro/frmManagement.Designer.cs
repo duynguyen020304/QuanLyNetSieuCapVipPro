@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             menuStrip1 = new MenuStrip();
             chứcNăngToolStripMenuItem = new ToolStripMenuItem();
             máyTrạmToolStripMenuItem = new ToolStripMenuItem();
@@ -65,8 +66,10 @@
             pnlChat = new Panel();
             cboChonNguoiChat = new ComboBox();
             txtChat = new TextBox();
+            errorProvider1 = new ErrorProvider(components);
             menuStrip1.SuspendLayout();
             pnlChat.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -348,6 +351,10 @@
             txtChat.TabIndex = 7;
             txtChat.KeyDown += txtChat_KeyDown;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // frmManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -369,6 +376,7 @@
             menuStrip1.PerformLayout();
             pnlChat.ResumeLayout(false);
             pnlChat.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -412,5 +420,6 @@
         private ToolStripMenuItem shutDown_mnst;
         private ToolStripComboBox cboShutDownMayTram_mnst;
         private ToolStripMenuItem khoiPhucCSDL_mnst;
+        private ErrorProvider errorProvider1;
     }
 }

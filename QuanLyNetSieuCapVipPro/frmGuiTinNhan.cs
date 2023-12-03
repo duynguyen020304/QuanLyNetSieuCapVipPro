@@ -36,8 +36,15 @@ namespace QuanLyNetSieuCapVipPro
         {
             if (e.KeyCode == Keys.Enter && txtChat.Text.Trim().Length != 0)
             {
+                
+                //frmManagement.instance.syncChat(maMay, txtChat.Text.Trim());
+                if (txtChat.Text.Trim().Length == 0)
+                {
+                    return;
+                }
+                XuLyChat xuly = new XuLyChat();
                 rtxtChat.Text += "Bạn: " + txtChat.Text.Trim() + "\n";
-                frmManagement.instance.syncChat(maMay, txtChat.Text.Trim());
+                xuly.MayTinhToAdmin(maMay, txtChat.Text.Trim());
                 txtChat.Clear();
             }
         }

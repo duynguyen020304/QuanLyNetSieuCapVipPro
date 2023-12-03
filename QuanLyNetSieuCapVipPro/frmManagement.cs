@@ -13,7 +13,7 @@ namespace QuanLyNetSieuCapVipPro
     public partial class frmManagement : Form
     {
         private Database db = new Database();
-        private List<frmMayTinh> listFrmMayTinhBat = new List<frmMayTinh>();
+        public MayTram maytram = new MayTram();
         private string userName;
         public static frmManagement instance;
         public string sendUserName;
@@ -174,7 +174,7 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
-        private void loadMayTramShutDown()
+        public void loadMayTramShutDown()
         {
             MayTram mt = new MayTram();
             List<string> mayTinhOnline = mt.getMayTinhOnline();
@@ -193,52 +193,58 @@ namespace QuanLyNetSieuCapVipPro
             {
                 return;
             }
-            if (db.getComputerStateINMAYTINH(cboMayTram_mnst.SelectedItem.ToString()) == "on")
+            if (maytram.khoiDongMayTinhTuyChon(cboMayTram_mnst.SelectedItem.ToString()))
             {
-                MessageBox.Show("Máy tính đã được bật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show("Khởi động " + cboMayTram_mnst.SelectedItem.ToString() + " thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadMayTramShutDown();
+                cboChonNguoiChat.Items.Add(cboMayTram_mnst.SelectedItem.ToString());
             }
-            frmMayTinh item = new frmMayTinh(cboMayTram_mnst.SelectedItem.ToString());
-            listFrmMayTinhBat.Add(item);
-            cboChonNguoiChat.Items.Add(item.Text);
-            db.modifiedComputerStateInMAYTINH(cboMayTram_mnst.SelectedItem.ToString(), "on");
-            loadMayTramShutDown();
-            item.Show();
+            else
+            {
+                MessageBox.Show("Máy tính đang hoạt động", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void txtChat_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && txtChat.Text.Trim().Length != 0)
             {
-                bool isChatSucess = false;
-                string userGuiTinNhan = cboChonNguoiChat.SelectedItem.ToString();
-                foreach (frmMayTinh item in listFrmMayTinhBat)
-                {
-                    if (item.Text == userGuiTinNhan)
-                    {
-                        rtxtShowChat.Text += "Bạn: " + txtChat.Text.Trim() + "\n";
-                        item._guiTinNhan.syncChat(userName, txtChat.Text.Trim());
-                        txtChat.Clear();
-                        isChatSucess = true;
-                    }
-                }
+                XuLyChat xuLy = new XuLyChat();
+                Control control = (Control)sender;
+                //bool isChatSucess = false;
 
-                if (!isChatSucess)
+                //foreach (frmMayTinh item in listFrmMayTinhBat)
+                //{
+                //    if (item.Text == userGuiTinNhan)
+                //    {
+                //        rtxtShowChat.Text += "Bạn: " + txtChat.Text.Trim() + "\n";
+                //        item._guiTinNhan.syncChat(userName, txtChat.Text.Trim());
+                //        txtChat.Clear();
+                //        isChatSucess = true;
+                //    }
+                //}
+
+                if (xuLy.AdminToMayTinh(userName, cboChonNguoiChat.SelectedItem.ToString(), txtChat.Text.Trim()))
                 {
-                    MessageBox.Show("Gửi tin nhắn thất bại, có thể máy tính đang tắt !!!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.errorProvider1.Clear();
+                    rtxtShowChat.Text += "Bạn: " + txtChat.Text.Trim() + "\n";
+                    txtChat.Clear();
+                }
+                else
+                {
+                    this.errorProvider1.SetError(control, "Gửi tin nhắn thất bại");
                 }
             }
         }
 
         private void cboShutDownMayTram_mnst_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MayTram mt = new MayTram();
             if (cboShutDownMayTram_mnst.SelectedIndex == 0)
             {
                 return;
             }
-            if (mt.tatMayTinhTuyChon(cboShutDownMayTram_mnst.SelectedItem.ToString(), listFrmMayTinhBat))
+            if (maytram.tatMayTinhTuyChon(cboShutDownMayTram_mnst.SelectedItem.ToString()))
             {
                 MessageBox.Show("Tắt máy tính thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace QuanLyNetSieuCapVipPro
 {
-    class MayTram
+    public class MayTram
     {
         private Database db = new Database();
+        public List<frmMayTinh> lstFrmMayTinhBat = new List<frmMayTinh>();
         public List<string> getmayTinh()
         {
             DataTable dt = db.getAllItemsFromMAYTINH().Tables[0];
@@ -35,19 +36,30 @@ namespace QuanLyNetSieuCapVipPro
             return items;
         }
 
-        public bool tatMayTinhTuyChon(string userTatMayTinh, List<frmMayTinh> listFrmMayTinhBat)
+        public bool khoiDongMayTinhTuyChon(string maMayTinh)
         {
-            bool isShutdownSuccess = false;
-            foreach (frmMayTinh item in listFrmMayTinhBat)
+            if (db.getComputerStateINMAYTINH(maMayTinh) == "on")
+            {
+                return false;
+            }
+            frmMayTinh item = new frmMayTinh(maMayTinh);
+            lstFrmMayTinhBat.Add(item);
+            db.modifiedComputerStateInMAYTINH(maMayTinh, "on");
+            item.Show();
+            return true;
+        }
+
+        public bool tatMayTinhTuyChon(string userTatMayTinh)
+        {
+            foreach (frmMayTinh item in lstFrmMayTinhBat)
             {
                 if (item.Text == userTatMayTinh)
                 {
                     item.shutDown();
-                    isShutdownSuccess = true;
                     break;
                 }
             }
-            if (isShutdownSuccess && db.modifiedComputerStateInMAYTINH(userTatMayTinh, "off"))
+            if ( db.modifiedComputerStateInMAYTINH(userTatMayTinh, "off"))
             {
                 return true;
             }
