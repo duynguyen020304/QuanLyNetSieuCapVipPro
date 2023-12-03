@@ -346,7 +346,7 @@
             khoiPhucCSDL_mnst.Name = "khoiPhucCSDL_mnst";
             khoiPhucCSDL_mnst.Size = new Size(180, 22);
             khoiPhucCSDL_mnst.Text = "Khôi phục CSDL";
-            khoiPhucCSDL_mnst.Click += backupCSDL_mnst_Click;
+            khoiPhucCSDL_mnst.Click += khoiPhucCSDL_mnst_Click;
             // 
             // frmManagement
             // 

@@ -14,214 +14,241 @@ namespace QuanLyNetSieuCapVipPro
         private string createDBSQL = "Data Source=QuanLyNet123.db";
         public void createDatabase()
         {
-            SQLiteConnection conn = new SQLiteConnection(createDBSQL);
-            conn.Open();
-            string sql = "CREATE TABLE IF NOT EXISTS \"MAYTINH\" ( " +
-                         "\"MaMay\" TEXT, " +
-                         "\"LanKhoiDongGanNhat\" TEXT, " +
-                         "\"TrangThaiMay\" TEXT NOT NULL, " +
-                         "CONSTRAINT \"MT_MaMay_PK\" PRIMARY KEY(\"MaMay\") " +
-                         ")";
-            var cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "CREATE TABLE IF NOT EXISTS \"MAYTINH\" ( " +
+                             "\"MaMay\" TEXT, " +
+                             "\"LanKhoiDongGanNhat\" TEXT, " +
+                             "\"TrangThaiMay\" TEXT NOT NULL, " +
+                             "CONSTRAINT \"MT_MaMay_PK\" PRIMARY KEY(\"MaMay\") " +
+                             ")";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"ADMIN\" ( " +
-                  "\"MaAdmin\" TEXT, " +
-                  "\"TenAdmin\" TEXT NOT NULL, " +
-                  "\"SDT\" TEXT, " +
-                  "\"DiaChi\" TEXT, " +
-                  "CONSTRAINT \"A_MaAdmin_PK\" PRIMARY KEY(\"MaAdmin\") " +
-                  ") ";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "CREATE TABLE IF NOT EXISTS \"ADMIN\" ( " +
+                      "\"MaAdmin\" TEXT, " +
+                      "\"TenAdmin\" TEXT NOT NULL, " +
+                      "\"SDT\" TEXT, " +
+                      "\"DiaChi\" TEXT, " +
+                      "CONSTRAINT \"A_MaAdmin_PK\" PRIMARY KEY(\"MaAdmin\") " +
+                      ") ";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS 'NHOMNGUOIDUNG' ( " +
-                  "\"MaNhomNguoiDung\" TEXT, " +
-                  "\"TenNhomNguoiDung\" TEXT NOT NULL, " +
-                  "\"GiaNhomNguoiDung\" NUMERIC, " +
-                  "CONSTRAINT \"NND_MaNhomNguoiDung_PK\" PRIMARY KEY(\"MaNhomNguoiDung\") " +
-                  ")";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "CREATE TABLE IF NOT EXISTS 'NHOMNGUOIDUNG' ( " +
+                      "\"MaNhomNguoiDung\" TEXT, " +
+                      "\"TenNhomNguoiDung\" TEXT NOT NULL, " +
+                      "\"GiaNhomNguoiDung\" NUMERIC, " +
+                      "CONSTRAINT \"NND_MaNhomNguoiDung_PK\" PRIMARY KEY(\"MaNhomNguoiDung\") " +
+                      ")";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"NGUOICHOI\" ( " +
-                  "\"MaNguoiChoi\" TEXT, " +
-                  "\"TenNguoiDung\" TEXT NOT NULL, " +
-                  "\"SoGioChoiConLai\" INTEGER," +
-                  "\"SoTienNo\" NUMERIC, " +
-                  "\"NgayTaoTaiKhoan\" TEXT, " +
-                  "\"NguoiTaoTaiKhoan\" TEXT, " +
-                  "\"NguoiNapTien\" TEXT, " +
-                  "\"Email\" TEXT," +
-                  "\"DiaChi\" TEXT," +
-                  "\"ThanhPho\" TEXT," +
-                  "\"QuanHuyen\" TEXT," +
-                  "\"CMND\" TEXT, " +
-                  "\"SDT\" TEXT, "+
-                  "\"NhomNguoiDung\" TEXT, " +
-                  "CONSTRAINT \"NC_NguoiNapTien_FK\" FOREIGN KEY(\"NguoiNapTien\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
-                  "CONSTRAINT \"NC_NguoiTaoTaiKhoan_FK\" FOREIGN KEY(\"NguoiTaoTaiKhoan\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
-                  "CONSTRAINT \"NC_MaNguoiChoi_PK\" PRIMARY KEY(\"MaNguoiChoi\"), " +
-                  "CONSTRAINT \"NC_NhomNguoiDung_FK\" FOREIGN KEY(\"NhomNguoiDung\") REFERENCES \"NHOMNGUOIDUNG\"(\"MaNhomNguoiDung\") " +
-                  ") ";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "CREATE TABLE IF NOT EXISTS \"NGUOICHOI\" ( " +
+                      "\"MaNguoiChoi\" TEXT, " +
+                      "\"TenNguoiDung\" TEXT NOT NULL, " +
+                      "\"SoGioChoiConLai\" INTEGER," +
+                      "\"SoTienNo\" NUMERIC, " +
+                      "\"NgayTaoTaiKhoan\" TEXT, " +
+                      "\"NguoiTaoTaiKhoan\" TEXT, " +
+                      "\"NguoiNapTien\" TEXT, " +
+                      "\"Email\" TEXT," +
+                      "\"DiaChi\" TEXT," +
+                      "\"ThanhPho\" TEXT," +
+                      "\"QuanHuyen\" TEXT," +
+                      "\"CMND\" TEXT, " +
+                      "\"SDT\" TEXT, " +
+                      "\"NhomNguoiDung\" TEXT, " +
+                      "CONSTRAINT \"NC_NguoiNapTien_FK\" FOREIGN KEY(\"NguoiNapTien\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
+                      "CONSTRAINT \"NC_NguoiTaoTaiKhoan_FK\" FOREIGN KEY(\"NguoiTaoTaiKhoan\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
+                      "CONSTRAINT \"NC_MaNguoiChoi_PK\" PRIMARY KEY(\"MaNguoiChoi\"), " +
+                      "CONSTRAINT \"NC_NhomNguoiDung_FK\" FOREIGN KEY(\"NhomNguoiDung\") REFERENCES \"NHOMNGUOIDUNG\"(\"MaNhomNguoiDung\") " +
+                      ") ";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"DICHVU\" ( " +
-                  "\"MaDichVu\" TEXT, " +
-                  "\"TenDichVu\" TEXT NOT NULL, " +
-                  "\"Gia\" NUMERIC, " +
-                  "\"DonVi\" TEXT, " +
-                  "CONSTRAINT \"DV_MaDichVu_PK\" PRIMARY KEY(\"MaDichVu\") " +
-                  ") ";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "CREATE TABLE IF NOT EXISTS \"DICHVU\" ( " +
+                      "\"MaDichVu\" TEXT, " +
+                      "\"TenDichVu\" TEXT NOT NULL, " +
+                      "\"Gia\" NUMERIC, " +
+                      "\"DonVi\" TEXT, " +
+                      "CONSTRAINT \"DV_MaDichVu_PK\" PRIMARY KEY(\"MaDichVu\") " +
+                      ") ";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"TAIKHOAN_ADMIN\" ( " +
-                  "\"MaTaiKhoan\" TEXT NOT NULL, " +
-                  "\"MatKhau\" TEXT NOT NULL, " +
-                  "CONSTRAINT \"TKADMIN_MaTaiKhoan_PK\" PRIMARY KEY(\"MaTaiKhoan\") " +
-                  ")";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "CREATE TABLE IF NOT EXISTS \"TAIKHOAN_ADMIN\" ( " +
+                      "\"MaTaiKhoan\" TEXT NOT NULL, " +
+                      "\"MatKhau\" TEXT NOT NULL, " +
+                      "CONSTRAINT \"TKADMIN_MaTaiKhoan_PK\" PRIMARY KEY(\"MaTaiKhoan\") " +
+                      ")";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"TAIKHOAN_USER\" (" +
-                  "\"MaTaiKhoan\" TEXT NOT NULL," +
-                  "\"MatKhau\" TEXT NOT NULL," +
-                  "CONSTRAINT \"TKUSER_MaTaiKhoan_PK\" PRIMARY KEY(\"MaTaiKhoan\")" +
-                  ")";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "CREATE TABLE IF NOT EXISTS \"TAIKHOAN_USER\" (" +
+                      "\"MaTaiKhoan\" TEXT NOT NULL," +
+                      "\"MatKhau\" TEXT NOT NULL," +
+                      "CONSTRAINT \"TKUSER_MaTaiKhoan_PK\" PRIMARY KEY(\"MaTaiKhoan\")" +
+                      ")";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"DANGNHAP_ADMIN\" ( " +
-                  "\"MaPhienDangNhap\" TEXT, " +
-                  "\"MaAdmin\" TEXT NOT NULL, " +
-                  "\"MaMay\" TEXT NOT NULL, " +
-                  "\"ThoiGianDangNhap\" TEXT, " +
-                  "\"ThoiGianDangXuat\" TEXT, " +
-                  "CONSTRAINT \"DNA_MaMay_FK\" FOREIGN KEY(\"MaMay\") REFERENCES \"MAYTINH\"(\"MaMay\"), " +
-                  "CONSTRAINT \"DNA_MaAdmin_FK\" FOREIGN KEY(\"MaAdmin\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
-                  "CONSTRAINT \"DNA_MaPhienDangNhap_MaAdmin_MaMay_PK\" PRIMARY KEY(\"MaPhienDangNhap\",\"MaAdmin\",\"MaMay\") " +
-                  ") ";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "CREATE TABLE IF NOT EXISTS \"DANGNHAP_ADMIN\" ( " +
+                      "\"MaPhienDangNhap\" TEXT, " +
+                      "\"MaAdmin\" TEXT NOT NULL, " +
+                      "\"MaMay\" TEXT NOT NULL, " +
+                      "\"ThoiGianDangNhap\" TEXT, " +
+                      "\"ThoiGianDangXuat\" TEXT, " +
+                      "CONSTRAINT \"DNA_MaMay_FK\" FOREIGN KEY(\"MaMay\") REFERENCES \"MAYTINH\"(\"MaMay\"), " +
+                      "CONSTRAINT \"DNA_MaAdmin_FK\" FOREIGN KEY(\"MaAdmin\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
+                      "CONSTRAINT \"DNA_MaPhienDangNhap_MaAdmin_MaMay_PK\" PRIMARY KEY(\"MaPhienDangNhap\",\"MaAdmin\",\"MaMay\") " +
+                      ") ";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"DANGNHAP_USER\" ( " +
-                  "\"MaMay\" TEXT NOT NULL, " +
-                  "\"MaNguoiChoi\" TEXT NOT NULL, " +
-                  "\"ThoiGianDangNhap\" TEXT, " +
-                  "\"ThoiGianLogOut\" TEXT, " +
-                  "\"MaPhienDangNhap\" TEXT, " +
-                  "CONSTRAINT \"DNU_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\"), " +
-                  "CONSTRAINT \"DNU_MaMay_FK\" FOREIGN KEY(\"MaMay\") REFERENCES \"MAYTINH\"(\"MaMay\"), " +
-                  "CONSTRAINT \"DN_MaMay_MaNguoiChoi_ThoiGianDangNhap_PK\" PRIMARY KEY(\"MaMay\",\"MaNguoiChoi\",\"MaPhienDangNhap\") " +
-                  ") ";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "CREATE TABLE IF NOT EXISTS \"DANGNHAP_USER\" ( " +
+                      "\"MaMay\" TEXT NOT NULL, " +
+                      "\"MaNguoiChoi\" TEXT NOT NULL, " +
+                      "\"ThoiGianDangNhap\" TEXT, " +
+                      "\"ThoiGianLogOut\" TEXT, " +
+                      "\"MaPhienDangNhap\" TEXT, " +
+                      "CONSTRAINT \"DNU_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\"), " +
+                      "CONSTRAINT \"DNU_MaMay_FK\" FOREIGN KEY(\"MaMay\") REFERENCES \"MAYTINH\"(\"MaMay\"), " +
+                      "CONSTRAINT \"DN_MaMay_MaNguoiChoi_ThoiGianDangNhap_PK\" PRIMARY KEY(\"MaMay\",\"MaNguoiChoi\",\"MaPhienDangNhap\") " +
+                      ") ";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "CREATE TABLE IF NOT EXISTS \"DONHANG_DICHVU\" ( " +
-                  "\"MaDonHang\" TEXT, " +
-                  "\"MaDichVu\" TEXT NOT NULL, " +
-                  "\"MaNguoiChoi\" TEXT NOT NULL, " +
-                  "\"ThoiGianDatHang\" TEXT, " +
-                  "CONSTRAINT \"DHDV_MaDonHang_MaDichVu_MaNguoiChoi_PK\" PRIMARY KEY(\"MaDonHang\",\"MaDichVu\",\"MaNguoiChoi\"), " +
-                  "CONSTRAINT \"DHDV_MaDichVu_FK\" FOREIGN KEY(\"MaDichVu\") REFERENCES \"DICHVU\"(\"MaDichVu\"), " +
-                  "CONSTRAINT \"DHDV_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\") " +
-                  ")";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "CREATE TABLE IF NOT EXISTS \"DONHANG_DICHVU\" ( " +
+                      "\"MaDonHang\" TEXT, " +
+                      "\"MaDichVu\" TEXT NOT NULL, " +
+                      "\"MaNguoiChoi\" TEXT NOT NULL, " +
+                      "\"ThoiGianDatHang\" TEXT, " +
+                      "CONSTRAINT \"DHDV_MaDonHang_MaDichVu_MaNguoiChoi_PK\" PRIMARY KEY(\"MaDonHang\",\"MaDichVu\",\"MaNguoiChoi\"), " +
+                      "CONSTRAINT \"DHDV_MaDichVu_FK\" FOREIGN KEY(\"MaDichVu\") REFERENCES \"DICHVU\"(\"MaDichVu\"), " +
+                      "CONSTRAINT \"DHDV_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\") " +
+                      ")";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "INSERT OR IGNORE INTO NHOMNGUOIDUNG(MaNhomNguoiDung, TenNhomNguoiDung, GiaNhomNguoiDung) " +
-                  "VALUES(\"hoivien\", \"Hội Viên\", 10000), (\"nhanvien\", \"Nhân Viên\", 7000), (\"vip\", \"VIP\", 8500), (\"vanglai\", \"Vãng Lai\", 11500)";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "INSERT OR IGNORE INTO NHOMNGUOIDUNG(MaNhomNguoiDung, TenNhomNguoiDung, GiaNhomNguoiDung) " +
+                      "VALUES(\"hoivien\", \"Hội Viên\", 10000), (\"nhanvien\", \"Nhân Viên\", 7000), (\"vip\", \"VIP\", 8500), (\"vanglai\", \"Vãng Lai\", 11500)";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "INSERT OR IGNORE INTO TAIKHOAN_ADMIN(MaTaiKhoan, MatKhau) " +
-                      "VALUES(\"admin\", \"admin\") ";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "INSERT OR IGNORE INTO TAIKHOAN_ADMIN(MaTaiKhoan, MatKhau) " +
+                          "VALUES(\"admin\", \"admin\") ";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "INSERT OR IGNORE INTO ADMIN(MaAdmin, TenAdmin) " +
-                  "VALUES(\"admin\", \"admin\")";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "INSERT OR IGNORE INTO ADMIN(MaAdmin, TenAdmin) " +
+                      "VALUES(\"admin\", \"admin\")";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            sql = "INSERT OR IGNORE INTO MAYTINH(MaMay, TrangThaiMay) VALUES ('MAY001', 'off'), ('MAY002', 'off'), ('MAY003', 'off')";
-            cmd = new SQLiteCommand(sql, conn);
-            cmd.ExecuteNonQuery();
+                sql = "INSERT OR IGNORE INTO MAYTINH(MaMay, TrangThaiMay) VALUES ('MAY001', 'off'), ('MAY002', 'off'), ('MAY003', 'off')";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
 
-            conn.Close();
+                conn.Close();
+            }
         }
 
-        public void backUpDB(string currentFilePath, string currentDBName, string destFilePath)
+        public bool backUpDB(string currentFilePath, string currentDBName, string destFilePath)
         {
-            var srcFile = Path.Combine(currentFilePath, currentDBName);
-            if (File.Exists(destFilePath))
+            try
             {
-                File.Delete(destFilePath);
+                var srcFile = Path.Combine(currentFilePath, currentDBName);
+                if (File.Exists(destFilePath))
+                {
+                    File.Delete(destFilePath);
+                }
+                File.Copy(srcFile, destFilePath);
             }
-            File.Copy(srcFile, destFilePath);
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void restoreDB(string filePath, string destFileName)
+        public bool restoreDB(string filePath, string destFileName)
         {
-            SQLiteConnection conn = new SQLiteConnection(createDBSQL);
-            conn.Close();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            if (File.Exists(destFileName))
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
-                File.Delete(destFileName);
+                try
+                {
+                    conn.Close();
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    if (File.Exists(destFileName))
+                    {
+                        File.Delete(destFileName);
+                    }
+                    File.Move(filePath, destFileName);
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
             }
-            File.Move(filePath, destFileName);
-            
+            return true;
         }
         public void insertDataIntoTaiKhoanAdmin(string UserAccount, string Password)
         {
-            SQLiteConnection conn = new SQLiteConnection(createDBSQL);
-            conn.Open();
-            string sql = "INSERT OR IGNORE INTO TAIKHOAN_ADMIN(MaTaiKhoan, MatKhau) " +
-                         "VALUES(@MaTaiKhoan, @MatKhau) ";
-            var cmd = new SQLiteCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@MaTaiKhoan", UserAccount);
-            cmd.Parameters.AddWithValue("@MatKhau", Password);
-            cmd.ExecuteNonQuery();
-            conn.Close();
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                conn.Open();
+                string sql = "INSERT OR IGNORE INTO TAIKHOAN_ADMIN(MaTaiKhoan, MatKhau) " +
+                             "VALUES(@MaTaiKhoan, @MatKhau) ";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaTaiKhoan", UserAccount);
+                cmd.Parameters.AddWithValue("@MatKhau", Password);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
         }
 
-        public void insertDataIntoAdmin(string UserAccount, string TenAdmin, string SDT, string DiaChi)
+        public bool insertDataIntoAdmin(string UserAccount, string TenAdmin, string SDT, string DiaChi)
         {
-            SQLiteConnection conn = new SQLiteConnection(createDBSQL);
-            conn.Open();
-            string sql = "INSERT OR IGNORE INTO ADMIN(MaAdmin, TenAdmin, SDT, DiaChi) " +
-                         "VALUES(@MaAdmin, @TenAdmin, @SDT, @DiaChi) ";
-            var cmd = new SQLiteCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@MaAdmin", UserAccount);
-            cmd.Parameters.AddWithValue("@TenAdmin", TenAdmin);
-            cmd.Parameters.AddWithValue("@SDT", SDT);
-            cmd.Parameters.AddWithValue("@DiaChi", DiaChi);
-            cmd.ExecuteNonQuery();
-            conn.Close();
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                int i = 0;
+                conn.Open();
+                string sql = "INSERT OR IGNORE INTO ADMIN(MaAdmin, TenAdmin, SDT, DiaChi) " +
+                             "VALUES(@MaAdmin, @TenAdmin, @SDT, @DiaChi) ";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaAdmin", UserAccount);
+                cmd.Parameters.AddWithValue("@TenAdmin", TenAdmin);
+                cmd.Parameters.AddWithValue("@SDT", SDT);
+                cmd.Parameters.AddWithValue("@DiaChi", DiaChi);
+                i = cmd.ExecuteNonQuery();
+                conn.Close();
+                return i > 0;
+            }
         }
 
         public string getAdminPassword(string UserAccount)
         {
-            SQLiteConnection conn = new SQLiteConnection(createDBSQL);
-            conn.Open();
-            string sql = "SELECT MatKhau " +
-                         "FROM TAIKHOAN_ADMIN " +
-                         "WHERE TAIKHOAN_ADMIN.MaTaiKhoan = @UserAccount "; // Corrected parameter syntax
-            var cmd = new SQLiteCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@UserAccount", UserAccount);
-            var sqReader = cmd.ExecuteReader();
-            string result = "";
-            if (sqReader.Read()) // Use 'if' to check if there is a row
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
-                result = sqReader.GetString(0);
+                conn.Open();
+                string sql = "SELECT MatKhau " +
+                             "FROM TAIKHOAN_ADMIN " +
+                             "WHERE TAIKHOAN_ADMIN.MaTaiKhoan = @UserAccount "; // Corrected parameter syntax
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@UserAccount", UserAccount);
+                var sqReader = cmd.ExecuteReader();
+                string result = "";
+                if (sqReader.Read()) // Use 'if' to check if there is a row
+                {
+                    result = sqReader.GetString(0);
+                }
+                sqReader.Close();
+                conn.Close();
+                return result;
             }
-            sqReader.Close();
-            conn.Close();
-            return result;
         }
 
         public string getUserPassword(string MaNguoiChoi)
@@ -248,9 +275,9 @@ namespace QuanLyNetSieuCapVipPro
 
         public bool insertDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo, DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi, string thanhPho, string quanHuyen, string CMND, string SDT, string loaiNguoiDung)
         {
-            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                int i = 0;
                 conn.Open();
                 string sql =
                     "INSERT OR IGNORE INTO NGUOICHOI(MaNguoiChoi, TenNguoiDung, SoGioChoiConLai, SoTienNo, NgayTaoTaiKhoan, NguoiTaoTaiKhoan, NguoiNapTien, Email, DiaChi, ThanhPho, QuanHuyen, CMND, SDT, NhomNguoiDung) " +
@@ -272,8 +299,8 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@NhomNguoiDung", loaiNguoiDung);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
+                return i > 0;
             }
-            return i > 0;
         }
         public bool suaDataNguoiChoi(string maNguoiChoi, string tenNguoiDung, Int64 soGioiChoiConLai, Decimal soTienNo,
             DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi,

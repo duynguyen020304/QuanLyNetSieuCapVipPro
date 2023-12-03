@@ -21,6 +21,7 @@ namespace QuanLyNetSieuCapVipPro
                     string backupDBName = "backupCSDLNet" + currentTime.Year.ToString() + "_" + currentTime.Month + "_" + currentTime.Day.ToString() + "_" + currentTime.Hour.ToString() + "_" + currentTime.Minute.ToString() + "_" + currentTime.Second.ToString();
                     var backupDatabaseTo = fbd.SelectedPath + "\\" + (Path.GetFileNameWithoutExtension(backupDBName) + ".db");
                     db.backUpDB(pickDataBaseFrom, "QuanLyNet123.db", backupDatabaseTo);
+                    MessageBox.Show("Backup thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -33,6 +34,7 @@ namespace QuanLyNetSieuCapVipPro
                 string restoreDatabaseFrom = opendiDialog.FileName;
                 var restoreDatabaseTo = Environment.CurrentDirectory + "\\" + "QuanLyNet123.db";
                 db.restoreDB(restoreDatabaseFrom, restoreDatabaseTo);
+                MessageBox.Show("Restore thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
