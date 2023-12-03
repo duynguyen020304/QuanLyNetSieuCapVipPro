@@ -20,7 +20,6 @@ namespace QuanLyNetSieuCapVipPro
 
         public delegate void truyenChoFrmManagement(bool isSuccess = false);
         public truyenChoFrmManagement truyenTinHieuDangNhapThanhCong;
-
         private bool isExit = false;
         bool tinHieuChuyenCa = false;
 
@@ -73,11 +72,6 @@ namespace QuanLyNetSieuCapVipPro
             this.Close();
             frmCreateAccountAdmin createAccountAdmin = new frmCreateAccountAdmin();
             createAccountAdmin.Show();
-        }
-
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-            
         }
     }
 }

@@ -119,7 +119,6 @@
             Name = "frmLogin";
             Text = "frmLogin";
             FormClosing += frmLogin_FormClosing;
-            Load += frmLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }

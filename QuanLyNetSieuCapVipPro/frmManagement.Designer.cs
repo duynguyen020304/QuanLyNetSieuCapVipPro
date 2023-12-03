@@ -49,6 +49,7 @@
             toolStripSeparator2 = new ToolStripSeparator();
             quảnLýCơSởDữLiêuToolStripMenuItem = new ToolStripMenuItem();
             backupCSDL_mnst = new ToolStripMenuItem();
+            khoiPhucCSDL_mnst = new ToolStripMenuItem();
             lịchSaoCSDLToolStripMenuItem = new ToolStripMenuItem();
             thêmTàiKhoảnQuảnLýToolStripMenuItem = new ToolStripMenuItem();
             báoCáoToolStripMenuItem = new ToolStripMenuItem();
@@ -64,7 +65,6 @@
             pnlChat = new Panel();
             cboChonNguoiChat = new ComboBox();
             txtChat = new TextBox();
-            khoiPhucCSDL_mnst = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             pnlChat.SuspendLayout();
             SuspendLayout();
@@ -204,14 +204,21 @@
             // backupCSDL_mnst
             // 
             backupCSDL_mnst.Name = "backupCSDL_mnst";
-            backupCSDL_mnst.Size = new Size(180, 22);
+            backupCSDL_mnst.Size = new Size(159, 22);
             backupCSDL_mnst.Text = "Sao lưu CSDL";
             backupCSDL_mnst.Click += backupCSDL_mnst_Click;
+            // 
+            // khoiPhucCSDL_mnst
+            // 
+            khoiPhucCSDL_mnst.Name = "khoiPhucCSDL_mnst";
+            khoiPhucCSDL_mnst.Size = new Size(159, 22);
+            khoiPhucCSDL_mnst.Text = "Khôi phục CSDL";
+            khoiPhucCSDL_mnst.Click += khoiPhucCSDL_mnst_Click;
             // 
             // lịchSaoCSDLToolStripMenuItem
             // 
             lịchSaoCSDLToolStripMenuItem.Name = "lịchSaoCSDLToolStripMenuItem";
-            lịchSaoCSDLToolStripMenuItem.Size = new Size(180, 22);
+            lịchSaoCSDLToolStripMenuItem.Size = new Size(159, 22);
             lịchSaoCSDLToolStripMenuItem.Text = "Lịch sao CSDL";
             // 
             // thêmTàiKhoảnQuảnLýToolStripMenuItem
@@ -340,13 +347,6 @@
             txtChat.Size = new Size(215, 27);
             txtChat.TabIndex = 7;
             txtChat.KeyDown += txtChat_KeyDown;
-            // 
-            // khoiPhucCSDL_mnst
-            // 
-            khoiPhucCSDL_mnst.Name = "khoiPhucCSDL_mnst";
-            khoiPhucCSDL_mnst.Size = new Size(180, 22);
-            khoiPhucCSDL_mnst.Text = "Khôi phục CSDL";
-            khoiPhucCSDL_mnst.Click += khoiPhucCSDL_mnst_Click;
             // 
             // frmManagement
             // 

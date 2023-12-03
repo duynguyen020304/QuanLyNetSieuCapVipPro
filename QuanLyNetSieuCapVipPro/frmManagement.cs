@@ -13,7 +13,7 @@ namespace QuanLyNetSieuCapVipPro
     public partial class frmManagement : Form
     {
         private Database db = new Database();
-        private List<frmMayTinh> listMayTinh = new List<frmMayTinh>();
+        private List<frmMayTinh> listFrmMayTinhBat = new List<frmMayTinh>();
         private string userName;
         public static frmManagement instance;
         public string sendUserName;
@@ -52,7 +52,10 @@ namespace QuanLyNetSieuCapVipPro
 
         private void frmManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            if (!nhanTinHieuDangNhap)
+            {
+                Application.Exit();
+            }
         }
 
         private void loadTinHieu(bool tinHieu)
@@ -160,36 +163,26 @@ namespace QuanLyNetSieuCapVipPro
 
         private void loadMayTram()
         {
-            DataTable dt = db.getAllItemsFromMAYTINH().Tables[0];
-            List<string> items = new List<string>();
-
-            foreach (DataRow row in dt.Rows)
-            {
-                items.Add(row["MaMay"].ToString());
-            }
+            MayTram mt = new MayTram();
+            List<string> mayTinh = mt.getmayTinh();
             if (cboMayTram_mnst.ComboBox != null)
             {
                 cboMayTram_mnst.ComboBox.Items.Clear();
                 cboMayTram_mnst.ComboBox.Items.Add("Chọn máy");
-                cboMayTram_mnst.ComboBox.Items.AddRange(items.ToArray());
+                cboMayTram_mnst.ComboBox.Items.AddRange(mayTinh.ToArray());
                 cboMayTram_mnst.SelectedIndex = 0;
             }
         }
 
         private void loadMayTramShutDown()
         {
-            DataTable dt = db.getAllItemsFromMAYTINH().Tables[0];
-            List<string> items = new List<string>();
-
-            foreach (DataRow row in dt.Rows)
-            {
-                items.Add(row["MaMay"].ToString());
-            }
+            MayTram mt = new MayTram();
+            List<string> mayTinhOnline = mt.getMayTinhOnline();
             if (cboShutDownMayTram_mnst.ComboBox != null)
             {
                 cboShutDownMayTram_mnst.ComboBox.Items.Clear();
                 cboShutDownMayTram_mnst.ComboBox.Items.Add("Chọn máy");
-                cboShutDownMayTram_mnst.ComboBox.Items.AddRange(items.ToArray());
+                cboShutDownMayTram_mnst.ComboBox.Items.AddRange(mayTinhOnline.ToArray());
                 cboShutDownMayTram_mnst.SelectedIndex = 0;
             }
         }
@@ -200,62 +193,67 @@ namespace QuanLyNetSieuCapVipPro
             {
                 return;
             }
-
             if (db.getComputerStateINMAYTINH(cboMayTram_mnst.SelectedItem.ToString()) == "on")
             {
                 MessageBox.Show("Máy tính đã được bật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            frmMayTinh mt = new frmMayTinh(cboMayTram_mnst.SelectedItem.ToString());
-            listMayTinh.Add(mt);
-            cboChonNguoiChat.Items.Add(mt.Text);
+            frmMayTinh item = new frmMayTinh(cboMayTram_mnst.SelectedItem.ToString());
+            listFrmMayTinhBat.Add(item);
+            cboChonNguoiChat.Items.Add(item.Text);
             db.modifiedComputerStateInMAYTINH(cboMayTram_mnst.SelectedItem.ToString(), "on");
-            mt.Show();
+            loadMayTramShutDown();
+            item.Show();
         }
 
         private void txtChat_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && txtChat.Text.Trim().Length != 0)
             {
-                rtxtShowChat.Text += "Bạn: " + txtChat.Text.Trim() + "\n";
+                bool isChatSucess = false;
                 string userGuiTinNhan = cboChonNguoiChat.SelectedItem.ToString();
-                foreach (frmMayTinh item in listMayTinh)
+                foreach (frmMayTinh item in listFrmMayTinhBat)
                 {
                     if (item.Text == userGuiTinNhan)
                     {
+                        rtxtShowChat.Text += "Bạn: " + txtChat.Text.Trim() + "\n";
                         item._guiTinNhan.syncChat(userName, txtChat.Text.Trim());
                         txtChat.Clear();
+                        isChatSucess = true;
                     }
+                }
+
+                if (!isChatSucess)
+                {
+                    MessageBox.Show("Gửi tin nhắn thất bại, có thể máy tính đang tắt !!!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
 
         private void cboShutDownMayTram_mnst_SelectedIndexChanged(object sender, EventArgs e)
         {
+            MayTram mt = new MayTram();
             if (cboShutDownMayTram_mnst.SelectedIndex == 0)
             {
                 return;
             }
-            string userTatMayTinh = cboShutDownMayTram_mnst.SelectedItem.ToString();
-            if (db.getComputerStateINMAYTINH(userTatMayTinh) == "off")
+            if (mt.tatMayTinhTuyChon(cboShutDownMayTram_mnst.SelectedItem.ToString(), listFrmMayTinhBat))
             {
-                MessageBox.Show("Máy tính đang tắt", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show("Tắt máy tính thành công", "Thông báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                loadMayTramShutDown();
             }
             else
             {
-                if (db.modifiedComputerStateInMAYTINH(userTatMayTinh, "off"))
-                {
-                    MessageBox.Show("Tắt máy tính thành công", "Thông báo", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
+                MessageBox.Show("Có lỗi khi tắt máy tính", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void backupCSDL_mnst_Click(object sender, EventArgs e)
         {
             BackupRestoreDB backupRestore = new BackupRestoreDB();
-            backupRestore.backupDB(); 
+            backupRestore.backupDB();
         }
 
         private void khoiPhucCSDL_mnst_Click(Object sender, EventArgs e)
@@ -263,5 +261,6 @@ namespace QuanLyNetSieuCapVipPro
             BackupRestoreDB backupRestore = new BackupRestoreDB();
             backupRestore.restoreDB();
         }
+
     }
 }

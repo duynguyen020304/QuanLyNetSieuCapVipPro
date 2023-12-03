@@ -306,9 +306,9 @@ namespace QuanLyNetSieuCapVipPro
             DateTime ngayTaoTaiKhoan, string nguoiTaoTaiKhoan, string nguoiNapTien, string email, string diaChi,
             string thanhPho, string quanHuyen, string CMND, string SDT, string loaiNguoiDung)
         {
-            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                int i = 0;
                 conn.Open();
                 string sql = "UPDATE NGUOICHOI set TenNguoiDung = @TenNguoiDung, " +
                              "SoGioChoiConLai = @SoGioChoiConLai, " +
@@ -341,15 +341,15 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@NhomNguoiDung", loaiNguoiDung);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
+                return i > 0;
             }
-            return i > 0;
         }
 
         public bool insertDataIntoDichVu(string maDichVu, string tenDichVu, Decimal gia, string donVi)
         {
-            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                int i = 0;
                 conn.Open();
                 string sql = "INSERT OR IGNORE INTO DICHVU(MaDichVu, TenDichVu, Gia, DonVi) " +
                              "VALUES(@MaDichVu, @TenDichVu, @Gia, @DonVi)";
@@ -360,16 +360,16 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@DonVi", donVi);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
+                return i > 0;
             }
-
-            return i > 0;
         }
 
         public bool insertDataIntoTAIKHOAN_USER(string maNguoiChoi, string password)
         {
-            int i = 0;
+            
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                int i = 0;
                 conn.Open();
                 string sql = "INSERT OR IGNORE INTO TAIKHOAN_USER(MaTaiKhoan, MatKhau) " +
                              "VALUES(@MaTaiKhoan, @MatKhau) ";
@@ -378,31 +378,30 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@MatKhau", password);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
+                return i > 0;
             }
-
-            return i > 0;
         }
 
         public DataSet GetAllUserDataSetForThanhVien()
         {
-            DataSet data = new DataSet();
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                DataSet data = new DataSet();
                 conn.Open();
                 string sql = "SELECT MaNguoiChoi as \"Mã Người Chơi\", TenNguoiDung as \"Tên Người Dùng\", SoGioChoiConLai as \"Số Phút Hiện Có\", SoTienNo as \"Số Nợ\", NgayTaoTaiKhoan as \"Ngày Tạo Tài Khoản\"" +
                              "From NGUOICHOI";
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
+                return data;
             }
-            return data;
         }
 
         public DataSet getSpecificUserData(string userName)
         {
-            DataSet data = new DataSet();
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                DataSet data = new DataSet();
                 conn.Open();
                 string sql = "SELECT * " +
                              "From NGUOICHOI " +
@@ -410,15 +409,15 @@ namespace QuanLyNetSieuCapVipPro
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
+                return data;
             }
-            return data;
         }
 
         public bool modifiedSpecificElement(string maDichVu, string tenDichVu, Decimal gia, string donVi)
         {
-            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                int i = 0;
                 conn.Open();
                 string sql = "UPDATE DICHVU set TenDichVu = @TenDichVu," +
                              "Gia = @Gia, " +
@@ -430,16 +429,15 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@MaDichVu", maDichVu);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
+                return i > 0;
             }
-
-            return i > 0;
         }
 
         public DataSet getAllItemsFormDICHVU()
         {
-            DataSet data = new DataSet();
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                DataSet data = new DataSet();
                 conn.Open();
                 string sql = "SELECT MaDichVu as \"Mã Dịch Vụ\"," +
                              "TenDichVu as \"Tên Dịch Vụ\"," +
@@ -449,15 +447,15 @@ namespace QuanLyNetSieuCapVipPro
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
+                return data;
             }
-            return data;
         }
 
         public DataSet getSpecificItemFromDICHVU(string maDichVu)
         {
-            DataSet data = new DataSet();
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                DataSet data = new DataSet();
                 conn.Open();
                 string sql = "SELECT * " +
                              "FROM DICHVU " +
@@ -465,89 +463,88 @@ namespace QuanLyNetSieuCapVipPro
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
+                return data;
             }
-            return data;
         }
 
         public bool removeItemsFromDICHVU(string maDichVu)
         {
-            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                int i = 0;
                 conn.Open();
                 string sql = "DELETE FROM DICHVU WHERE MaDichVu = @MaDichVu";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaDichVu", maDichVu);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
+                return i > 0;
             }
-            return i > 0;
         }
 
         public DataSet getAllItemsFROMNHOMNGUOIDUNG()
         {
-            DataSet data = new DataSet();
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                DataSet data = new DataSet();
                 conn.Open();
                 string sql = "SELECT * FROM NHOMNGUOIDUNG";
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
+                return data;
             }
-            return data;
         }
 
         public DataSet getAllItemsFromMAYTINH()
         {
-            DataSet data = new DataSet();
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                DataSet data = new DataSet();
                 conn.Open();
                 string sql = "SELECT * FROM MAYTINH";
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
+                return data;
             }
-            return data;
         }
 
         public Decimal getGiaTaiKhoan(string maNhomNguoiDung)
         {
-            Decimal rs = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                Decimal rs = 0;
                 conn.Open();
                 string sql = "SELECT GiaNhomNguoiDung FROM NHOMNGUOIDUNG WHERE MaNhomNguoiDung = @MaNhomNguoiDung";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNhomNguoiDung", maNhomNguoiDung);
                 rs = Convert.ToDecimal(cmd.ExecuteScalar());
                 conn.Close();
+                return rs;
             }
-            return rs;
         }
 
         public string getLoaiTaiKhoan(string maNhomNguoiDung)
         {
-            string rs = "";
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                string rs = "";
                 conn.Open();
                 string sql = "SELECT TenNhomNguoiDung FROM NHOMNGUOIDUNG WHERE MaNhomNguoiDung = @MaNhomNguoiDung";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNhomNguoiDung", maNhomNguoiDung);
                 rs = Convert.ToString(cmd.ExecuteScalar());
                 conn.Close();
+                return rs;
             }
-
-            return rs;
         }
 
         public bool modifiedItemInNHOMNGUOIDUNG(string maNhomNguoiDung, string tenNhomNguoiDung, decimal gia)
         {
-            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                int i = 0;
                 conn.Open();
                 string sql = "UPDATE NHOMNGUOIDUNG set TenNhomNguoiDung = @TenNhomNguoiDung" +
                              "GiaNhomNguoiDung = @GiaNhomNguoiDung WHERE MaNhomNguoiDung = @MaNhomNguoiDung";
@@ -557,15 +554,15 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@MaNhomNguoiDung", maNhomNguoiDung);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
+                return i > 0;
             }
-            return i > 0;
         }
 
         public bool modifiedComputerStateInMAYTINH(string maMay, string trangThai)
         {
-            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                int i = 0;
                 conn.Open();
                 string sql = "UPDATE MAYTINH set TrangThaiMay = @TrangThaiMay WHERE MaMay = @MaMay";
                 var cmd = new SQLiteCommand(sql, conn);
@@ -573,8 +570,8 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@MaMay", maMay);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
+                return i > 0;
             }
-            return i > 0;
         }
 
         public string getComputerStateINMAYTINH(string maMay)
@@ -594,17 +591,17 @@ namespace QuanLyNetSieuCapVipPro
 
         public bool removeUserFromNGUOICHOI(string username)
         {
-            int i = 0;
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
+                int i = 0;
                 conn.Open();
                 string sql = "DELETE FROM NGUOICHOI WHERE MaNguoiChoi = @MaNguoiChoi";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNguoiChoi", username);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
+                return i > 0;
             }
-            return i > 0;
         }
     }
 }
