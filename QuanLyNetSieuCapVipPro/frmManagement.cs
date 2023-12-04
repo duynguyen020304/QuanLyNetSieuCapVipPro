@@ -141,7 +141,7 @@ namespace QuanLyNetSieuCapVipPro
             dichVu1.loadDgv();
         }
 
-        private void btnChat_Click(object sender, EventArgs e)
+        private void pctbChat_Click(object sender, EventArgs e)
         {
             if (isShowPnlChat)
             {
