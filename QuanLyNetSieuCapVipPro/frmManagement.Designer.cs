@@ -269,7 +269,9 @@
             // thanhVien1
             // 
             thanhVien1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            thanhVien1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             thanhVien1.Location = new Point(1, 66);
+            thanhVien1.Margin = new Padding(3, 4, 3, 4);
             thanhVien1.Name = "thanhVien1";
             thanhVien1.Size = new Size(1079, 310);
             thanhVien1.TabIndex = 2;
@@ -287,6 +289,7 @@
             // 
             nhomNguoiDung1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nhomNguoiDung1.BackColor = SystemColors.ActiveCaption;
+            nhomNguoiDung1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             nhomNguoiDung1.Location = new Point(1, 66);
             nhomNguoiDung1.Margin = new Padding(0);
             nhomNguoiDung1.Name = "nhomNguoiDung1";
@@ -359,6 +362,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(240, 235, 232);
             ClientSize = new Size(1080, 517);
             Controls.Add(pnlChat);
             Controls.Add(btnChat);

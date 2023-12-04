@@ -97,9 +97,16 @@ namespace QuanLyNetSieuCapVipPro
             {
                 result = 0;
             }
-
+            DateTime dateWithoutMilliseconds = new DateTime(
+                dateTimePicker1.Value.Year,
+                dateTimePicker1.Value.Month,
+                dateTimePicker1.Value.Day,
+                dateTimePicker1.Value.Hour,
+                dateTimePicker1.Value.Minute,
+                dateTimePicker1.Value.Second
+            );
             if (db.insertDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung) && db.insertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
+                    dateWithoutMilliseconds, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung) && db.insertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
             {
                 MessageBox.Show("Thêm tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -130,8 +137,16 @@ namespace QuanLyNetSieuCapVipPro
             {
                 result = 0;
             }
+            DateTime dateWithoutMilliseconds = new DateTime(
+                dateTimePicker1.Value.Year,
+                dateTimePicker1.Value.Month,
+                dateTimePicker1.Value.Day,
+                dateTimePicker1.Value.Hour,
+                dateTimePicker1.Value.Minute,
+                dateTimePicker1.Value.Second
+            );
             if (db.suaDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateTimePicker1.Value, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung))
+                    dateWithoutMilliseconds, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung))
             {
                 MessageBox.Show("Sửa tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

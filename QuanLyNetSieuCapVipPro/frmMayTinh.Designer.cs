@@ -237,7 +237,9 @@
             Controls.Add(pctbTinNhan);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "frmMayTinh";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmMayTinh";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
