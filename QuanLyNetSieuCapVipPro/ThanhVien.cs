@@ -64,8 +64,6 @@ namespace QuanLyNetSieuCapVipPro
                 e.PaintContent(e.CellBounds); // Vẽ nội dung của header
                 e.Handled = true; // Đánh dấu sự kiện đã được xử lý
             }
-            
-
         }
 
         private void xoa_mnst_Click(object sender, EventArgs e)
