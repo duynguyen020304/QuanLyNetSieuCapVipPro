@@ -23,6 +23,7 @@ namespace QuanLyNetSieuCapVipPro
         private bool isShowDichVu = false;
         private bool isShowNhomNguoiDung = false;
         private bool isShowPnlChat = false;
+        private bool isShowUserControlMayTram = false;
         public frmManagement()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace QuanLyNetSieuCapVipPro
         private void frmManagement_Load(object sender, EventArgs e)
         {
             dichVu1.Hide();
+            userControlMayTram1.Hide();
             nhomNguoiDung1.Hide();
             pnlChat.Visible = false;
             pnlChat.Enabled = false;
@@ -103,6 +105,11 @@ namespace QuanLyNetSieuCapVipPro
                 isShowThanhVien = false;
                 thanhVien1.Hide();
             }
+            if (isShowUserControlMayTram)
+            {
+                isShowUserControlMayTram = false;
+                userControlMayTram1.Hide();
+            }
             isShowNhomNguoiDung = true;
             nhomNguoiDung1.Show();
             nhomNguoiDung1.loadDgv();
@@ -121,9 +128,37 @@ namespace QuanLyNetSieuCapVipPro
                 isShowDichVu = false;
                 dichVu1.Hide();
             }
+
+            if (isShowUserControlMayTram)
+            {
+                isShowUserControlMayTram = false;
+                userControlMayTram1.Hide();
+            }
             isShowThanhVien = true;
             thanhVien1.Show();
             thanhVien1.loadDgv();
+        }
+
+        private void mayTram_mnst_Click(object sender, EventArgs e)
+        {
+            if (isShowNhomNguoiDung)
+            {
+                isShowNhomNguoiDung = false;
+                nhomNguoiDung1.Hide();
+            }
+            if (isShowDichVu)
+            {
+                isShowDichVu = false;
+                dichVu1.Hide();
+            }
+            if (isShowThanhVien)
+            {
+                isShowThanhVien = false;
+                thanhVien1.Hide();
+            }
+            isShowUserControlMayTram = true;
+            userControlMayTram1.Show();
+            userControlMayTram1.loadDgv();
         }
 
         private void dichVu_mnst_Click(object sender, EventArgs e)
@@ -137,6 +172,11 @@ namespace QuanLyNetSieuCapVipPro
             {
                 isShowNhomNguoiDung = false;
                 nhomNguoiDung1.Hide();
+            }
+            if (isShowUserControlMayTram)
+            {
+                isShowUserControlMayTram = false;
+                userControlMayTram1.Hide();
             }
             isShowDichVu = true;
             dichVu1.Show();
@@ -287,5 +327,6 @@ namespace QuanLyNetSieuCapVipPro
             frmCreateAccountAdmin createAccountAdmin = new frmCreateAccountAdmin();
             createAccountAdmin.Show();
         }
+
     }
 }
