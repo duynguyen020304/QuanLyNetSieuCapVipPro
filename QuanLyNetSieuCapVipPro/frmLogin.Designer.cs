@@ -34,28 +34,32 @@
             label2 = new Label();
             btnDangNhap = new Button();
             label3 = new Label();
-            lblTaoTaiKhoan = new Label();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // txtUserName
             // 
-            txtUserName.Location = new Point(135, 63);
+            txtUserName.Anchor = AnchorStyles.None;
+            txtUserName.Location = new Point(218, 143);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(449, 33);
+            txtUserName.Size = new Size(353, 33);
             txtUserName.TabIndex = 0;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(135, 123);
+            txtPassword.Anchor = AnchorStyles.None;
+            txtPassword.Location = new Point(218, 203);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(449, 33);
+            txtPassword.Size = new Size(353, 33);
             txtPassword.TabIndex = 1;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Location = new Point(37, 66);
+            label1.Location = new Point(109, 146);
             label1.Name = "label1";
             label1.Size = new Size(92, 25);
             label1.TabIndex = 2;
@@ -63,8 +67,9 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
-            label2.Location = new Point(38, 121);
+            label2.Location = new Point(109, 206);
             label2.Name = "label2";
             label2.Size = new Size(91, 25);
             label2.TabIndex = 3;
@@ -72,55 +77,60 @@
             // 
             // btnDangNhap
             // 
-            btnDangNhap.Location = new Point(226, 172);
+            btnDangNhap.Anchor = AnchorStyles.None;
+            btnDangNhap.BackColor = Color.FromArgb(126, 106, 243);
+            btnDangNhap.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDangNhap.ForeColor = Color.White;
+            btnDangNhap.Location = new Point(243, 254);
             btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(197, 35);
+            btnDangNhap.Size = new Size(232, 50);
             btnDangNhap.TabIndex = 4;
             btnDangNhap.Text = "Đăng nhập";
-            btnDangNhap.UseVisualStyleBackColor = true;
+            btnDangNhap.UseVisualStyleBackColor = false;
             btnDangNhap.Click += btnDangNhap_Click;
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.Red;
-            label3.Location = new Point(198, 9);
+            label3.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(110, 93, 207);
+            label3.Location = new Point(291, 71);
             label3.Name = "label3";
-            label3.Size = new Size(244, 37);
+            label3.Size = new Size(117, 45);
             label3.TabIndex = 5;
-            label3.Text = "Đăng nhập admin";
+            label3.Text = "LOGIN";
             // 
-            // lblTaoTaiKhoan
+            // panel1
             // 
-            lblTaoTaiKhoan.AutoSize = true;
-            lblTaoTaiKhoan.ForeColor = Color.Red;
-            lblTaoTaiKhoan.Location = new Point(265, 228);
-            lblTaoTaiKhoan.Name = "lblTaoTaiKhoan";
-            lblTaoTaiKhoan.Size = new Size(122, 25);
-            lblTaoTaiKhoan.TabIndex = 6;
-            lblTaoTaiKhoan.Text = "tạo tài khoản";
-            lblTaoTaiKhoan.Click += lblTaoTaiKhoan_Click;
+            panel1.Anchor = AnchorStyles.None;
+            panel1.BackColor = Color.FromArgb(238, 241, 255);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(txtUserName);
+            panel1.Controls.Add(txtPassword);
+            panel1.Controls.Add(btnDangNhap);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label2);
+            panel1.Location = new Point(93, 60);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(680, 374);
+            panel1.TabIndex = 7;
             // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(620, 267);
-            Controls.Add(lblTaoTaiKhoan);
-            Controls.Add(label3);
-            Controls.Add(btnDangNhap);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(txtPassword);
-            Controls.Add(txtUserName);
+            BackColor = Color.FromArgb(210, 218, 255);
+            ClientSize = new Size(866, 494);
+            Controls.Add(panel1);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(5);
             Name = "frmLogin";
             Text = "frmLogin";
             FormClosing += frmLogin_FormClosing;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -131,6 +141,6 @@
         private Label label2;
         private Button btnDangNhap;
         private Label label3;
-        private Label lblTaoTaiKhoan;
+        private Panel panel1;
     }
 }
