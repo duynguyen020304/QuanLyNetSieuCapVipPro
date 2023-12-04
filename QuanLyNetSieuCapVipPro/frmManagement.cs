@@ -86,7 +86,7 @@ namespace QuanLyNetSieuCapVipPro
             thanhVien1.loadDgv();
         }
 
-        private void themDichVu_mnst_Click(object sender, EventArgs e)
+        public void themDichVu_mnst_Click(object sender, EventArgs e)
         {
             frmThemDichVu dichvu = new frmThemDichVu();
             dichvu.ShowDialog();

@@ -71,5 +71,10 @@ namespace QuanLyNetSieuCapVipPro
             dichvu.ShowDialog();
             loadDgv();
         }
+
+        private void them_mnst_Click(object sender, EventArgs e)
+        {
+            frmManagement.instance.themDichVu_mnst_Click(sender, e);
+        }
     }
 }
