@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,7 @@ namespace QuanLyNetSieuCapVipPro
             if (!nhanTinHieuDangNhap)
             {
                 Application.Exit();
+                maytram.tatToanBoMayTinh();
             }
         }
 
@@ -163,8 +165,7 @@ namespace QuanLyNetSieuCapVipPro
 
         private void loadMayTram()
         {
-            MayTram mt = new MayTram();
-            List<string> mayTinh = mt.getmayTinh();
+            List<string> mayTinh = maytram.getmayTinh();
             if (cboMayTram_mnst.ComboBox != null)
             {
                 cboMayTram_mnst.ComboBox.Items.Clear();
@@ -176,8 +177,7 @@ namespace QuanLyNetSieuCapVipPro
 
         public void loadMayTramShutDown()
         {
-            MayTram mt = new MayTram();
-            List<string> mayTinhOnline = mt.getMayTinhOnline();
+            List<string> mayTinhOnline = maytram.getMayTinhOnline();
             if (cboShutDownMayTram_mnst.ComboBox != null)
             {
                 cboShutDownMayTram_mnst.ComboBox.Items.Clear();
@@ -185,6 +185,13 @@ namespace QuanLyNetSieuCapVipPro
                 cboShutDownMayTram_mnst.ComboBox.Items.AddRange(mayTinhOnline.ToArray());
                 cboShutDownMayTram_mnst.SelectedIndex = 0;
             }
+        }
+
+        private void loadNguoiChat()
+        {
+            List<string> mayTinhOnline = maytram.getMayTinhOnline();
+            cboChonNguoiChat.Items.Clear();
+            cboChonNguoiChat.Items.AddRange(mayTinhOnline.ToArray());
         }
 
         private void cboMayTram_mnst_SelectedIndexChanged(object sender, EventArgs e)
@@ -197,7 +204,7 @@ namespace QuanLyNetSieuCapVipPro
             {
                 MessageBox.Show("Khởi động " + cboMayTram_mnst.SelectedItem.ToString() + " thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadMayTramShutDown();
-                cboChonNguoiChat.Items.Add(cboMayTram_mnst.SelectedItem.ToString());
+                loadNguoiChat();
             }
             else
             {
@@ -255,6 +262,7 @@ namespace QuanLyNetSieuCapVipPro
                 MessageBox.Show("Tắt máy tính thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 loadMayTramShutDown();
+                loadNguoiChat();
             }
             else
             {

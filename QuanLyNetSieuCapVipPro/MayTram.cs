@@ -59,11 +59,19 @@ namespace QuanLyNetSieuCapVipPro
                     break;
                 }
             }
-            if ( db.modifiedComputerStateInMAYTINH(userTatMayTinh, "off"))
+            if (db.modifiedComputerStateInMAYTINH(userTatMayTinh, "off"))
             {
                 return true;
             }
             return false;
+        }
+
+        public void tatToanBoMayTinh()
+        {
+            foreach (string item in getMayTinhOnline())
+            {
+                db.modifiedComputerStateInMAYTINH(item, "off");
+            }
         }
     }
 }

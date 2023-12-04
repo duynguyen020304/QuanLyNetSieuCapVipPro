@@ -48,6 +48,7 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(984, 508);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellPainting += dataGridView1_CellPainting;
             // 
             // contextMenuStrip1
             // 
