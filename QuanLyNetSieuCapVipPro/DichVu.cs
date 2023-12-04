@@ -21,8 +21,23 @@ namespace QuanLyNetSieuCapVipPro
 
         public void loadDgv()
         {
+            //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dataGridView1.DataSource = db.getAllItemsFormDICHVU().Tables[0];
+
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.DataSource = db.getAllItemsFormDICHVU().Tables[0];
+            DataTable dt = db.getAllItemsFormDICHVU().Tables[0];
+
+            // Thêm các hàng trống trực tiếp vào DataTable
+            while (dt.Rows.Count < 20)
+            {
+                dt.Rows.Add(dt.NewRow()); // Tạo một hàng mới và thêm nó vào DataTable
+            }
+
+            dataGridView1.DataSource = dt; // Gán DataTable đã được thêm hàng trống vào làm DataSource
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         private void xoa_mnst_Click(object sender, EventArgs e)

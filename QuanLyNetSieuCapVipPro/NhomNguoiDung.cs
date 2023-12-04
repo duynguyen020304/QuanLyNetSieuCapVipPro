@@ -20,12 +20,18 @@ namespace QuanLyNetSieuCapVipPro
         }
         public void loadDgv()
         {
-            int numberOfEmptyRowsToAdd = 20 - dataGridView1.Rows.Count;
+            DataTable dt = db.getAllItemsFROMNHOMNGUOIDUNG().Tables[0];
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.DataSource = db.getAllItemsFROMNHOMNGUOIDUNG().Tables[0];
-            for (int i = 0; i < numberOfEmptyRowsToAdd; i++)
+
+            while (dt.Rows.Count < 20)
             {
-                dataGridView1.Rows.Add(); // Thêm một hàng mới không có dữ liệu
+                dt.Rows.Add(dt.NewRow()); // Tạo một hàng mới và thêm nó vào DataTable
+            }
+            dataGridView1.DataSource = dt;
+
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
 

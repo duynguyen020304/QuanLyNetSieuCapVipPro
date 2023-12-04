@@ -43,8 +43,11 @@ namespace QuanLyNetSieuCapVipPro
             }
 
             dataGridView1.DataSource = dt; // Gán DataTable đã được thêm hàng trống vào làm DataSource
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
-
 
         private void xoa_mnst_Click(object sender, EventArgs e)
         {

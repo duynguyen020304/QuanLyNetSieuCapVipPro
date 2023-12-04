@@ -156,6 +156,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(249, 232, 217);
             ClientSize = new Size(599, 322);
             Controls.Add(txtMaDichVu);
             Controls.Add(label4);

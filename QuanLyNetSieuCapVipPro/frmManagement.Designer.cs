@@ -306,6 +306,7 @@
             rtxtShowChat.Location = new Point(0, 0);
             rtxtShowChat.Margin = new Padding(0);
             rtxtShowChat.Name = "rtxtShowChat";
+            rtxtShowChat.ReadOnly = true;
             rtxtShowChat.Size = new Size(287, 129);
             rtxtShowChat.TabIndex = 6;
             rtxtShowChat.Text = "";
@@ -365,7 +366,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(240, 235, 232);
+            BackColor = Color.FromArgb(249, 232, 217);
             ClientSize = new Size(1080, 535);
             Controls.Add(pctbChat);
             Controls.Add(pnlChat);

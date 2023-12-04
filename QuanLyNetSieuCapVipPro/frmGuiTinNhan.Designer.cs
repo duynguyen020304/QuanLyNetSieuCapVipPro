@@ -38,6 +38,7 @@
             rtxtChat.Location = new Point(0, -1);
             rtxtChat.Margin = new Padding(0);
             rtxtChat.Name = "rtxtChat";
+            rtxtChat.ReadOnly = true;
             rtxtChat.Size = new Size(422, 245);
             rtxtChat.TabIndex = 0;
             rtxtChat.Text = "";
