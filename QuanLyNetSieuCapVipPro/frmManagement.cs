@@ -225,6 +225,12 @@ namespace QuanLyNetSieuCapVipPro
                 //    }
                 //}
 
+                if (cboChonNguoiChat.SelectedItem == null)
+                {
+                    MessageBox.Show("Vui lòng chọn máy", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (xuLy.AdminToMayTinh(userName, cboChonNguoiChat.SelectedItem.ToString(), txtChat.Text.Trim()))
                 {
                     this.errorProvider1.Clear();
