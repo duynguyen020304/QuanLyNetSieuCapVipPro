@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txtTongThoiGianConLai = new TextBox();
+            txtTongThoiGianSuDung = new TextBox();
+            txtTongThoiGian = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -45,6 +46,7 @@
             lblDangXuat = new Label();
             lblMatKhau = new Label();
             label8 = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pctbTinNhan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctbDichVu).BeginInit();
@@ -55,9 +57,9 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(textBox3);
-            panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(txtTongThoiGianConLai);
+            panel1.Controls.Add(txtTongThoiGianSuDung);
+            panel1.Controls.Add(txtTongThoiGian);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
@@ -66,32 +68,35 @@
             panel1.Size = new Size(325, 141);
             panel1.TabIndex = 0;
             // 
-            // textBox3
+            // txtTongThoiGianConLai
             // 
-            textBox3.Location = new Point(188, 94);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(123, 23);
-            textBox3.TabIndex = 5;
+            txtTongThoiGianConLai.Location = new Point(188, 103);
+            txtTongThoiGianConLai.Name = "txtTongThoiGianConLai";
+            txtTongThoiGianConLai.ReadOnly = true;
+            txtTongThoiGianConLai.Size = new Size(123, 23);
+            txtTongThoiGianConLai.TabIndex = 5;
             // 
-            // textBox2
+            // txtTongThoiGianSuDung
             // 
-            textBox2.Location = new Point(188, 55);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(123, 23);
-            textBox2.TabIndex = 4;
+            txtTongThoiGianSuDung.Location = new Point(188, 57);
+            txtTongThoiGianSuDung.Name = "txtTongThoiGianSuDung";
+            txtTongThoiGianSuDung.ReadOnly = true;
+            txtTongThoiGianSuDung.Size = new Size(123, 23);
+            txtTongThoiGianSuDung.TabIndex = 4;
             // 
-            // textBox1
+            // txtTongThoiGian
             // 
-            textBox1.Location = new Point(188, 11);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(123, 23);
-            textBox1.TabIndex = 3;
+            txtTongThoiGian.Location = new Point(188, 11);
+            txtTongThoiGian.Name = "txtTongThoiGian";
+            txtTongThoiGian.ReadOnly = true;
+            txtTongThoiGian.Size = new Size(123, 23);
+            txtTongThoiGian.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(14, 102);
+            label3.Location = new Point(8, 102);
             label3.Name = "label3";
             label3.Size = new Size(163, 21);
             label3.TabIndex = 2;
@@ -101,7 +106,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(14, 55);
+            label2.Location = new Point(8, 55);
             label2.Name = "label2";
             label2.Size = new Size(174, 21);
             label2.TabIndex = 1;
@@ -111,7 +116,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(14, 14);
+            label1.Location = new Point(8, 14);
             label1.Name = "label1";
             label1.Size = new Size(114, 21);
             label1.TabIndex = 0;
@@ -137,6 +142,7 @@
             pctbDichVu.Size = new Size(80, 74);
             pctbDichVu.TabIndex = 2;
             pctbDichVu.TabStop = false;
+            pctbDichVu.Click += pctbDichVu_Click;
             // 
             // pctbDangXuat
             // 
@@ -188,6 +194,7 @@
             lblDichVu.Size = new Size(62, 21);
             lblDichVu.TabIndex = 8;
             lblDichVu.Text = "Dịch vụ";
+            lblDichVu.Click += pctbDichVu_Click;
             // 
             // lblDangXuat
             // 
@@ -219,6 +226,11 @@
             label8.TabIndex = 11;
             label8.Text = "Khoá máy";
             // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            // 
             // frmMayTinh
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -241,6 +253,7 @@
             Name = "frmMayTinh";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmMayTinh";
+            Load += frmMayTinh_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pctbTinNhan).EndInit();
@@ -258,9 +271,9 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txtTongThoiGianConLai;
+        private TextBox txtTongThoiGianSuDung;
+        private TextBox txtTongThoiGian;
         private PictureBox pctbTinNhan;
         private PictureBox pctbDichVu;
         private PictureBox pctbDangXuat;
@@ -271,5 +284,6 @@
         private Label lblDangXuat;
         private Label lblMatKhau;
         private Label label8;
+        private System.Windows.Forms.Timer timer1;
     }
 }

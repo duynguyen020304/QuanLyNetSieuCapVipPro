@@ -42,11 +42,19 @@ namespace QuanLyNetSieuCapVipPro
             {
                 return false;
             }
-            frmMayTinh item = new frmMayTinh(maMayTinh);
-            lstFrmMayTinhBat.Add(item);
-            db.modifiedComputerStateInMAYTINH(maMayTinh, "on");
-            item.Show();
-            return true;
+
+            try
+            {
+                frmMayTinh item = new frmMayTinh(maMayTinh);
+                lstFrmMayTinhBat.Add(item);
+                db.modifiedComputerStateInMAYTINH(maMayTinh, "on");
+                item.Show();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return true;
+            }
         }
 
         public bool tatMayTinhTuyChon(string userTatMayTinh)

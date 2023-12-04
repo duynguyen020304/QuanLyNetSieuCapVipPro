@@ -190,12 +190,14 @@ namespace QuanLyNetSieuCapVipPro
                 isShowPnlChat = false;
                 pnlChat.Visible = false;
                 pnlChat.Enabled = false;
+                pnlChat.SendToBack();
             }
             else
             {
                 isShowPnlChat = true;
                 pnlChat.Visible = true;
                 pnlChat.Enabled = true;
+                pnlChat.BringToFront();
             }
         }
         public void syncChat(string userID, string userChat)

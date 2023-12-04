@@ -64,6 +64,7 @@ namespace QuanLyNetSieuCapVipPro
                 if (authentication.AuthUser(txtUserName.Text.Trim(), txtPassword.Text.Trim()) && txtUserName.Text.Trim().Length != 0)
                 {
                     frmMayTinh.instance.isLoginSucess = true;
+                    frmMayTinh.instance._userDangNhap = txtUserName.Text.Trim();
                     this.Close();
                 }
             }

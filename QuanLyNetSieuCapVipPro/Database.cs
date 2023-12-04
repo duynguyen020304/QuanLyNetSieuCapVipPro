@@ -436,6 +436,21 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
+        public long getSoPhutHienCo(string maNguoiChoi)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                long result = 0;
+                conn.Open();
+                string sql = "SELECT SoGioChoiConLai FROM NGUOICHOI WHERE MaNguoiChoi = @MaNguoiChoi";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaNguoiChoi", maNguoiChoi);
+                result = Convert.ToInt64(cmd.ExecuteScalar());
+                conn.Close();
+                return result;
+            }
+        }
+
         public DataSet getSpecificUserData(string userName)
         {
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))

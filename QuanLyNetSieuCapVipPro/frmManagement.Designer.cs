@@ -37,10 +37,12 @@
             themThanhVien_mnst = new ToolStripMenuItem();
             themDichVu_mnst = new ToolStripMenuItem();
             nhomNguoiDung_mnst = new ToolStripMenuItem();
+            themNhomNguoiDung_mnst = new ToolStripMenuItem();
             nhậtKýGiaoDịchToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             chuyenCaNhanVien_mnst = new ToolStripMenuItem();
             thoátToolStripMenuItem = new ToolStripMenuItem();
+            chứcNăngToolStripMenuItem = new ToolStripMenuItem();
             heThong_mnst = new ToolStripMenuItem();
             khoiDongMayTram_mnst = new ToolStripMenuItem();
             cboMayTram_mnst = new ToolStripComboBox();
@@ -66,8 +68,7 @@
             errorProvider1 = new ErrorProvider(components);
             pctbChat = new PictureBox();
             userControlMayTram1 = new UserControlMayTram();
-            themNhomNguoiDung_mnst = new ToolStripMenuItem();
-            chứcNăngToolStripMenuItem = new ToolStripMenuItem();
+            userControlGiaoDich1 = new UserControlGiaoDich();
             menuStrip1.SuspendLayout();
             pnlChat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
@@ -138,6 +139,14 @@
             nhomNguoiDung_mnst.Text = "Nhóm người dùng";
             nhomNguoiDung_mnst.Click += nhomNguoiDung_mnst_Click;
             // 
+            // themNhomNguoiDung_mnst
+            // 
+            themNhomNguoiDung_mnst.Image = Properties.Resources.add_group;
+            themNhomNguoiDung_mnst.Name = "themNhomNguoiDung_mnst";
+            themNhomNguoiDung_mnst.Size = new Size(204, 22);
+            themNhomNguoiDung_mnst.Text = "Thêm nhóm người dùng";
+            themNhomNguoiDung_mnst.Click += themNhomNguoiDung_mnst_Click;
+            // 
             // nhậtKýGiaoDịchToolStripMenuItem
             // 
             nhậtKýGiaoDịchToolStripMenuItem.Image = Properties.Resources.file;
@@ -164,6 +173,12 @@
             thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
             thoátToolStripMenuItem.Size = new Size(204, 22);
             thoátToolStripMenuItem.Text = "Thoát";
+            // 
+            // chứcNăngToolStripMenuItem
+            // 
+            chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
+            chứcNăngToolStripMenuItem.Size = new Size(204, 22);
+            chứcNăngToolStripMenuItem.Text = "Chức năng";
             // 
             // heThong_mnst
             // 
@@ -323,7 +338,7 @@
             pnlChat.Controls.Add(cboChonNguoiChat);
             pnlChat.Controls.Add(txtChat);
             pnlChat.Controls.Add(rtxtShowChat);
-            pnlChat.Location = new Point(737, 441);
+            pnlChat.Location = new Point(737, 477);
             pnlChat.Margin = new Padding(0);
             pnlChat.Name = "pnlChat";
             pnlChat.Size = new Size(287, 159);
@@ -361,7 +376,7 @@
             pctbChat.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             pctbChat.BackgroundImage = Properties.Resources.chat__1_;
             pctbChat.BackgroundImageLayout = ImageLayout.Stretch;
-            pctbChat.Location = new Point(1030, 551);
+            pctbChat.Location = new Point(1030, 587);
             pctbChat.Name = "pctbChat";
             pctbChat.Size = new Size(50, 50);
             pctbChat.TabIndex = 8;
@@ -377,26 +392,23 @@
             userControlMayTram1.Size = new Size(1080, 310);
             userControlMayTram1.TabIndex = 9;
             // 
-            // themNhomNguoiDung_mnst
+            // userControlGiaoDich1
             // 
-            themNhomNguoiDung_mnst.Image = Properties.Resources.add_group;
-            themNhomNguoiDung_mnst.Name = "themNhomNguoiDung_mnst";
-            themNhomNguoiDung_mnst.Size = new Size(204, 22);
-            themNhomNguoiDung_mnst.Text = "Thêm nhóm người dùng";
-            themNhomNguoiDung_mnst.Click += themNhomNguoiDung_mnst_Click;
-            // 
-            // chứcNăngToolStripMenuItem
-            // 
-            chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
-            chứcNăngToolStripMenuItem.Size = new Size(204, 22);
-            chứcNăngToolStripMenuItem.Text = "Chức năng";
+            userControlGiaoDich1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            userControlGiaoDich1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            userControlGiaoDich1.Location = new Point(0, 437);
+            userControlGiaoDich1.Margin = new Padding(3, 4, 3, 4);
+            userControlGiaoDich1.Name = "userControlGiaoDich1";
+            userControlGiaoDich1.Size = new Size(1024, 200);
+            userControlGiaoDich1.TabIndex = 10;
             // 
             // frmManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(249, 232, 217);
-            ClientSize = new Size(1080, 600);
+            ClientSize = new Size(1080, 636);
+            Controls.Add(userControlGiaoDich1);
             Controls.Add(userControlMayTram1);
             Controls.Add(pctbChat);
             Controls.Add(pnlChat);
@@ -461,5 +473,6 @@
         private UserControlMayTram userControlMayTram1;
         private ToolStripMenuItem themNhomNguoiDung_mnst;
         private ToolStripMenuItem chứcNăngToolStripMenuItem;
+        private UserControlGiaoDich userControlGiaoDich1;
     }
 }
