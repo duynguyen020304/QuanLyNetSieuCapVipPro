@@ -80,5 +80,10 @@ namespace QuanLyNetSieuCapVipPro
             themThanhVien.ShowDialog();
             loadDgv();
         }
+
+        private void them_mnst_Click(object sender, EventArgs e)
+        {
+            frmManagement.instance.themThanhVien_mnst_Click(sender, e);
+        }
     }
 }

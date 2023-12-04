@@ -33,6 +33,7 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             xoa_mnst = new ToolStripMenuItem();
             sua_mnst = new ToolStripMenuItem();
+            them_mnst = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -52,23 +53,30 @@
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { xoa_mnst, sua_mnst });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { xoa_mnst, sua_mnst, them_mnst });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(95, 48);
+            contextMenuStrip1.Size = new Size(181, 92);
             // 
             // xoa_mnst
             // 
             xoa_mnst.Name = "xoa_mnst";
-            xoa_mnst.Size = new Size(94, 22);
+            xoa_mnst.Size = new Size(180, 22);
             xoa_mnst.Text = "Xoá";
             xoa_mnst.Click += xoa_mnst_Click;
             // 
             // sua_mnst
             // 
             sua_mnst.Name = "sua_mnst";
-            sua_mnst.Size = new Size(94, 22);
+            sua_mnst.Size = new Size(180, 22);
             sua_mnst.Text = "Sửa";
             sua_mnst.Click += sua_mnst_Click;
+            // 
+            // them_mnst
+            // 
+            them_mnst.Name = "them_mnst";
+            them_mnst.Size = new Size(180, 22);
+            them_mnst.Text = "Thêm";
+            them_mnst.Click += them_mnst_Click;
             // 
             // ThanhVien
             // 
@@ -91,5 +99,6 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem xoa_mnst;
         private ToolStripMenuItem sua_mnst;
+        private ToolStripMenuItem them_mnst;
     }
 }
