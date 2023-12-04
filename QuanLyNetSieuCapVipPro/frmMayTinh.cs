@@ -15,17 +15,27 @@ namespace QuanLyNetSieuCapVipPro
         private string maMay;
         public static frmMayTinh instance;
         public frmGuiTinNhan _guiTinNhan;
+        public bool isLoginSucess = false;
+
         public frmMayTinh()
         {
             InitializeComponent();
+            
         }
 
         public frmMayTinh(string maMay)
         {
             InitializeComponent();
+            instance = this;
             this.maMay = maMay;
             this.Text = maMay;
-            instance = this;
+            while (!isLoginSucess)
+            {
+                frmLogin login = new frmLogin("user");
+                login.ShowDialog();
+            }
+            
+            
         }
 
         public void shutDown()

@@ -50,7 +50,7 @@
             quảnLýCơSởDữLiêuToolStripMenuItem = new ToolStripMenuItem();
             backupCSDL_mnst = new ToolStripMenuItem();
             khoiPhucCSDL_mnst = new ToolStripMenuItem();
-            thêmTàiKhoảnQuảnLýToolStripMenuItem = new ToolStripMenuItem();
+            themTaiKhoanQuanly_mnst = new ToolStripMenuItem();
             báoCáoToolStripMenuItem = new ToolStripMenuItem();
             doanhThuToolStripMenuItem = new ToolStripMenuItem();
             doanhThuTheoMáyToolStripMenuItem = new ToolStripMenuItem();
@@ -163,7 +163,7 @@
             // 
             // hệThốngToolStripMenuItem
             // 
-            hệThốngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { khoiDongMayTram_mnst, shutDown_mnst, toolStripSeparator2, quảnLýCơSởDữLiêuToolStripMenuItem, thêmTàiKhoảnQuảnLýToolStripMenuItem });
+            hệThốngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { khoiDongMayTram_mnst, shutDown_mnst, toolStripSeparator2, quảnLýCơSởDữLiêuToolStripMenuItem, themTaiKhoanQuanly_mnst });
             hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
             hệThốngToolStripMenuItem.Size = new Size(69, 20);
             hệThốngToolStripMenuItem.Text = "Hệ thống";
@@ -225,12 +225,13 @@
             khoiPhucCSDL_mnst.Text = "Khôi phục CSDL";
             khoiPhucCSDL_mnst.Click += khoiPhucCSDL_mnst_Click;
             // 
-            // thêmTàiKhoảnQuảnLýToolStripMenuItem
+            // themTaiKhoanQuanly_mnst
             // 
-            thêmTàiKhoảnQuảnLýToolStripMenuItem.Image = Properties.Resources.add_friend;
-            thêmTàiKhoảnQuảnLýToolStripMenuItem.Name = "thêmTàiKhoảnQuảnLýToolStripMenuItem";
-            thêmTàiKhoảnQuảnLýToolStripMenuItem.Size = new Size(198, 22);
-            thêmTàiKhoảnQuảnLýToolStripMenuItem.Text = "Thêm tài khoản quản lý";
+            themTaiKhoanQuanly_mnst.Image = Properties.Resources.add_friend;
+            themTaiKhoanQuanly_mnst.Name = "themTaiKhoanQuanly_mnst";
+            themTaiKhoanQuanly_mnst.Size = new Size(198, 22);
+            themTaiKhoanQuanly_mnst.Text = "Thêm tài khoản quản lý";
+            themTaiKhoanQuanly_mnst.Click += themTaiKhoanQuanly_mnst_Click;
             // 
             // báoCáoToolStripMenuItem
             // 
@@ -409,7 +410,7 @@
         private ToolStripMenuItem backupCSDL_mnst;
         private ToolStripMenuItem doanhThuToolStripMenuItem;
         private ToolStripMenuItem doanhThuTheoMáyToolStripMenuItem;
-        private ToolStripMenuItem thêmTàiKhoảnQuảnLýToolStripMenuItem;
+        private ToolStripMenuItem themTaiKhoanQuanly_mnst;
         private Label lblHello;
         private ToolStripMenuItem nhomNguoiDung_mnst;
         private ToolStripMenuItem themThanhVien_mnst;

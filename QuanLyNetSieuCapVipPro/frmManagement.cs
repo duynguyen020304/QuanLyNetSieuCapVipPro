@@ -282,5 +282,10 @@ namespace QuanLyNetSieuCapVipPro
             backupRestore.restoreDB();
         }
 
+        private void themTaiKhoanQuanly_mnst_Click(object sender, EventArgs e)
+        {
+            frmCreateAccountAdmin createAccountAdmin = new frmCreateAccountAdmin();
+            createAccountAdmin.Show();
+        }
     }
 }
