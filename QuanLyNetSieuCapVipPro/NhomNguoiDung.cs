@@ -51,5 +51,25 @@ namespace QuanLyNetSieuCapVipPro
                 e.Handled = true; // Đánh dấu sự kiện đã được xử lý
             }
         }
+
+        private void them_mnst_Click(object sender, EventArgs e)
+        {
+            frmManagement.instance.themNhomNguoiDung_mnst_Click(sender, e);
+        }
+
+        private void xoa_mnst_Click(object sender, EventArgs e)
+        {
+            int i = dataGridView1.CurrentRow.Index;
+            db.removeNhomFROMNHOMNGUOIDUNG(dataGridView1.Rows[i].Cells[0].Value.ToString());
+            loadDgv();
+        }
+
+        private void sua_mnst_Click(object sender, EventArgs e)
+        {
+            int i = dataGridView1.CurrentRow.Index;
+            frmThemNhomNguoiDung nhomNguoiDung = new frmThemNhomNguoiDung(dataGridView1.Rows[i].Cells[0].Value.ToString(), false);
+            nhomNguoiDung.ShowDialog();
+            loadDgv();
+        }
     }
 }

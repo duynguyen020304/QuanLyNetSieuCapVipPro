@@ -328,5 +328,11 @@ namespace QuanLyNetSieuCapVipPro
             createAccountAdmin.Show();
         }
 
+        public void themNhomNguoiDung_mnst_Click(object sender, EventArgs e)
+        {
+            frmThemNhomNguoiDung nhomNguoiDung = new frmThemNhomNguoiDung();
+            nhomNguoiDung.ShowDialog();
+            nhomNguoiDung1.loadDgv();
+        }
     }
 }
