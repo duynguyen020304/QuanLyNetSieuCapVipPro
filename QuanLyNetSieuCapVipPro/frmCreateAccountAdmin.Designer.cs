@@ -188,8 +188,7 @@
             // 
             // frmCreateAccountAdmin
             // 
-            AutoScaleDimensions = new SizeF(11F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(210, 218, 255);
             ClientSize = new Size(713, 380);
             Controls.Add(btnThoat);

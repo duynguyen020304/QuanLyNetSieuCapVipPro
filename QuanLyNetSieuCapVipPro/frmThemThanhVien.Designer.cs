@@ -410,8 +410,7 @@
             // 
             // frmThemThanhVien
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(240, 235, 232);
             ClientSize = new Size(989, 600);
             Controls.Add(btnSua);
@@ -421,6 +420,7 @@
             Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "frmThemThanhVien";
             Text = "frmThemThanhVien";
             Load += frmThemThanhVien_Load;

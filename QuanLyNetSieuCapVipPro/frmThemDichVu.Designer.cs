@@ -154,8 +154,7 @@
             // 
             // frmThemDichVu
             // 
-            AutoScaleDimensions = new SizeF(11F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(249, 232, 217);
             ClientSize = new Size(599, 322);
             Controls.Add(txtMaDichVu);
@@ -172,6 +171,7 @@
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(5);
+            MaximizeBox = false;
             Name = "frmThemDichVu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmThemDichVu";

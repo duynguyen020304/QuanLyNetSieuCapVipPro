@@ -118,8 +118,7 @@
             // 
             // frmLogin
             // 
-            AutoScaleDimensions = new SizeF(11F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(210, 218, 255);
             ClientSize = new Size(866, 494);
             Controls.Add(panel1);
@@ -128,7 +127,6 @@
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmLogin";
-            //FormClosing += frmLogin_FormClosing;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

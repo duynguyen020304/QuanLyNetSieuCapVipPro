@@ -102,8 +102,7 @@
             // 
             // frmDatDichVu
             // 
-            AutoScaleDimensions = new SizeF(11F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(249, 232, 217);
             ClientSize = new Size(412, 194);
             Controls.Add(btnYeuCau);
@@ -116,7 +115,9 @@
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
             Name = "frmDatDichVu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmDatDichVu";
             Load += frmDatDichVu_Load;
             ResumeLayout(false);

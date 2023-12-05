@@ -237,8 +237,7 @@
             // 
             // frmMayTinh
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(255, 228, 205);
             ClientSize = new Size(349, 412);
             Controls.Add(label8);

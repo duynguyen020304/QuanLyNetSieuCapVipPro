@@ -55,14 +55,15 @@
             // 
             // frmGuiTinNhan
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(422, 278);
             Controls.Add(txtChat);
             Controls.Add(rtxtChat);
             Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmGuiTinNhan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmGuiTinNhan";
             ResumeLayout(false);
             PerformLayout();

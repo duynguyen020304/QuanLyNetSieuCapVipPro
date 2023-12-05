@@ -436,8 +436,7 @@
             // 
             // frmManagement
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(249, 232, 217);
             ClientSize = new Size(1080, 636);
             Controls.Add(userControlGiaoDich1);

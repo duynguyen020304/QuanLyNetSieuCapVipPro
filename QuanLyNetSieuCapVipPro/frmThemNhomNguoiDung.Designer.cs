@@ -135,8 +135,7 @@
             // 
             // frmThemNhomNguoiDung
             // 
-            AutoScaleDimensions = new SizeF(11F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(249, 232, 217);
             ClientSize = new Size(599, 256);
             Controls.Add(txtMaNhom);
@@ -149,6 +148,7 @@
             Controls.Add(txtTenNhom);
             Controls.Add(label1);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4, 5, 4, 5);
             Name = "frmThemNhomNguoiDung";
             Text = "frmThemNhomNguoiDung";
