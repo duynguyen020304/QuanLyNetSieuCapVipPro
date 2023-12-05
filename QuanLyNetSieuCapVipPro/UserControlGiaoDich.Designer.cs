@@ -42,6 +42,7 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(914, 471);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellPainting += dataGridView1_CellPainting;
             // 
             // UserControlGiaoDich
             // 

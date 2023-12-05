@@ -426,12 +426,12 @@
             // 
             // userControlGiaoDich1
             // 
-            userControlGiaoDich1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            userControlGiaoDich1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             userControlGiaoDich1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            userControlGiaoDich1.Location = new Point(0, 418);
+            userControlGiaoDich1.Location = new Point(0, 395);
             userControlGiaoDich1.Margin = new Padding(3, 4, 3, 4);
             userControlGiaoDich1.Name = "userControlGiaoDich1";
-            userControlGiaoDich1.Size = new Size(1024, 219);
+            userControlGiaoDich1.Size = new Size(1024, 242);
             userControlGiaoDich1.TabIndex = 10;
             // 
             // frmManagement

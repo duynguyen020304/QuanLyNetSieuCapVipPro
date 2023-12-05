@@ -592,6 +592,20 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
+        public DataSet getAllItemFromDONHANG_DICHVU()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                DataSet data = new DataSet();
+                conn.Open();
+                string sql = "SELECT * FROM DONHANG_DICHVU";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
+                adapter.Fill(data);
+                conn.Close();
+                return data;
+            }
+        }
+
         public DataSet getAllItemsFROMNHOMNGUOIDUNG()
         {
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))

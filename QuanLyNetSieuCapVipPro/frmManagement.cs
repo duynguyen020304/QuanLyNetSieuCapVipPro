@@ -39,6 +39,7 @@ namespace QuanLyNetSieuCapVipPro
             pnlChat.Enabled = false;
             loadMayTram();
             loadMayTramShutDown();
+            userControlGiaoDich1.loadDgv();
         }
 
         public frmManagement(string userName)
