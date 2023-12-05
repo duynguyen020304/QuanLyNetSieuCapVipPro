@@ -122,14 +122,16 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.ExecuteNonQuery();
 
                 sql = "CREATE TABLE IF NOT EXISTS \"DONHANG_DICHVU\" ( " +
-                      "\"MaDonHang\" TEXT, " +
+                      "\"MaDonHang\" INTEGER, " +
                       "\"MaDichVu\" TEXT NOT NULL, " +
                       "\"MaNguoiChoi\" TEXT NOT NULL, " +
                       "\"ThoiGianDatHang\" TEXT, " +
-                      "\"NoiDungDonHang\" TEXT," +
-                      "CONSTRAINT \"DHDV_MaDonHang_MaDichVu_MaNguoiChoi_PK\" PRIMARY KEY(\"MaDonHang\",\"MaDichVu\",\"MaNguoiChoi\"), " +
-                      "CONSTRAINT \"DHDV_MaDichVu_FK\" FOREIGN KEY(\"MaDichVu\") REFERENCES \"DICHVU\"(\"MaDichVu\"), " +
-                      "CONSTRAINT \"DHDV_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\") " +
+                      "\"NoiDungDonHang\" TEXT, " +
+                      "\"MaMayDatHang\" TEXT NOT NULL," +
+                      "CONSTRAINT \"DHDV_MaDichVu_FK\" FOREIGN KEY(\"MaDichVu\") REFERENCES \"DICHVU\"(\"MaDichVu\"), "+
+                      "CONSTRAINT \"DHDV_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\"), " +
+                      "CONSTRAINT \"DHDV_MaMayDatHang_FK\" FOREIGN KEY(\"MaMayDatHang\") REFERENCES \"MAYTINH\"(\"MaMay\"), " +
+                      "CONSTRAINT \"DHDV_MaDonHang_MaDichVu_MaNguoiChoi_PK\" PRIMARY KEY(\"MaDonHang\" AUTOINCREMENT) " +
                       ")";
                 cmd = new SQLiteCommand(sql, conn);
                 cmd.ExecuteNonQuery();
@@ -506,6 +508,21 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
+        public DataSet getAllItemsFromDICHVU_1()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                DataSet data = new DataSet();
+                conn.Open();
+                string sql = "SELECT *" +
+                             "FROM DICHVU ";
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
+                adapter.Fill(data);
+                conn.Close();
+                return data;
+            }
+        }
+
         public DataSet getSpecificItemFromDICHVU(string maDichVu)
         {
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
@@ -547,6 +564,23 @@ namespace QuanLyNetSieuCapVipPro
                 string sql = "DELETE FROM DICHVU WHERE MaDichVu = @MaDichVu";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaDichVu", maDichVu);
+                i = cmd.ExecuteNonQuery();
+                conn.Close();
+                return i > 0;
+            }
+        }
+
+        public bool insertDataIntoDONHANG_DICHVU(string maDichVu, string maNguoiChoi, DateTime thoiGianDatHang,
+            string noiDungDonHang, string maMay)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                int i = 0;
+                conn.Open();
+                string sql =
+                    "INSERT OR IGNORE INTO DONHANG_DICHVU(MaDichVu, MaNguoiChoi, ThoiGianDatHang, NoiDungDonHang, MaMayDatHang) " +
+                    "VALUES(@MaDichVu, @MaNguoiChoi, @ThoiGianDatHang, @NoiDungDonHang, @MaMayDatHang)";
+                var cmd = new SQLiteCommand(sql, conn);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
                 return i > 0;

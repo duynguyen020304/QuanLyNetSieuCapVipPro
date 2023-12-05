@@ -336,5 +336,10 @@ namespace QuanLyNetSieuCapVipPro
             nhomNguoiDung.ShowDialog();
             nhomNguoiDung1.loadDgv();
         }
+
+        private void thoat_mnst_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

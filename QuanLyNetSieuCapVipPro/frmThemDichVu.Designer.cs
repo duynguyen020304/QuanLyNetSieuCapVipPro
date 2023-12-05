@@ -173,6 +173,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(5);
             Name = "frmThemDichVu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmThemDichVu";
             Load += frmThemDichVu_Load;
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();

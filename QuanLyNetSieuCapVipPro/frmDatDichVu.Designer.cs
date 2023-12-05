@@ -78,6 +78,7 @@
             btnPlus.TabIndex = 4;
             btnPlus.Text = "+";
             btnPlus.UseVisualStyleBackColor = true;
+            btnPlus.Click += btnPlus_Click;
             // 
             // btnMinus
             // 
@@ -87,6 +88,7 @@
             btnMinus.TabIndex = 5;
             btnMinus.Text = "-";
             btnMinus.UseVisualStyleBackColor = true;
+            btnMinus.Click += btnMinus_Click;
             // 
             // btnYeuCau
             // 

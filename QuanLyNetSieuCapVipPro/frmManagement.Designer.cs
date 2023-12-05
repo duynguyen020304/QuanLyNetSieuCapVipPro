@@ -41,8 +41,7 @@
             nhậtKýGiaoDịchToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             chuyenCaNhanVien_mnst = new ToolStripMenuItem();
-            thoátToolStripMenuItem = new ToolStripMenuItem();
-            chứcNăngToolStripMenuItem = new ToolStripMenuItem();
+            thoat_mnst = new ToolStripMenuItem();
             heThong_mnst = new ToolStripMenuItem();
             khoiDongMayTram_mnst = new ToolStripMenuItem();
             cboMayTram_mnst = new ToolStripComboBox();
@@ -53,9 +52,14 @@
             backupCSDL_mnst = new ToolStripMenuItem();
             khoiPhucCSDL_mnst = new ToolStripMenuItem();
             themTaiKhoanQuanly_mnst = new ToolStripMenuItem();
-            baoCao_mnst = new ToolStripMenuItem();
-            doanhThuToolStripMenuItem = new ToolStripMenuItem();
-            doanhThuTheoMáyToolStripMenuItem = new ToolStripMenuItem();
+            banCard_mnst = new ToolStripMenuItem();
+            cardGameToolStripMenuItem = new ToolStripMenuItem();
+            garenaToolStripMenuItem = new ToolStripMenuItem();
+            vinagameToolStripMenuItem = new ToolStripMenuItem();
+            cardĐiệnThoạiToolStripMenuItem = new ToolStripMenuItem();
+            viettelToolStripMenuItem = new ToolStripMenuItem();
+            mobifoneToolStripMenuItem = new ToolStripMenuItem();
+            vietnamobileToolStripMenuItem = new ToolStripMenuItem();
             giupDo_mnst = new ToolStripMenuItem();
             lblHello = new Label();
             thanhVien1 = new ThanhVien();
@@ -77,7 +81,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { chucNang_mnst, heThong_mnst, baoCao_mnst, giupDo_mnst });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { chucNang_mnst, heThong_mnst, banCard_mnst, giupDo_mnst });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1080, 24);
@@ -86,7 +90,7 @@
             // 
             // chucNang_mnst
             // 
-            chucNang_mnst.DropDownItems.AddRange(new ToolStripItem[] { mayTram_mnst, thanhVien_mnst, dichVu_mnst, themThanhVien_mnst, themDichVu_mnst, nhomNguoiDung_mnst, themNhomNguoiDung_mnst, nhậtKýGiaoDịchToolStripMenuItem, toolStripSeparator1, chuyenCaNhanVien_mnst, thoátToolStripMenuItem, chứcNăngToolStripMenuItem });
+            chucNang_mnst.DropDownItems.AddRange(new ToolStripItem[] { mayTram_mnst, thanhVien_mnst, dichVu_mnst, themThanhVien_mnst, themDichVu_mnst, nhomNguoiDung_mnst, themNhomNguoiDung_mnst, nhậtKýGiaoDịchToolStripMenuItem, toolStripSeparator1, chuyenCaNhanVien_mnst, thoat_mnst });
             chucNang_mnst.Name = "chucNang_mnst";
             chucNang_mnst.Size = new Size(77, 20);
             chucNang_mnst.Text = "Chức năng";
@@ -167,18 +171,13 @@
             chuyenCaNhanVien_mnst.Text = "Chuyển ca nhân viên";
             chuyenCaNhanVien_mnst.Click += chuyenCaNhanVien_mnst_Click;
             // 
-            // thoátToolStripMenuItem
+            // thoat_mnst
             // 
-            thoátToolStripMenuItem.Image = Properties.Resources.reject;
-            thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
-            thoátToolStripMenuItem.Size = new Size(204, 22);
-            thoátToolStripMenuItem.Text = "Thoát";
-            // 
-            // chứcNăngToolStripMenuItem
-            // 
-            chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
-            chứcNăngToolStripMenuItem.Size = new Size(204, 22);
-            chứcNăngToolStripMenuItem.Text = "Chức năng";
+            thoat_mnst.Image = Properties.Resources.reject;
+            thoat_mnst.Name = "thoat_mnst";
+            thoat_mnst.Size = new Size(204, 22);
+            thoat_mnst.Text = "Thoát";
+            thoat_mnst.Click += thoat_mnst_Click;
             // 
             // heThong_mnst
             // 
@@ -252,24 +251,56 @@
             themTaiKhoanQuanly_mnst.Text = "Thêm tài khoản quản lý";
             themTaiKhoanQuanly_mnst.Click += themTaiKhoanQuanly_mnst_Click;
             // 
-            // baoCao_mnst
+            // banCard_mnst
             // 
-            baoCao_mnst.DropDownItems.AddRange(new ToolStripItem[] { doanhThuToolStripMenuItem, doanhThuTheoMáyToolStripMenuItem });
-            baoCao_mnst.Name = "baoCao_mnst";
-            baoCao_mnst.Size = new Size(61, 20);
-            baoCao_mnst.Text = "Báo cáo";
+            banCard_mnst.DropDownItems.AddRange(new ToolStripItem[] { cardGameToolStripMenuItem, cardĐiệnThoạiToolStripMenuItem });
+            banCard_mnst.Name = "banCard_mnst";
+            banCard_mnst.Size = new Size(65, 20);
+            banCard_mnst.Text = "Bán card";
             // 
-            // doanhThuToolStripMenuItem
+            // cardGameToolStripMenuItem
             // 
-            doanhThuToolStripMenuItem.Name = "doanhThuToolStripMenuItem";
-            doanhThuToolStripMenuItem.Size = new Size(183, 22);
-            doanhThuToolStripMenuItem.Text = "Doanh thu";
+            cardGameToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garenaToolStripMenuItem, vinagameToolStripMenuItem });
+            cardGameToolStripMenuItem.Name = "cardGameToolStripMenuItem";
+            cardGameToolStripMenuItem.Size = new Size(155, 22);
+            cardGameToolStripMenuItem.Text = "Card game";
             // 
-            // doanhThuTheoMáyToolStripMenuItem
+            // garenaToolStripMenuItem
             // 
-            doanhThuTheoMáyToolStripMenuItem.Name = "doanhThuTheoMáyToolStripMenuItem";
-            doanhThuTheoMáyToolStripMenuItem.Size = new Size(183, 22);
-            doanhThuTheoMáyToolStripMenuItem.Text = "Doanh thu theo máy";
+            garenaToolStripMenuItem.Name = "garenaToolStripMenuItem";
+            garenaToolStripMenuItem.Size = new Size(127, 22);
+            garenaToolStripMenuItem.Text = "Garena";
+            // 
+            // vinagameToolStripMenuItem
+            // 
+            vinagameToolStripMenuItem.Name = "vinagameToolStripMenuItem";
+            vinagameToolStripMenuItem.Size = new Size(127, 22);
+            vinagameToolStripMenuItem.Text = "Vinagame";
+            // 
+            // cardĐiệnThoạiToolStripMenuItem
+            // 
+            cardĐiệnThoạiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { viettelToolStripMenuItem, mobifoneToolStripMenuItem, vietnamobileToolStripMenuItem });
+            cardĐiệnThoạiToolStripMenuItem.Name = "cardĐiệnThoạiToolStripMenuItem";
+            cardĐiệnThoạiToolStripMenuItem.Size = new Size(155, 22);
+            cardĐiệnThoạiToolStripMenuItem.Text = "Card điện thoại";
+            // 
+            // viettelToolStripMenuItem
+            // 
+            viettelToolStripMenuItem.Name = "viettelToolStripMenuItem";
+            viettelToolStripMenuItem.Size = new Size(144, 22);
+            viettelToolStripMenuItem.Text = "Viettel";
+            // 
+            // mobifoneToolStripMenuItem
+            // 
+            mobifoneToolStripMenuItem.Name = "mobifoneToolStripMenuItem";
+            mobifoneToolStripMenuItem.Size = new Size(144, 22);
+            mobifoneToolStripMenuItem.Text = "Mobifone";
+            // 
+            // vietnamobileToolStripMenuItem
+            // 
+            vietnamobileToolStripMenuItem.Name = "vietnamobileToolStripMenuItem";
+            vietnamobileToolStripMenuItem.Size = new Size(144, 22);
+            vietnamobileToolStripMenuItem.Text = "Vietnamobile";
             // 
             // giupDo_mnst
             // 
@@ -385,8 +416,9 @@
             // 
             // userControlMayTram1
             // 
+            userControlMayTram1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             userControlMayTram1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            userControlMayTram1.Location = new Point(0, 66);
+            userControlMayTram1.Location = new Point(1, 66);
             userControlMayTram1.Margin = new Padding(3, 4, 3, 4);
             userControlMayTram1.Name = "userControlMayTram1";
             userControlMayTram1.Size = new Size(1080, 310);
@@ -396,10 +428,10 @@
             // 
             userControlGiaoDich1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             userControlGiaoDich1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            userControlGiaoDich1.Location = new Point(0, 437);
+            userControlGiaoDich1.Location = new Point(0, 418);
             userControlGiaoDich1.Margin = new Padding(3, 4, 3, 4);
             userControlGiaoDich1.Name = "userControlGiaoDich1";
-            userControlGiaoDich1.Size = new Size(1024, 200);
+            userControlGiaoDich1.Size = new Size(1024, 219);
             userControlGiaoDich1.TabIndex = 10;
             // 
             // frmManagement
@@ -418,7 +450,9 @@
             Controls.Add(lblHello);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "frmManagement";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Net Siêu Cấp Vip Pro";
             FormClosing += frmManagement_FormClosing;
             Load += frmManagement_Load;
@@ -440,17 +474,14 @@
         private ToolStripMenuItem thanhVien_mnst;
         private ToolStripMenuItem nhậtKýGiaoDịchToolStripMenuItem;
         private ToolStripMenuItem heThong_mnst;
-        private ToolStripMenuItem baoCao_mnst;
         private ToolStripMenuItem giupDo_mnst;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem chuyenCaNhanVien_mnst;
-        private ToolStripMenuItem thoátToolStripMenuItem;
+        private ToolStripMenuItem thoat_mnst;
         private ToolStripMenuItem khoiDongMayTram_mnst;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem quảnLýCơSởDữLiêuToolStripMenuItem;
         private ToolStripMenuItem backupCSDL_mnst;
-        private ToolStripMenuItem doanhThuToolStripMenuItem;
-        private ToolStripMenuItem doanhThuTheoMáyToolStripMenuItem;
         private ToolStripMenuItem themTaiKhoanQuanly_mnst;
         private Label lblHello;
         private ToolStripMenuItem nhomNguoiDung_mnst;
@@ -472,7 +503,14 @@
         private PictureBox pctbChat;
         private UserControlMayTram userControlMayTram1;
         private ToolStripMenuItem themNhomNguoiDung_mnst;
-        private ToolStripMenuItem chứcNăngToolStripMenuItem;
         private UserControlGiaoDich userControlGiaoDich1;
+        private ToolStripMenuItem banCard_mnst;
+        private ToolStripMenuItem cardGameToolStripMenuItem;
+        private ToolStripMenuItem garenaToolStripMenuItem;
+        private ToolStripMenuItem vinagameToolStripMenuItem;
+        private ToolStripMenuItem cardĐiệnThoạiToolStripMenuItem;
+        private ToolStripMenuItem viettelToolStripMenuItem;
+        private ToolStripMenuItem mobifoneToolStripMenuItem;
+        private ToolStripMenuItem vietnamobileToolStripMenuItem;
     }
 }

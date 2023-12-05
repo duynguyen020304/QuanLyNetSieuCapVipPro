@@ -53,7 +53,7 @@
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { xoa_mnst, sua_mnst, them_mnst });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { them_mnst, xoa_mnst, sua_mnst });
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(181, 92);
             // 

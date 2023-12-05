@@ -66,7 +66,8 @@ namespace QuanLyNetSieuCapVipPro
 
         private void pctbDichVu_Click(object sender, EventArgs e)
         {
-
+            frmDatDichVu datDichVu = new frmDatDichVu(_userDangNhap, maMay);
+            datDichVu.ShowDialog();
         }
         private void frmMayTinh_Load(object sender, EventArgs e)
         {

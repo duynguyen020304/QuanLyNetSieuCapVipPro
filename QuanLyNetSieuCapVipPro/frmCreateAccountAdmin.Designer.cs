@@ -210,7 +210,9 @@
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(5);
+            MaximizeBox = false;
             Name = "frmCreateAccountAdmin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmCreateAccountAdmin";
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
