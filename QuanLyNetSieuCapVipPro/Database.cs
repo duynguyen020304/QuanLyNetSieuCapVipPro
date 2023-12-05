@@ -126,6 +126,7 @@ namespace QuanLyNetSieuCapVipPro
                       "\"MaDichVu\" TEXT NOT NULL, " +
                       "\"MaNguoiChoi\" TEXT NOT NULL, " +
                       "\"ThoiGianDatHang\" TEXT, " +
+                      "\"NoiDungDonHang\" TEXT," +
                       "CONSTRAINT \"DHDV_MaDonHang_MaDichVu_MaNguoiChoi_PK\" PRIMARY KEY(\"MaDonHang\",\"MaDichVu\",\"MaNguoiChoi\"), " +
                       "CONSTRAINT \"DHDV_MaDichVu_FK\" FOREIGN KEY(\"MaDichVu\") REFERENCES \"DICHVU\"(\"MaDichVu\"), " +
                       "CONSTRAINT \"DHDV_MaNguoiChoi_FK\" FOREIGN KEY(\"MaNguoiChoi\") REFERENCES \"NGUOICHOI\"(\"MaNguoiChoi\") " +
@@ -592,6 +593,22 @@ namespace QuanLyNetSieuCapVipPro
                 rs = Convert.ToDecimal(cmd.ExecuteScalar());
                 conn.Close();
                 return rs;
+            }
+        }
+
+        public bool updateThoiGianToNGUOICHOI(string maNguoiChoi, long soPhut)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                int i = 0;
+                conn.Open();
+                string sql = "UPDATE NGUOICHOI set SoGioChoiConLai = @SoGioChoiConLai WHERE MaNguoiChoi = @MaNguoiChoi";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@SoGioChoiConLai", soPhut);
+                cmd.Parameters.AddWithValue("@MaNguoiChoi", maNguoiChoi);
+                i = cmd.ExecuteNonQuery();
+                conn.Close();
+                return i > 0;
             }
         }
 

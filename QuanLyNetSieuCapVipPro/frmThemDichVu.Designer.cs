@@ -170,6 +170,7 @@
             Controls.Add(txtTen);
             Controls.Add(label1);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(5);
             Name = "frmThemDichVu";
             Text = "frmThemDichVu";

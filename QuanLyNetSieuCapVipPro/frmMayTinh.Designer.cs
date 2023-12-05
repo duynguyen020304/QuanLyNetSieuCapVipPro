@@ -174,6 +174,7 @@
             pctbMatKhau.Size = new Size(80, 74);
             pctbMatKhau.TabIndex = 4;
             pctbMatKhau.TabStop = false;
+            pctbMatKhau.Click += pctbMatKhau_Click;
             // 
             // lblTinNhan
             // 
@@ -217,6 +218,7 @@
             lblMatKhau.Size = new Size(75, 21);
             lblMatKhau.TabIndex = 10;
             lblMatKhau.Text = "Mật khẩu";
+            lblMatKhau.Click += pctbMatKhau_Click;
             // 
             // label8
             // 

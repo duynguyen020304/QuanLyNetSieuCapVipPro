@@ -71,7 +71,7 @@ namespace QuanLyNetSieuCapVipPro
         private void frmMayTinh_Load(object sender, EventArgs e)
         {
             long tongThoiGianSuDung = db.getSoPhutHienCo(_userDangNhap);
-            tongThoiGianSuDung_tick = tongThoiGianSuDung;
+            tongThoiGianSuDungConLai_tick = tongThoiGianSuDung;
             long soGio = tongThoiGianSuDung / 60;
             long soPhut = tongThoiGianSuDung % 60;
             txtTongThoiGian.Text = soGio.ToString() + ":" + soPhut.ToString();
@@ -82,7 +82,7 @@ namespace QuanLyNetSieuCapVipPro
             tinhan = guitinnhan;
         }
 
-        private long tongThoiGianSuDung_tick = 0;
+        private long tongThoiGianSuDungConLai_tick = 0;
         private long soPhut_tick = 0;
         private long soGio_tick = 0;
         private long soGiay_tick = 0;
@@ -95,8 +95,8 @@ namespace QuanLyNetSieuCapVipPro
                 soGiay_tick = 0;
                 soPhut_tick++;
                 txtTongThoiGianSuDung.Text = soGio_tick.ToString() + ":" + soPhut_tick.ToString();
-                tongThoiGianSuDung_tick--;
-                txtTongThoiGianConLai.Text = tongThoiGianSuDung_tick.ToString();
+                tongThoiGianSuDungConLai_tick--;
+                txtTongThoiGianConLai.Text = tongThoiGianSuDungConLai_tick.ToString();
             }
 
             if (soPhut_tick == 60)
@@ -110,8 +110,8 @@ namespace QuanLyNetSieuCapVipPro
         private void pctbDangXuat_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            
             isLoginSucess = false;
+            db.updateThoiGianToNGUOICHOI(_userDangNhap, tongThoiGianSuDungConLai_tick);
             while (!isLoginSucess)
             {
                 frmLogin login = new frmLogin("user");
@@ -124,6 +124,11 @@ namespace QuanLyNetSieuCapVipPro
                 }
             }
             frmMayTinh_Load(sender, e);
+        }
+
+        private void pctbMatKhau_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
