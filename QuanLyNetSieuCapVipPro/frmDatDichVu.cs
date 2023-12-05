@@ -69,9 +69,10 @@ namespace QuanLyNetSieuCapVipPro
                 );
             string noiDungDonHang = maMay + "(" + maNguoiChoi + ")" + " đặt " + Convert.ToInt64(txtSoLuong.Text.Trim()) +
                                     " " + tenDichVu;
-            if (db.insertDataIntoDONHANG_DICHVU(maDichVu, maNguoiChoi, now, noiDungDonHang, maMay))
+            if (db.insertDataIntoLICHSUGIAODICH(maDichVu, maNguoiChoi, now, noiDungDonHang, maMay))
             {
                 MessageBox.Show("Yêu cầu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UserControlGiaoDich.instance.loadDgv();
             }
         }
 

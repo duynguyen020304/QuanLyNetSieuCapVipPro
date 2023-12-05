@@ -441,7 +441,6 @@
         private Label label4;
         private ComboBox cboLoaiNguoiDung;
         private DateTimePicker dateTimePicker1;
-        private Label label3;
         private Label label2;
         private Label label1;
         private TextBox txtHoTen;
@@ -449,7 +448,6 @@
         private TextBox txtQuanHuyen;
         private TextBox txtThanhPho;
         private TextBox txtDiaChi;
-        private TextBox textBox3;
         private TextBox txtSDT;
         private Label label9;
         private Label label8;

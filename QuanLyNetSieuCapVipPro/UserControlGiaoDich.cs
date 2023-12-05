@@ -13,13 +13,16 @@ namespace QuanLyNetSieuCapVipPro
     public partial class UserControlGiaoDich : UserControl
     {
         private Database db = new Database();
+
+        public static UserControlGiaoDich instance;
         public UserControlGiaoDich()
         {
             InitializeComponent();
+            instance = this;
         }
         public void loadDgv()
         {
-            DataTable dt = db.getAllItemFromDONHANG_DICHVU().Tables[0];
+            DataTable dt = db.getAllItemFromLICHSUGIAODICH().Tables[0];
             //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             while (dt.Rows.Count < 20)

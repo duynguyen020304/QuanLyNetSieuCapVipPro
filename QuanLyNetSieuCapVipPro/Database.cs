@@ -95,7 +95,7 @@ namespace QuanLyNetSieuCapVipPro
                 cmd = new SQLiteCommand(sql, conn);
                 cmd.ExecuteNonQuery();
 
-                sql = "CREATE TABLE IF NOT EXISTS \"DANGNHAP_ADMIN\" ( " +
+                sql = "CREATE TABLE IF NOT EXISTS \"LICHSUDANGNHAP_ADMIN\" ( " +
                       "\"MaPhienDangNhap\" TEXT, " +
                       "\"MaAdmin\" TEXT NOT NULL, " +
                       "\"MaMay\" TEXT NOT NULL, " +
@@ -108,7 +108,7 @@ namespace QuanLyNetSieuCapVipPro
                 cmd = new SQLiteCommand(sql, conn);
                 cmd.ExecuteNonQuery();
 
-                sql = "CREATE TABLE IF NOT EXISTS \"DANGNHAP_USER\" ( " +
+                sql = "CREATE TABLE IF NOT EXISTS \"LICHSUDANGNHAP_USER\" ( " +
                       "\"MaMay\" TEXT NOT NULL, " +
                       "\"MaNguoiChoi\" TEXT NOT NULL, " +
                       "\"ThoiGianDangNhap\" TEXT, " +
@@ -121,7 +121,7 @@ namespace QuanLyNetSieuCapVipPro
                 cmd = new SQLiteCommand(sql, conn);
                 cmd.ExecuteNonQuery();
 
-                sql = "CREATE TABLE IF NOT EXISTS \"DONHANG_DICHVU\" ( " +
+                sql = "CREATE TABLE IF NOT EXISTS \"LICHSUGIAODICH\" ( " +
                       "\"MaDonHang\" INTEGER, " +
                       "\"MaDichVu\" TEXT NOT NULL, " +
                       "\"MaNguoiChoi\" TEXT NOT NULL, " +
@@ -570,7 +570,7 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
-        public bool insertDataIntoDONHANG_DICHVU(string maDichVu, string maNguoiChoi, DateTime thoiGianDatHang,
+        public bool insertDataIntoLICHSUGIAODICH(string maDichVu, string maNguoiChoi, DateTime thoiGianDatHang,
             string noiDungDonHang, string maMay)
         {
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
@@ -578,7 +578,7 @@ namespace QuanLyNetSieuCapVipPro
                 int i = 0;
                 conn.Open();
                 string sql =
-                    "INSERT OR IGNORE INTO DONHANG_DICHVU(MaDichVu, MaNguoiChoi, ThoiGianDatHang, NoiDungDonHang, MaMayDatHang) " +
+                    "INSERT OR IGNORE INTO LICHSUGIAODICH(MaDichVu, MaNguoiChoi, ThoiGianDatHang, NoiDungDonHang, MaMayDatHang) " +
                     "VALUES(@MaDichVu, @MaNguoiChoi, @ThoiGianDatHang, @NoiDungDonHang, @MaMayDatHang)";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaDichVu", maDichVu);
@@ -592,13 +592,13 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
-        public DataSet getAllItemFromDONHANG_DICHVU()
+        public DataSet getAllItemFromLICHSUGIAODICH()
         {
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
             {
                 DataSet data = new DataSet();
                 conn.Open();
-                string sql = "SELECT * FROM DONHANG_DICHVU";
+                string sql = "SELECT * FROM LICHSUGIAODICH";
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, conn);
                 adapter.Fill(data);
                 conn.Close();
