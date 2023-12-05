@@ -47,7 +47,15 @@ namespace QuanLyNetSieuCapVipPro
             {
                 frmMayTinh item = new frmMayTinh(maMayTinh);
                 lstFrmMayTinhBat.Add(item);
-                db.modifiedComputerStateInMAYTINH(maMayTinh, "on");
+                DateTime now = new DateTime(
+                    DateTime.Now.Year,
+                    DateTime.Now.Month,
+                    DateTime.Now.Day,
+                    DateTime.Now.Hour,
+                    DateTime.Now.Minute,
+                    DateTime.Now.Second
+                );
+                db.modifiedMAYTINH(maMayTinh, now, "on");
                 item.Show();
                 return true;
             }

@@ -31,9 +31,9 @@
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
             contextMenuStrip1 = new ContextMenuStrip(components);
+            them_mnst = new ToolStripMenuItem();
             xoa_mnst = new ToolStripMenuItem();
             sua_mnst = new ToolStripMenuItem();
-            them_mnst = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -55,7 +55,14 @@
             // 
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { them_mnst, xoa_mnst, sua_mnst });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(181, 92);
+            contextMenuStrip1.Size = new Size(105, 70);
+            // 
+            // them_mnst
+            // 
+            them_mnst.Name = "them_mnst";
+            them_mnst.Size = new Size(104, 22);
+            them_mnst.Text = "Thêm";
+            them_mnst.Click += them_mnst_Click;
             // 
             // xoa_mnst
             // 
@@ -71,17 +78,9 @@
             sua_mnst.Text = "Sửa";
             sua_mnst.Click += sua_mnst_Click;
             // 
-            // them_mnst
-            // 
-            them_mnst.Name = "them_mnst";
-            them_mnst.Size = new Size(180, 22);
-            them_mnst.Text = "Thêm";
-            them_mnst.Click += them_mnst_Click;
-            // 
             // DichVu
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             Controls.Add(dataGridView1);
             Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(3, 4, 3, 4);

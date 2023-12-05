@@ -697,6 +697,23 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
+        public bool modifiedMAYTINH(string maMay, DateTime thoiGianMoMay, string trangThai)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
+            {
+                int i = 0;
+                conn.Open();
+                string sql = "UPDATE MAYTINH set TrangThaiMay = @TrangThaiMay, LanKhoiDongGanNhat = @LanKhoiDongGanNhat WHERE MaMay = @MaMay";
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@TrangThaiMay", trangThai);
+                cmd.Parameters.AddWithValue("@LanKhoiDongGanNhat", thoiGianMoMay);
+                cmd.Parameters.AddWithValue("@MaMay", maMay);
+                i = cmd.ExecuteNonQuery();
+                conn.Close();
+                return i > 0;
+            }
+        }
+
         public string getComputerStateINMAYTINH(string maMay)
         {
             using (SQLiteConnection conn = new SQLiteConnection(createDBSQL))
