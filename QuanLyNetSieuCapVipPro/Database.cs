@@ -581,6 +581,11 @@ namespace QuanLyNetSieuCapVipPro
                     "INSERT OR IGNORE INTO DONHANG_DICHVU(MaDichVu, MaNguoiChoi, ThoiGianDatHang, NoiDungDonHang, MaMayDatHang) " +
                     "VALUES(@MaDichVu, @MaNguoiChoi, @ThoiGianDatHang, @NoiDungDonHang, @MaMayDatHang)";
                 var cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@MaDichVu", maDichVu);
+                cmd.Parameters.AddWithValue("@MaNguoiChoi", maNguoiChoi);
+                cmd.Parameters.AddWithValue("@ThoiGianDatHang", thoiGianDatHang);
+                cmd.Parameters.AddWithValue("@NoiDungDonHang", noiDungDonHang);
+                cmd.Parameters.AddWithValue("@MaMayDatHang", maMay);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
                 return i > 0;

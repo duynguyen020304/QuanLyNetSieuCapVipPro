@@ -67,7 +67,7 @@ namespace QuanLyNetSieuCapVipPro
                 DateTime.Now.Minute,
                 DateTime.Now.Second
                 );
-            string noiDungDonHang = maMay + "(" + maNguoiChoi + ")" + "đặt " + Convert.ToInt64(txtSoLuong.Text.Trim()) +
+            string noiDungDonHang = maMay + "(" + maNguoiChoi + ")" + " đặt " + Convert.ToInt64(txtSoLuong.Text.Trim()) +
                                     " " + tenDichVu;
             if (db.insertDataIntoDONHANG_DICHVU(maDichVu, maNguoiChoi, now, noiDungDonHang, maMay))
             {
