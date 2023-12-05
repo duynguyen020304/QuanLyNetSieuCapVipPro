@@ -36,7 +36,6 @@ namespace QuanLyNetSieuCapVipPro
         {
             if (e.KeyCode == Keys.Enter && txtChat.Text.Trim().Length != 0)
             {
-
                 //frmManagement.instance.syncChat(maMay, txtChat.Text.Trim());
                 if (txtChat.Text.Trim().Length == 0)
                 {
@@ -47,6 +46,12 @@ namespace QuanLyNetSieuCapVipPro
                 xuly.MayTinhToAdmin(maMay, txtChat.Text.Trim());
                 txtChat.Clear();
             }
+        }
+
+        public void clearTinNhan()
+        {
+            rtxtChat.Clear();
+            txtChat.Clear();
         }
     }
 }

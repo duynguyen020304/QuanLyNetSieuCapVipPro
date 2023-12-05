@@ -153,6 +153,7 @@
             pctbDangXuat.Size = new Size(80, 74);
             pctbDangXuat.TabIndex = 3;
             pctbDangXuat.TabStop = false;
+            pctbDangXuat.Click += pctbDangXuat_Click;
             // 
             // pictureBox5
             // 
@@ -205,6 +206,7 @@
             lblDangXuat.Size = new Size(80, 21);
             lblDangXuat.TabIndex = 9;
             lblDangXuat.Text = "Đăng xuất";
+            lblDangXuat.Click += pctbDangXuat_Click;
             // 
             // lblMatKhau
             // 

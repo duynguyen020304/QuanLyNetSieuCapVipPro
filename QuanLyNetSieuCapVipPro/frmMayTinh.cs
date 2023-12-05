@@ -18,6 +18,8 @@ namespace QuanLyNetSieuCapVipPro
         public bool isLoginSucess = false;
         public string _userDangNhap = "";
         private Database db = new Database();
+        private frmGuiTinNhan tinhan = new frmGuiTinNhan();
+        private bool isTinNhanShow = false;
 
         public frmMayTinh()
         {
@@ -35,13 +37,12 @@ namespace QuanLyNetSieuCapVipPro
             {
                 frmLogin login = new frmLogin("user");
                 login.ShowDialog();
-            }
-
-            if (db.getSoPhutHienCo(_userDangNhap) == 0)
-            {
-                MessageBox.Show("Bạn không có đủ thời gian dịch vụ, hãy liên hệ nhân viên để nạp thêm", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                if (db.getSoPhutHienCo(_userDangNhap) == 0)
+                {
+                    MessageBox.Show("Bạn không có đủ thời gian dịch vụ, hãy liên hệ nhân viên để nạp thêm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    isLoginSucess = false;
+                    continue;
+                }
             }
             timer1.Enabled = true;
         }
@@ -53,9 +54,14 @@ namespace QuanLyNetSieuCapVipPro
 
         private void lblTinNhan_Click(object sender, EventArgs e)
         {
-            frmGuiTinNhan guitinnhan = new frmGuiTinNhan(maMay);
-            _guiTinNhan = guitinnhan;
-            guitinnhan.Show();
+            if (isTinNhanShow)
+            {
+                tinhan.Hide();
+            }
+            else
+            {
+                tinhan.Show();
+            }
         }
 
         private void pctbDichVu_Click(object sender, EventArgs e)
@@ -71,6 +77,9 @@ namespace QuanLyNetSieuCapVipPro
             txtTongThoiGian.Text = soGio.ToString() + ":" + soPhut.ToString();
             txtTongThoiGianSuDung.Text = "0:0";
             txtTongThoiGianConLai.Text = tongThoiGianSuDung.ToString();
+            frmGuiTinNhan guitinnhan = new frmGuiTinNhan(maMay);
+            _guiTinNhan = guitinnhan;
+            tinhan = guitinnhan;
         }
 
         private long tongThoiGianSuDung_tick = 0;
@@ -96,6 +105,25 @@ namespace QuanLyNetSieuCapVipPro
                 soGio_tick++;
                 txtTongThoiGianSuDung.Text = soGio_tick.ToString() + ":" + soPhut_tick.ToString();
             }
+        }
+
+        private void pctbDangXuat_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            
+            isLoginSucess = false;
+            while (!isLoginSucess)
+            {
+                frmLogin login = new frmLogin("user");
+                login.ShowDialog();
+                if (db.getSoPhutHienCo(_userDangNhap) == 0)
+                {
+                    MessageBox.Show("Bạn không có đủ thời gian dịch vụ, hãy liên hệ nhân viên để nạp thêm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    isLoginSucess = false;
+                    continue;
+                }
+            }
+            frmMayTinh_Load(sender, e);
         }
     }
 }
