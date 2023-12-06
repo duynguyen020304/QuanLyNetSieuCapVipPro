@@ -11,13 +11,13 @@ namespace QuanLyNetSieuCapVipPro
 
         Database db = new Database();
 
-        public void loadDgv()
+        public void LoadDgv()
         {
             //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //dataGridView1.DataSource = db.getAllItemsFormDICHVU().Tables[0];
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DataTable dt = db.getAllItemsFormDICHVU().Tables[0];
+            DataTable dt = db.GetAllItemsFromDICHVU().Tables[0];
 
             // Thêm các hàng trống trực tiếp vào DataTable
             while (dt.Rows.Count < 20)
@@ -38,13 +38,13 @@ namespace QuanLyNetSieuCapVipPro
             if (e.RowIndex == -1) // Kiểm tra xem ô đó có phải là header không
             {
                 SolidBrush myBrush = new SolidBrush(Color.FromArgb(199, 220, 167));
-                e.Graphics.FillRectangle(myBrush, e.CellBounds); // Sử dụng Brushes để tô màu
+                e.Graphics.FillRectangle(myBrush, e.CellBounds);
 
                 // Vẽ đường viền với thông số mặc định
                 Pen gridLinePen = new Pen(this.dataGridView1.GridColor, (float)0.9); // Sử dụng màu và độ dày đường viền mặc định của DataGridView
                 e.Graphics.DrawRectangle(gridLinePen, new Rectangle(e.CellBounds.Left, e.CellBounds.Top, e.CellBounds.Width - 1, e.CellBounds.Height - 1));
 
-                e.PaintContent(e.CellBounds); // Vẽ nội dung của header
+                e.PaintContent(e.CellBounds); // Vẽ header
                 e.Handled = true; // Đánh dấu sự kiện đã được xử lý
             }
         }
@@ -52,8 +52,8 @@ namespace QuanLyNetSieuCapVipPro
         private void xoa_mnst_Click(object sender, EventArgs e)
         {
             int i = dataGridView1.CurrentRow.Index;
-            db.removeItemsFromDICHVU(dataGridView1.Rows[i].Cells[0].Value.ToString());
-            loadDgv();
+            db.RemoveItemFromDICHVU(dataGridView1.Rows[i].Cells[0].Value.ToString());
+            LoadDgv();
         }
 
         private void sua_mnst_Click(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace QuanLyNetSieuCapVipPro
             int i = dataGridView1.CurrentRow.Index;
             frmThemDichVu dichvu = new frmThemDichVu(dataGridView1.Rows[i].Cells[0].Value.ToString(), false);
             dichvu.ShowDialog();
-            loadDgv();
+            LoadDgv();
         }
 
         private void them_mnst_Click(object sender, EventArgs e)

@@ -3,10 +3,10 @@
     public partial class frmManagement : Form
     {
         private Database db = new Database();
-        public MayTram maytram = new MayTram();
-        private string userName;
+        public MayTram Maytram = new MayTram();
+        private string adminAccountId;
         public static frmManagement instance;
-        public string sendUserName;
+        public string SendAdminAccountId;
 
         private bool isShowThanhVien = true;
         private bool isShowDichVu = false;
@@ -31,12 +31,12 @@
             userControlGiaoDich1.loadDgv();
         }
 
-        public frmManagement(string userName)
+        public frmManagement(string adminAccountId)
         {
-            this.userName = userName;
-            sendUserName = userName;
+            this.adminAccountId = adminAccountId;
+            SendAdminAccountId = adminAccountId;
             InitializeComponent();
-            lblHello.Text = "Hello " + userName;
+            lblHello.Text = "Hello " + adminAccountId;
             instance = this;
         }
 
@@ -48,7 +48,7 @@
             if (!nhanTinHieuDangNhap)
             {
                 Application.Exit();
-                maytram.tatToanBoMayTinh();
+                Maytram.tatToanBoMayTinh();
             }
         }
 
@@ -61,7 +61,7 @@
         private void chuyenCaNhanVien_mnst_Click(object sender, EventArgs e)
         {
             frmLogin login = new frmLogin(true);
-            login.truyenTinHieuDangNhapThanhCong = new frmLogin.truyenChoFrmManagement(loadTinHieu);
+            login.TransferIsLoginSucess = new frmLogin.TransferToFrmManagement(loadTinHieu);
             login.ShowDialog();
             if (nhanTinHieuDangNhap)
             {
@@ -71,7 +71,7 @@
 
         public void themThanhVien_mnst_Click(object sender, EventArgs e)
         {
-            frmThemThanhVien themthanhvien = new frmThemThanhVien(3000, userName, true);
+            frmThemThanhVien themthanhvien = new frmThemThanhVien(adminAccountId, true);
             themthanhvien.ShowDialog();
             thanhVien1.loadDgv();
         }
@@ -80,7 +80,7 @@
         {
             frmThemDichVu dichvu = new frmThemDichVu();
             dichvu.ShowDialog();
-            dichVu1.loadDgv();
+            dichVu1.LoadDgv();
         }
 
         private void nhomNguoiDung_mnst_Click(object sender, EventArgs e)
@@ -170,7 +170,7 @@
             }
             isShowDichVu = true;
             dichVu1.Show();
-            dichVu1.loadDgv();
+            dichVu1.LoadDgv();
         }
 
         private void pctbChat_Click(object sender, EventArgs e)
@@ -197,7 +197,7 @@
 
         private void loadMayTram()
         {
-            List<string> mayTinh = maytram.getmayTinh();
+            List<string> mayTinh = Maytram.getmayTinh();
             if (cboMayTram_mnst.ComboBox != null)
             {
                 cboMayTram_mnst.ComboBox.Items.Clear();
@@ -209,7 +209,7 @@
 
         public void loadMayTramShutDown()
         {
-            List<string> mayTinhOnline = maytram.getMayTinhOnline();
+            List<string> mayTinhOnline = Maytram.getMayTinhOnline();
             if (cboShutDownMayTram_mnst.ComboBox != null)
             {
                 cboShutDownMayTram_mnst.ComboBox.Items.Clear();
@@ -221,7 +221,7 @@
 
         private void loadNguoiChat()
         {
-            List<string> mayTinhOnline = maytram.getMayTinhOnline();
+            List<string> mayTinhOnline = Maytram.getMayTinhOnline();
             cboChonNguoiChat.Items.Clear();
             cboChonNguoiChat.Items.AddRange(mayTinhOnline.ToArray());
         }
@@ -232,7 +232,7 @@
             {
                 return;
             }
-            if (maytram.khoiDongMayTinhTuyChon(cboMayTram_mnst.SelectedItem.ToString()))
+            if (Maytram.khoiDongMayTinhTuyChon(cboMayTram_mnst.SelectedItem.ToString()))
             {
                 MessageBox.Show("Khởi động " + cboMayTram_mnst.SelectedItem.ToString() + " thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadMayTramShutDown();
@@ -270,7 +270,7 @@
                     return;
                 }
 
-                if (xuLy.AdminToMayTinh(userName, cboChonNguoiChat.SelectedItem.ToString(), txtChat.Text.Trim()))
+                if (xuLy.AdminToMayTinh(adminAccountId, cboChonNguoiChat.SelectedItem.ToString(), txtChat.Text.Trim()))
                 {
                     this.errorProvider1.Clear();
                     rtxtShowChat.Text += "Bạn: " + txtChat.Text.Trim() + "\n";
@@ -289,7 +289,7 @@
             {
                 return;
             }
-            if (maytram.tatMayTinhTuyChon(cboShutDownMayTram_mnst.SelectedItem.ToString()))
+            if (Maytram.tatMayTinhTuyChon(cboShutDownMayTram_mnst.SelectedItem.ToString()))
             {
                 MessageBox.Show("Tắt máy tính thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -305,13 +305,13 @@
         private void backupCSDL_mnst_Click(object sender, EventArgs e)
         {
             BackupRestoreDB backupRestore = new BackupRestoreDB();
-            backupRestore.backupDB();
+            backupRestore.BackupDB();
         }
 
         private void khoiPhucCSDL_mnst_Click(Object sender, EventArgs e)
         {
             BackupRestoreDB backupRestore = new BackupRestoreDB();
-            backupRestore.restoreDB();
+            backupRestore.RestoreDB();
         }
 
         private void themTaiKhoanQuanly_mnst_Click(object sender, EventArgs e)

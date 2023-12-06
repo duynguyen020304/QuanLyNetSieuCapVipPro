@@ -8,7 +8,7 @@ namespace QuanLyNetSieuCapVipPro
         public List<frmMayTinh> lstFrmMayTinhBat = new List<frmMayTinh>();
         public List<string> getmayTinh()
         {
-            DataTable dt = db.getAllItemsFromMAYTINH().Tables[0];
+            DataTable dt = db.GetAllItemsFromMAYTINH().Tables[0];
             List<string> items = new List<string>();
             foreach (DataRow row in dt.Rows)
             {
@@ -19,7 +19,7 @@ namespace QuanLyNetSieuCapVipPro
 
         public List<string> getMayTinhOnline()
         {
-            DataTable dt = db.getAllItemsFromMAYTINH().Tables[0];
+            DataTable dt = db.GetAllItemsFromMAYTINH().Tables[0];
             List<string> items = new List<string>();
             foreach (DataRow row in dt.Rows)
             {
@@ -33,7 +33,7 @@ namespace QuanLyNetSieuCapVipPro
 
         public bool khoiDongMayTinhTuyChon(string maMayTinh)
         {
-            if (db.getComputerStateINMAYTINH(maMayTinh) == "on")
+            if (db.GetComputerStateINMAYTINH(maMayTinh) == "on")
             {
                 return false;
             }
@@ -50,7 +50,7 @@ namespace QuanLyNetSieuCapVipPro
                     DateTime.Now.Minute,
                     DateTime.Now.Second
                 );
-                db.modifiedMAYTINH(maMayTinh, now, "on");
+                db.UpdateItemInMAYTINH(maMayTinh, now, "on");
                 item.Show();
                 return true;
             }
@@ -70,7 +70,7 @@ namespace QuanLyNetSieuCapVipPro
                     break;
                 }
             }
-            if (db.modifiedComputerStateInMAYTINH(userTatMayTinh, "off"))
+            if (db.UpdateComputerStateInMAYTINH(userTatMayTinh, "off"))
             {
                 return true;
             }
@@ -81,7 +81,7 @@ namespace QuanLyNetSieuCapVipPro
         {
             foreach (string item in getMayTinhOnline())
             {
-                db.modifiedComputerStateInMAYTINH(item, "off");
+                db.UpdateComputerStateInMAYTINH(item, "off");
             }
         }
     }

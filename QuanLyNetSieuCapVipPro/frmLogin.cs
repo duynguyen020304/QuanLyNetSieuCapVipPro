@@ -7,48 +7,31 @@
             InitializeComponent();
         }
 
-        public delegate void truyenChoFrmManagement(bool isSuccess = false);
-        public truyenChoFrmManagement truyenTinHieuDangNhapThanhCong;
-        private bool isExit = false;
-        bool tinHieuChuyenCa = false;
-        private string loaiLogin = "";
+        public delegate void TransferToFrmManagement(bool isSuccess = false);
+        public TransferToFrmManagement TransferIsLoginSucess;
+        bool _isChangeAdminAccount = false;
+        private string loginType = "";
 
-        public frmLogin(bool tinHieu)
+        public frmLogin(bool isChangeAdminAccount)
         {
-            tinHieuChuyenCa = tinHieu;
+            _isChangeAdminAccount = isChangeAdminAccount;
             InitializeComponent();
         }
 
-        public frmLogin(string loaiLogin)
+        public frmLogin(string loginType)
         {
             InitializeComponent();
-            this.loaiLogin = loaiLogin;
+            this.loginType = loginType;
             MaximizeBox = false;
             MinimizeBox = false;
             ControlBox = false;
         }
 
-        //private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    if (!isExit)
-        //    {
-        //        DialogResult r = MessageBox.Show("Bạn có muốn thoát không ?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        //        if (r != DialogResult.No)
-        //        {
-        //            isExit = true;
-        //            Application.Exit();
-        //        }
-        //        else
-        //        {
-        //            e.Cancel = true;
-        //        }
-        //    }
-        //}
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
             Authentication authentication = new Authentication();
-            if (loaiLogin == "user")
+            if (loginType == "user")
             {
                 if (authentication.AuthUser(txtUserName.Text.Trim(), txtPassword.Text.Trim()) && txtUserName.Text.Trim().Length != 0)
                 {
@@ -61,9 +44,9 @@
             {
                 if (authentication.AuthAdminLogin(txtUserName.Text.Trim(), txtPassword.Text.Trim()) && txtUserName.Text.Trim().Length != 0)
                 {
-                    if (tinHieuChuyenCa)
+                    if (_isChangeAdminAccount)
                     {
-                        truyenTinHieuDangNhapThanhCong(true);
+                        TransferIsLoginSucess(true);
                     }
                     frmManagement management = new frmManagement(txtUserName.Text);
                     management.Show();
@@ -77,12 +60,5 @@
 
         }
 
-        private void lblTaoTaiKhoan_Click(object sender, EventArgs e)
-        {
-            //FormClosing -= frmLogin_FormClosing;
-            this.Close();
-            frmCreateAccountAdmin createAccountAdmin = new frmCreateAccountAdmin();
-            createAccountAdmin.Show();
-        }
     }
 }

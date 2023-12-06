@@ -70,10 +70,5 @@
             this.Close();
         }
 
-        private void btnDangNhap_Click(object sender, EventArgs e)
-        {
-            frmLogin login = new frmLogin();
-            login.Show();
-        }
     }
 }

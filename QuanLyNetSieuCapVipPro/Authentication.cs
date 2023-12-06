@@ -2,19 +2,19 @@
 {
     class Authentication
     {
-        private Database db = new Database();
-        public bool AuthAdminLogin(string username, string password)
+        private Database _db = new Database();
+        public bool AuthAdminLogin(string adminAccountId, string password)
         {
-            if (db.getAdminPassword(username) == password)
+            if (_db.GetAdminPassword(adminAccountId) == password)
             {
                 return true;
             }
             return false;
         }
 
-        public bool AuthUser(string username, string password)
+        public bool AuthUser(string userAcountId, string password)
         {
-            if (db.getUserPassword(username) == password)
+            if (_db.GetUserPassword(userAcountId) == password)
             {
                 return true;
             }

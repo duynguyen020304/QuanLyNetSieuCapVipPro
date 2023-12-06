@@ -26,7 +26,7 @@ namespace QuanLyNetSieuCapVipPro
 
         public void loadDichVu(string maDichVu)
         {
-            DataTable dt = db.getSpecificItemFromDICHVU(maDichVu).Tables[0];
+            DataTable dt = db.GetSpecificItemFromDICHVU(maDichVu).Tables[0];
             DataRow dr = dt.Rows[0];
             txtMaDichVu.Text = dr[0].ToString();
             txtTen.Text = dr[1].ToString();
@@ -97,7 +97,7 @@ namespace QuanLyNetSieuCapVipPro
             {
                 gia = 0;
             }
-            if (db.insertDataIntoDichVu(txtMaDichVu.Text.Trim(), txtTen.Text.Trim(), gia, txtDonVi.Text.Trim()))
+            if (db.InsertDataIntoDichVu(txtMaDichVu.Text.Trim(), txtTen.Text.Trim(), gia, txtDonVi.Text.Trim()))
             {
                 MessageBox.Show("Thêm dịch vụ thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -128,7 +128,7 @@ namespace QuanLyNetSieuCapVipPro
                 gia = 0;
             }
 
-            if (db.modifiedSpecificElement(maDichVu, txtTen.Text.Trim(), gia, txtDonVi.Text.Trim()))
+            if (db.updateItemInDICHVU(maDichVu, txtTen.Text.Trim(), gia, txtDonVi.Text.Trim()))
             {
                 MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

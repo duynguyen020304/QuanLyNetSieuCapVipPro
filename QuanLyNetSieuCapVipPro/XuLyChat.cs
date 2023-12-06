@@ -4,11 +4,11 @@
     {
         public bool AdminToMayTinh(string tenAdmin, string userGuiTinNhan, string chat)
         {
-            foreach (frmMayTinh item in frmManagement.instance.maytram.lstFrmMayTinhBat)
+            foreach (frmMayTinh item in frmManagement.instance.Maytram.lstFrmMayTinhBat)
             {
                 if (item.Text == userGuiTinNhan)
                 {
-                    item._guiTinNhan.syncChat(tenAdmin, chat);
+                    item._guiTinNhan.SyncChat(tenAdmin, chat);
                     return true;
                 }
             }

@@ -4,22 +4,19 @@ namespace QuanLyNetSieuCapVipPro
 {
     public partial class frmThemThanhVien : Form
     {
-        private decimal donGia;
         private string nguoiTaoKhoan;
         private bool isAdd = false;
         private string maNguoiChoi;
         Database db = new Database();
-        public frmThemThanhVien(decimal donGia, string nguoiTaoTaiKhoan, bool isAdd)
+        public frmThemThanhVien(string nguoiTaoTaiKhoan, bool isAdd)
         {
             InitializeComponent();
-            this.donGia = donGia;
             this.nguoiTaoKhoan = nguoiTaoTaiKhoan;
             this.isAdd = isAdd;
         }
-        public frmThemThanhVien(decimal donGia, string nguoiTaoTaiKhoan, bool isAdd, string maNguoiChoi)
+        public frmThemThanhVien(string nguoiTaoTaiKhoan, bool isAdd, string maNguoiChoi)
         {
             InitializeComponent();
-            this.donGia = donGia;
             this.nguoiTaoKhoan = nguoiTaoTaiKhoan;
             this.isAdd = isAdd;
             this.maNguoiChoi = maNguoiChoi;
@@ -83,7 +80,7 @@ namespace QuanLyNetSieuCapVipPro
                 maNhomNguoiDung = selectedRow["MaNhomNguoiDung"].ToString();
             }
 
-            decimal giaTaiKhoan = db.getGiaTaiKhoan(maNhomNguoiDung);
+            decimal giaTaiKhoan = db.GetUserGroupPrice(maNhomNguoiDung);
             long soGioChoi = Convert.ToInt64((result / giaTaiKhoan) * 60);
             if (!decimal.TryParse(txtSoTienNo.Text.Trim(), out result))
             {
@@ -97,8 +94,8 @@ namespace QuanLyNetSieuCapVipPro
                 dateTimePicker1.Value.Minute,
                 dateTimePicker1.Value.Second
             );
-            if (db.insertDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateWithoutMilliseconds, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung) && db.insertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
+            if (db.InsertDataIntoNGUOICHOI(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
+                    dateWithoutMilliseconds, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung) && db.InsertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
             {
                 MessageBox.Show("Thêm tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -123,7 +120,7 @@ namespace QuanLyNetSieuCapVipPro
             {
                 maNhomNguoiDung = selectedRow["MaNhomNguoiDung"].ToString();
             }
-            decimal giaTaiKhoan = db.getGiaTaiKhoan(maNhomNguoiDung);
+            decimal giaTaiKhoan = db.GetUserGroupPrice(maNhomNguoiDung);
             long soGioChoi = Convert.ToInt64((result / giaTaiKhoan) * 60);
             if (!decimal.TryParse(txtSoTienNo.Text.Trim(), out result))
             {
@@ -137,7 +134,7 @@ namespace QuanLyNetSieuCapVipPro
                 dateTimePicker1.Value.Minute,
                 dateTimePicker1.Value.Second
             );
-            if (db.suaDataNguoiChoi(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
+            if (db.UpdateNguoiChoiTableUserData(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
                     dateWithoutMilliseconds, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung))
             {
                 MessageBox.Show("Sửa tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
@@ -147,7 +144,7 @@ namespace QuanLyNetSieuCapVipPro
 
         private void loadDuLieu()
         {
-            DataTable dt = db.getSpecificUserData(maNguoiChoi).Tables[0];
+            DataTable dt = db.GetSpecificUserData(maNguoiChoi).Tables[0];
             DataRow dr = dt.Rows[0];
             txtNguoiSuDung.Text = dr[0].ToString();
             txtHoTen.Text = dr[1].ToString();
@@ -160,8 +157,8 @@ namespace QuanLyNetSieuCapVipPro
             txtQuanHuyen.Text = dr[10].ToString();
             txtCMND.Text = dr[11].ToString();
             txtSDT.Text = dr[12].ToString();
-            txtMatKhau.Text = db.getUserPassword(maNguoiChoi);
-            dt = db.getAllItemsFROMNHOMNGUOIDUNG().Tables[0];
+            txtMatKhau.Text = db.GetUserPassword(maNguoiChoi);
+            dt = db.GetAllItemsFROMNHOMNGUOIDUNG().Tables[0];
             cboLoaiNguoiDung.DataSource = dt;
             cboLoaiNguoiDung.DisplayMember = "TenNhomNguoiDung";
             cboLoaiNguoiDung.ValueMember = "MaNhomNguoiDung";
@@ -183,7 +180,7 @@ namespace QuanLyNetSieuCapVipPro
         private void frmThemThanhVien_Load(object sender, EventArgs e)
         {
             DataTable dt;
-            dt = db.getAllItemsFROMNHOMNGUOIDUNG().Tables[0];
+            dt = db.GetAllItemsFROMNHOMNGUOIDUNG().Tables[0];
             cboLoaiNguoiDung.DataSource = dt;
             cboLoaiNguoiDung.DisplayMember = "TenNhomNguoiDung"; //giá trị hiện ra comboBox
             cboLoaiNguoiDung.ValueMember = "MaNhomNguoiDung"; //giá trị thực khi click vào sẽ trả về

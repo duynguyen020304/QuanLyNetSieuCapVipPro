@@ -17,7 +17,7 @@
             instance = this;
         }
 
-        public void syncChat(string userID, string userChat)
+        public void SyncChat(string userID, string userChat)
         {
             rtxtChat.Text += userID + ": " + userChat + "\n";
         }

@@ -11,7 +11,7 @@ namespace QuanLyNetSieuCapVipPro
         }
         public void loadDgv()
         {
-            DataTable dt = db.getAllItemsFromMAYTINH().Tables[0];
+            DataTable dt = db.GetAllItemsFromMAYTINH().Tables[0];
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             while (dt.Rows.Count < 20)

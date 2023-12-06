@@ -19,7 +19,7 @@ namespace QuanLyNetSieuCapVipPro
 
         private void ThanhVien_Load(object sender, EventArgs e)
         {
-            adminUserName = frmManagement.instance.sendUserName;
+            adminUserName = frmManagement.instance.SendAdminAccountId;
             loadDgv();
         }
 
@@ -61,14 +61,14 @@ namespace QuanLyNetSieuCapVipPro
         private void xoa_mnst_Click(object sender, EventArgs e)
         {
             int i = dataGridView1.CurrentRow.Index;
-            db.removeUserFromNGUOICHOI(dataGridView1.Rows[i].Cells[0].Value.ToString());
+            db.RemoveUserFromNGUOICHOI(dataGridView1.Rows[i].Cells[0].Value.ToString());
             loadDgv();
         }
 
         private void sua_mnst_Click(object sender, EventArgs e)
         {
             int i = dataGridView1.CurrentRow.Index;
-            frmThemThanhVien themThanhVien = new frmThemThanhVien(3000, adminUserName, false, dataGridView1.Rows[i].Cells[0].Value.ToString());
+            frmThemThanhVien themThanhVien = new frmThemThanhVien(adminUserName, false, dataGridView1.Rows[i].Cells[0].Value.ToString());
             themThanhVien.ShowDialog();
             loadDgv();
         }

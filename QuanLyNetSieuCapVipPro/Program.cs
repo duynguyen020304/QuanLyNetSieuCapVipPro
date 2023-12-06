@@ -12,7 +12,7 @@ namespace QuanLyNetSieuCapVipPro
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Database db = new Database();
-            db.createDatabase();
+            db.CreateDatabase();
             frmLogin login = new frmLogin();
             login.Show();
             //frmManagement frm = new frmManagement();

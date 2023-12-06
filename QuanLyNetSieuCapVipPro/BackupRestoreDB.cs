@@ -2,8 +2,8 @@
 {
     class BackupRestoreDB
     {
-        private Database db = new Database();
-        public void backupDB()
+        private Database _db = new Database();
+        public void BackupDB()
         {
             string pickDataBaseFrom = Environment.CurrentDirectory;
             using (var fbd = new FolderBrowserDialog())
@@ -14,20 +14,20 @@
                     DateTime currentTime = DateTime.Now;
                     string backupDBName = "backupCSDLNet" + currentTime.Year.ToString() + "_" + currentTime.Month + "_" + currentTime.Day.ToString() + "_" + currentTime.Hour.ToString() + "_" + currentTime.Minute.ToString() + "_" + currentTime.Second.ToString();
                     var backupDatabaseTo = fbd.SelectedPath + "\\" + (Path.GetFileNameWithoutExtension(backupDBName) + ".db");
-                    db.backUpDB(pickDataBaseFrom, "QuanLyNet123.db", backupDatabaseTo);
+                    _db.Backup(pickDataBaseFrom, "QuanLyNet123.db", backupDatabaseTo);
                     MessageBox.Show("Backup thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-        public void restoreDB()
+        public void RestoreDB()
         {
-            OpenFileDialog opendiDialog = new OpenFileDialog();
-            if (opendiDialog.ShowDialog() == DialogResult.OK)
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                string restoreDatabaseFrom = opendiDialog.FileName;
+                string restoreDatabaseFrom = fileDialog.FileName;
                 var restoreDatabaseTo = Environment.CurrentDirectory + "\\" + "QuanLyNet123.db";
-                db.restoreDB(restoreDatabaseFrom, restoreDatabaseTo);
+                _db.Restore(restoreDatabaseFrom, restoreDatabaseTo);
                 MessageBox.Show("Restore thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

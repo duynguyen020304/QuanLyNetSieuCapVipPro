@@ -12,7 +12,7 @@ namespace QuanLyNetSieuCapVipPro
         }
         public void loadDgv()
         {
-            DataTable dt = db.getAllItemsFROMNHOMNGUOIDUNG().Tables[0];
+            DataTable dt = db.GetAllItemsFROMNHOMNGUOIDUNG().Tables[0];
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             while (dt.Rows.Count < 20)
             {
@@ -52,7 +52,7 @@ namespace QuanLyNetSieuCapVipPro
         private void xoa_mnst_Click(object sender, EventArgs e)
         {
             int i = dataGridView1.CurrentRow.Index;
-            db.removeNhomFROMNHOMNGUOIDUNG(dataGridView1.Rows[i].Cells[0].Value.ToString());
+            db.RemoveNhomFROMNHOMNGUOIDUNG(dataGridView1.Rows[i].Cells[0].Value.ToString());
             loadDgv();
         }
 

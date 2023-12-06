@@ -27,7 +27,7 @@
             {
                 frmLogin login = new frmLogin("user");
                 login.ShowDialog();
-                if (db.getSoPhutHienCo(_userDangNhap) == 0)
+                if (db.GetplayTimeLeft(_userDangNhap) == 0)
                 {
                     MessageBox.Show("Bạn không có đủ thời gian dịch vụ, hãy liên hệ nhân viên để nạp thêm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     isLoginSucess = false;
@@ -61,7 +61,7 @@
         }
         private void frmMayTinh_Load(object sender, EventArgs e)
         {
-            long tongThoiGianSuDung = db.getSoPhutHienCo(_userDangNhap);
+            long tongThoiGianSuDung = db.GetplayTimeLeft(_userDangNhap);
             tongThoiGianSuDungConLai_tick = tongThoiGianSuDung;
             long soGio = tongThoiGianSuDung / 60;
             long soPhut = tongThoiGianSuDung % 60;
@@ -102,12 +102,12 @@
         {
             timer1.Enabled = false;
             isLoginSucess = false;
-            db.updateThoiGianToNGUOICHOI(_userDangNhap, tongThoiGianSuDungConLai_tick);
+            db.UpdatePlayTimeLeftToNGUOICHOI(_userDangNhap, tongThoiGianSuDungConLai_tick);
             while (!isLoginSucess)
             {
                 frmLogin login = new frmLogin("user");
                 login.ShowDialog();
-                if (db.getSoPhutHienCo(_userDangNhap) == 0)
+                if (db.GetplayTimeLeft(_userDangNhap) == 0)
                 {
                     MessageBox.Show("Bạn không có đủ thời gian dịch vụ, hãy liên hệ nhân viên để nạp thêm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     isLoginSucess = false;

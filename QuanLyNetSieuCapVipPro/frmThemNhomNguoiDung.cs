@@ -21,7 +21,7 @@ namespace QuanLyNetSieuCapVipPro
 
         public void loadNhomNguoiDung(string maNhomNguoiDung)
         {
-            DataTable dt = db.getSpecificItemFromNHOMNGUOIDUNG(maNhomNguoiDung).Tables[0];
+            DataTable dt = db.GetSpecificItemFromNHOMNGUOIDUNG(maNhomNguoiDung).Tables[0];
             DataRow dr = dt.Rows[0];
             txtMaNhom.Text = dr[0].ToString();
             txtTenNhom.Text = dr[1].ToString();
@@ -62,7 +62,7 @@ namespace QuanLyNetSieuCapVipPro
                 gia = 0;
             }
 
-            if (db.modifiedSpecificItemInNHOMNGUOIDUNG(maNhomNguoiDung, txtTenNhom.Text.Trim(), gia))
+            if (db.UpdateItemInNHOMNGUOIDUNG(maNhomNguoiDung, txtTenNhom.Text.Trim(), gia))
             {
                 MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -101,7 +101,7 @@ namespace QuanLyNetSieuCapVipPro
             {
                 gia = 0;
             }
-            if (db.insertDataIntoNHOMNGUOIDUNG(txtMaNhom.Text.Trim(), txtTenNhom.Text.Trim(), gia))
+            if (db.InsertDataIntoNHOMNGUOIDUNG(txtMaNhom.Text.Trim(), txtTenNhom.Text.Trim(), gia))
             {
                 MessageBox.Show("Thêm nhóm thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

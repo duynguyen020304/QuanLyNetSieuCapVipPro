@@ -14,7 +14,7 @@ namespace QuanLyNetSieuCapVipPro
         }
         public void loadDgv()
         {
-            DataTable dt = db.getAllItemFromLICHSUGIAODICH().Tables[0];
+            DataTable dt = db.GetAllItemsFromLICHSUGIAODICH().Tables[0];
             //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             while (dt.Rows.Count < 20)
