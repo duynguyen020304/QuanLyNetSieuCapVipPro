@@ -39,19 +39,16 @@
             pctbTinNhan = new PictureBox();
             pctbDichVu = new PictureBox();
             pctbDangXuat = new PictureBox();
-            pictureBox5 = new PictureBox();
             pctbMatKhau = new PictureBox();
             lblTinNhan = new Label();
             lblDichVu = new Label();
             lblDangXuat = new Label();
             lblMatKhau = new Label();
-            label8 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pctbTinNhan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctbDichVu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctbDangXuat).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctbMatKhau).BeginInit();
             SuspendLayout();
             // 
@@ -155,21 +152,11 @@
             pctbDangXuat.TabStop = false;
             pctbDangXuat.Click += pctbDangXuat_Click;
             // 
-            // pictureBox5
-            // 
-            pictureBox5.BackgroundImage = Properties.Resources._lock;
-            pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox5.Location = new Point(188, 290);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(80, 74);
-            pictureBox5.TabIndex = 5;
-            pictureBox5.TabStop = false;
-            // 
             // pctbMatKhau
             // 
             pctbMatKhau.BackgroundImage = Properties.Resources.reset_password;
             pctbMatKhau.BackgroundImageLayout = ImageLayout.Stretch;
-            pctbMatKhau.Location = new Point(65, 290);
+            pctbMatKhau.Location = new Point(137, 290);
             pctbMatKhau.Name = "pctbMatKhau";
             pctbMatKhau.Size = new Size(80, 74);
             pctbMatKhau.TabIndex = 4;
@@ -213,22 +200,12 @@
             // 
             lblMatKhau.AutoSize = true;
             lblMatKhau.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblMatKhau.Location = new Point(67, 367);
+            lblMatKhau.Location = new Point(139, 367);
             lblMatKhau.Name = "lblMatKhau";
             lblMatKhau.Size = new Size(75, 21);
             lblMatKhau.TabIndex = 10;
             lblMatKhau.Text = "Mật khẩu";
             lblMatKhau.Click += pctbMatKhau_Click;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(189, 367);
-            label8.Name = "label8";
-            label8.Size = new Size(79, 21);
-            label8.TabIndex = 11;
-            label8.Text = "Khoá máy";
             // 
             // timer1
             // 
@@ -240,12 +217,10 @@
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(255, 228, 205);
             ClientSize = new Size(349, 412);
-            Controls.Add(label8);
             Controls.Add(lblMatKhau);
             Controls.Add(lblDangXuat);
             Controls.Add(lblDichVu);
             Controls.Add(lblTinNhan);
-            Controls.Add(pictureBox5);
             Controls.Add(pctbMatKhau);
             Controls.Add(pctbDangXuat);
             Controls.Add(pctbDichVu);
@@ -262,7 +237,6 @@
             ((System.ComponentModel.ISupportInitialize)pctbTinNhan).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctbDichVu).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctbDangXuat).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pctbMatKhau).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -280,13 +254,11 @@
         private PictureBox pctbTinNhan;
         private PictureBox pctbDichVu;
         private PictureBox pctbDangXuat;
-        private PictureBox pictureBox5;
         private PictureBox pctbMatKhau;
         private Label lblTinNhan;
         private Label lblDichVu;
         private Label lblDangXuat;
         private Label lblMatKhau;
-        private Label label8;
         private System.Windows.Forms.Timer timer1;
     }
 }

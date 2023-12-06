@@ -62,7 +62,7 @@
             label1.Location = new Point(109, 146);
             label1.Name = "label1";
             label1.Size = new Size(92, 25);
-            label1.TabIndex = 2;
+            label1.TabIndex = 1;
             label1.Text = "Tài khoản";
             // 
             // label2
@@ -84,7 +84,7 @@
             btnDangNhap.Location = new Point(243, 254);
             btnDangNhap.Name = "btnDangNhap";
             btnDangNhap.Size = new Size(232, 50);
-            btnDangNhap.TabIndex = 4;
+            btnDangNhap.TabIndex = 2;
             btnDangNhap.Text = "Đăng nhập";
             btnDangNhap.UseVisualStyleBackColor = false;
             btnDangNhap.Click += btnDangNhap_Click;
@@ -98,7 +98,7 @@
             label3.Location = new Point(291, 71);
             label3.Name = "label3";
             label3.Size = new Size(117, 45);
-            label3.TabIndex = 5;
+            label3.TabIndex = 0;
             label3.Text = "LOGIN";
             // 
             // panel1
@@ -114,7 +114,7 @@
             panel1.Location = new Point(93, 60);
             panel1.Name = "panel1";
             panel1.Size = new Size(680, 374);
-            panel1.TabIndex = 7;
+            panel1.TabIndex = 0;
             // 
             // frmLogin
             // 

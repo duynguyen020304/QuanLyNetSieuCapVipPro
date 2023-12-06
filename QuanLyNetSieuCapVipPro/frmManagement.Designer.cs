@@ -52,14 +52,6 @@
             backupCSDL_mnst = new ToolStripMenuItem();
             khoiPhucCSDL_mnst = new ToolStripMenuItem();
             themTaiKhoanQuanly_mnst = new ToolStripMenuItem();
-            banCard_mnst = new ToolStripMenuItem();
-            cardGameToolStripMenuItem = new ToolStripMenuItem();
-            garenaToolStripMenuItem = new ToolStripMenuItem();
-            vinagameToolStripMenuItem = new ToolStripMenuItem();
-            cardĐiệnThoạiToolStripMenuItem = new ToolStripMenuItem();
-            viettelToolStripMenuItem = new ToolStripMenuItem();
-            mobifoneToolStripMenuItem = new ToolStripMenuItem();
-            vietnamobileToolStripMenuItem = new ToolStripMenuItem();
             giupDo_mnst = new ToolStripMenuItem();
             lblHello = new Label();
             thanhVien1 = new ThanhVien();
@@ -81,7 +73,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { chucNang_mnst, heThong_mnst, banCard_mnst, giupDo_mnst });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { chucNang_mnst, heThong_mnst, giupDo_mnst });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1080, 24);
@@ -250,57 +242,6 @@
             themTaiKhoanQuanly_mnst.Size = new Size(198, 22);
             themTaiKhoanQuanly_mnst.Text = "Thêm tài khoản quản lý";
             themTaiKhoanQuanly_mnst.Click += themTaiKhoanQuanly_mnst_Click;
-            // 
-            // banCard_mnst
-            // 
-            banCard_mnst.DropDownItems.AddRange(new ToolStripItem[] { cardGameToolStripMenuItem, cardĐiệnThoạiToolStripMenuItem });
-            banCard_mnst.Name = "banCard_mnst";
-            banCard_mnst.Size = new Size(65, 20);
-            banCard_mnst.Text = "Bán card";
-            // 
-            // cardGameToolStripMenuItem
-            // 
-            cardGameToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garenaToolStripMenuItem, vinagameToolStripMenuItem });
-            cardGameToolStripMenuItem.Name = "cardGameToolStripMenuItem";
-            cardGameToolStripMenuItem.Size = new Size(155, 22);
-            cardGameToolStripMenuItem.Text = "Card game";
-            // 
-            // garenaToolStripMenuItem
-            // 
-            garenaToolStripMenuItem.Name = "garenaToolStripMenuItem";
-            garenaToolStripMenuItem.Size = new Size(127, 22);
-            garenaToolStripMenuItem.Text = "Garena";
-            // 
-            // vinagameToolStripMenuItem
-            // 
-            vinagameToolStripMenuItem.Name = "vinagameToolStripMenuItem";
-            vinagameToolStripMenuItem.Size = new Size(127, 22);
-            vinagameToolStripMenuItem.Text = "Vinagame";
-            // 
-            // cardĐiệnThoạiToolStripMenuItem
-            // 
-            cardĐiệnThoạiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { viettelToolStripMenuItem, mobifoneToolStripMenuItem, vietnamobileToolStripMenuItem });
-            cardĐiệnThoạiToolStripMenuItem.Name = "cardĐiệnThoạiToolStripMenuItem";
-            cardĐiệnThoạiToolStripMenuItem.Size = new Size(155, 22);
-            cardĐiệnThoạiToolStripMenuItem.Text = "Card điện thoại";
-            // 
-            // viettelToolStripMenuItem
-            // 
-            viettelToolStripMenuItem.Name = "viettelToolStripMenuItem";
-            viettelToolStripMenuItem.Size = new Size(144, 22);
-            viettelToolStripMenuItem.Text = "Viettel";
-            // 
-            // mobifoneToolStripMenuItem
-            // 
-            mobifoneToolStripMenuItem.Name = "mobifoneToolStripMenuItem";
-            mobifoneToolStripMenuItem.Size = new Size(144, 22);
-            mobifoneToolStripMenuItem.Text = "Mobifone";
-            // 
-            // vietnamobileToolStripMenuItem
-            // 
-            vietnamobileToolStripMenuItem.Name = "vietnamobileToolStripMenuItem";
-            vietnamobileToolStripMenuItem.Size = new Size(144, 22);
-            vietnamobileToolStripMenuItem.Text = "Vietnamobile";
             // 
             // giupDo_mnst
             // 
@@ -503,13 +444,5 @@
         private UserControlMayTram userControlMayTram1;
         private ToolStripMenuItem themNhomNguoiDung_mnst;
         private UserControlGiaoDich userControlGiaoDich1;
-        private ToolStripMenuItem banCard_mnst;
-        private ToolStripMenuItem cardGameToolStripMenuItem;
-        private ToolStripMenuItem garenaToolStripMenuItem;
-        private ToolStripMenuItem vinagameToolStripMenuItem;
-        private ToolStripMenuItem cardĐiệnThoạiToolStripMenuItem;
-        private ToolStripMenuItem viettelToolStripMenuItem;
-        private ToolStripMenuItem mobifoneToolStripMenuItem;
-        private ToolStripMenuItem vietnamobileToolStripMenuItem;
     }
 }
