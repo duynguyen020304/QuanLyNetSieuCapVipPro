@@ -255,7 +255,7 @@
             lblHello.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblHello.Location = new Point(0, 24);
             lblHello.Name = "lblHello";
-            lblHello.Size = new Size(1080, 21);
+            lblHello.Size = new Size(1080, 38);
             lblHello.TabIndex = 1;
             lblHello.Text = "Hello .. 123123123";
             lblHello.TextAlign = ContentAlignment.TopRight;
@@ -390,7 +390,6 @@
             Controls.Add(lblHello);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            MaximizeBox = false;
             Name = "frmManagement";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Net Siêu Cấp Vip Pro";

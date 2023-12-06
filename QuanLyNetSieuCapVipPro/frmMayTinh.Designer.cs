@@ -232,6 +232,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmMayTinh";
             Load += frmMayTinh_Load;
+            FormClosing += frmMayTinh_FormClosing;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pctbTinNhan).EndInit();

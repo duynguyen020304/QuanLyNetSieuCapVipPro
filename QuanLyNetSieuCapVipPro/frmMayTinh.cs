@@ -17,6 +17,13 @@
 
         }
 
+        private void frmMayTinh_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            db.UpdateStateNguoiChoi(_userDangNhap, "off");
+            db.UpdateComputerStateInMAYTINH(maMay, "off");
+            frmManagement.instance.loadMayTramShutDown();
+        }
+
         public frmMayTinh(string maMay)
         {
             InitializeComponent();
@@ -27,6 +34,13 @@
             {
                 frmLogin login = new frmLogin("user");
                 login.ShowDialog();
+                if (db.GetStateNguoiChoi(_userDangNhap) == "on")
+                {
+                    MessageBox.Show("Tài khoản đang được đăng nhập trên một máy tính khác, vui lòng thử lại", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    isLoginSucess = false;
+                    continue;
+                }
                 if (db.GetplayTimeLeft(_userDangNhap) == 0)
                 {
                     MessageBox.Show("Bạn không có đủ thời gian dịch vụ, hãy liên hệ nhân viên để nạp thêm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -35,10 +49,12 @@
                 }
             }
             timer1.Enabled = true;
+            db.UpdateStateNguoiChoi(_userDangNhap, "on");
         }
 
         public void shutDown()
         {
+            db.UpdateStateNguoiChoi(_userDangNhap, "off");
             this.Close();
         }
 
@@ -57,7 +73,7 @@
         private void pctbDichVu_Click(object sender, EventArgs e)
         {
             frmDatDichVu datDichVu = new frmDatDichVu(_userDangNhap, maMay);
-            datDichVu.ShowDialog();
+            datDichVu.Show();
         }
         private void frmMayTinh_Load(object sender, EventArgs e)
         {
@@ -119,7 +135,8 @@
 
         private void pctbMatKhau_Click(object sender, EventArgs e)
         {
-
+            frmDoiMatKhauUser doiMatKhauUser = new frmDoiMatKhauUser(_userDangNhap);
+            doiMatKhauUser.Show();
         }
     }
 }

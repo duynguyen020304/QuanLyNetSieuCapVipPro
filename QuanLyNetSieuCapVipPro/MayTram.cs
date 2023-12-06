@@ -37,7 +37,6 @@ namespace QuanLyNetSieuCapVipPro
             {
                 return false;
             }
-
             try
             {
                 frmMayTinh item = new frmMayTinh(maMayTinh);

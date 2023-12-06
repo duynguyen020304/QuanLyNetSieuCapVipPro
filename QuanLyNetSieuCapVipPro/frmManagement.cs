@@ -308,10 +308,19 @@
             backupRestore.BackupDB();
         }
 
+        private void reloadAllUserControl()
+        {
+            thanhVien1.loadDgv();
+            dichVu1.LoadDgv();
+            userControlGiaoDich1.loadDgv();
+            userControlMayTram1.loadDgv();
+        }
+
         private void khoiPhucCSDL_mnst_Click(Object sender, EventArgs e)
         {
             BackupRestoreDB backupRestore = new BackupRestoreDB();
             backupRestore.RestoreDB();
+            reloadAllUserControl();
         }
 
         private void themTaiKhoanQuanly_mnst_Click(object sender, EventArgs e)
