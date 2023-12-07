@@ -142,7 +142,7 @@ namespace QuanLyNetSieuCapVipPro
                 dateTimePicker1.Value.Second
             );
             if (db.UpdateNguoiChoiTableUserData(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateWithoutMilliseconds, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung))
+                    dateWithoutMilliseconds, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung) && db.UpdateUserPassword(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
             {
                 MessageBox.Show("Sửa tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
