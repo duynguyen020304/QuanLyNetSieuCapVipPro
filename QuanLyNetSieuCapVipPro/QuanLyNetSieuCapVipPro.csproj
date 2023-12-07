@@ -7,13 +7,20 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ReferencePath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\dotnet\</ReferencePath>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CrystalReports.ReportSource" Version="13.0.4003" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="CrystalReport1.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -30,6 +37,13 @@
 
   <ItemGroup>
     <Service Include="{c0c07587-41a7-46c8-8fbd-3f9c8ebe2ddc}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

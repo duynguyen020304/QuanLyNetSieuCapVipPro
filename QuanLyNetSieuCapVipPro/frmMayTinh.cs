@@ -41,7 +41,7 @@
                     isLoginSucess = false;
                     continue;
                 }
-                if (db.GetplayTimeLeft(_userDangNhap) == 0)
+                if (db.GetplayTimeLeft(_userDangNhap) == 0 && _userDangNhap.Length != 0)
                 {
                     MessageBox.Show("Bạn không có đủ thời gian dịch vụ, hãy liên hệ nhân viên để nạp thêm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     isLoginSucess = false;

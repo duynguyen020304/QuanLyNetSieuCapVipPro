@@ -62,6 +62,7 @@ namespace QuanLyNetSieuCapVipPro
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
+            txtSoGioChoiHienCo.Enabled = false;
             if (txtHoTen.Text.Trim().Length == 0 || txtNguoiSuDung.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Vui lòng không để trống ô họ tên và ô người sử dụng", "Thông báo",
@@ -115,13 +116,19 @@ namespace QuanLyNetSieuCapVipPro
             {
                 result = 0;
             }
+
+            long timeLeft;
+            if (!long.TryParse(txtSoGioChoiHienCo.Text.Trim(), out timeLeft))
+            {
+                timeLeft = 0;
+            }
             string maNhomNguoiDung = "";
             if (cboLoaiNguoiDung.SelectedItem is DataRowView selectedRow)
             {
                 maNhomNguoiDung = selectedRow["MaNhomNguoiDung"].ToString();
             }
             decimal giaTaiKhoan = db.GetUserGroupPrice(maNhomNguoiDung);
-            long soGioChoi = Convert.ToInt64((result / giaTaiKhoan) * 60);
+            long soGioChoi = Convert.ToInt64((result / giaTaiKhoan) * 60) + timeLeft;
             if (!decimal.TryParse(txtSoTienNo.Text.Trim(), out result))
             {
                 result = 0;
