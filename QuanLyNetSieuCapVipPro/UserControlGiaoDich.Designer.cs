@@ -40,7 +40,7 @@
             dataGridView1.Margin = new Padding(0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(914, 471);
+            dataGridView1.Size = new Size(914, 425);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellPainting += dataGridView1_CellPainting;
             // 
@@ -51,7 +51,7 @@
             Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(3, 4, 3, 4);
             Name = "UserControlGiaoDich";
-            Size = new Size(914, 471);
+            Size = new Size(914, 425);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

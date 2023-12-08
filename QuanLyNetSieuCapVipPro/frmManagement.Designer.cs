@@ -38,7 +38,7 @@
             themDichVu_mnst = new ToolStripMenuItem();
             nhomNguoiDung_mnst = new ToolStripMenuItem();
             themNhomNguoiDung_mnst = new ToolStripMenuItem();
-            nhậtKýGiaoDịchToolStripMenuItem = new ToolStripMenuItem();
+            nhatKyGiaoDich_mnst = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             chuyenCaNhanVien_mnst = new ToolStripMenuItem();
             thoat_mnst = new ToolStripMenuItem();
@@ -82,7 +82,7 @@
             // 
             // chucNang_mnst
             // 
-            chucNang_mnst.DropDownItems.AddRange(new ToolStripItem[] { mayTram_mnst, thanhVien_mnst, dichVu_mnst, themThanhVien_mnst, themDichVu_mnst, nhomNguoiDung_mnst, themNhomNguoiDung_mnst, nhậtKýGiaoDịchToolStripMenuItem, toolStripSeparator1, chuyenCaNhanVien_mnst, thoat_mnst });
+            chucNang_mnst.DropDownItems.AddRange(new ToolStripItem[] { mayTram_mnst, thanhVien_mnst, dichVu_mnst, themThanhVien_mnst, themDichVu_mnst, nhomNguoiDung_mnst, themNhomNguoiDung_mnst, nhatKyGiaoDich_mnst, toolStripSeparator1, chuyenCaNhanVien_mnst, thoat_mnst });
             chucNang_mnst.Name = "chucNang_mnst";
             chucNang_mnst.Size = new Size(77, 20);
             chucNang_mnst.Text = "Chức năng";
@@ -143,12 +143,13 @@
             themNhomNguoiDung_mnst.Text = "Thêm nhóm người dùng";
             themNhomNguoiDung_mnst.Click += themNhomNguoiDung_mnst_Click;
             // 
-            // nhậtKýGiaoDịchToolStripMenuItem
+            // nhatKyGiaoDich_mnst
             // 
-            nhậtKýGiaoDịchToolStripMenuItem.Image = Properties.Resources.file;
-            nhậtKýGiaoDịchToolStripMenuItem.Name = "nhậtKýGiaoDịchToolStripMenuItem";
-            nhậtKýGiaoDịchToolStripMenuItem.Size = new Size(204, 22);
-            nhậtKýGiaoDịchToolStripMenuItem.Text = "Nhật ký giao dịch";
+            nhatKyGiaoDich_mnst.Image = Properties.Resources.file;
+            nhatKyGiaoDich_mnst.Name = "nhatKyGiaoDich_mnst";
+            nhatKyGiaoDich_mnst.Size = new Size(204, 22);
+            nhatKyGiaoDich_mnst.Text = "Nhật ký giao dịch";
+            nhatKyGiaoDich_mnst.Click += nhatKyGiaoDich_mnst_Click;
             // 
             // toolStripSeparator1
             // 
@@ -411,7 +412,7 @@
         private ToolStripMenuItem chucNang_mnst;
         private ToolStripMenuItem mayTram_mnst;
         private ToolStripMenuItem thanhVien_mnst;
-        private ToolStripMenuItem nhậtKýGiaoDịchToolStripMenuItem;
+        private ToolStripMenuItem nhatKyGiaoDich_mnst;
         private ToolStripMenuItem heThong_mnst;
         private ToolStripMenuItem giupDo_mnst;
         private ToolStripSeparator toolStripSeparator1;

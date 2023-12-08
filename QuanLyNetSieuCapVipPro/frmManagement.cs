@@ -13,6 +13,7 @@
         private bool isShowNhomNguoiDung = false;
         private bool isShowPnlChat = false;
         private bool isShowUserControlMayTram = false;
+        private bool isShowUserControlGiaoDich = true;
         public frmManagement()
         {
             InitializeComponent();
@@ -339,6 +340,20 @@
         private void thoat_mnst_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void nhatKyGiaoDich_mnst_Click(object sender, EventArgs e)
+        {
+            if (isShowUserControlGiaoDich)
+            {
+                isShowUserControlGiaoDich = false;
+                userControlGiaoDich1.Hide();
+            }
+            else
+            {
+                isShowUserControlGiaoDich = true;
+                userControlGiaoDich1.Show();
+            }
         }
     }
 }

@@ -17,6 +17,12 @@
             instance = this;
         }
 
+        private void frmGuiTinNhan_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
+
         public void SyncChat(string userID, string userChat)
         {
             rtxtChat.Text += userID + ": " + userChat + "\n";

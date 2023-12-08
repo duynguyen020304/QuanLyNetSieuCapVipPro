@@ -65,6 +65,7 @@
             Name = "frmGuiTinNhan";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmGuiTinNhan";
+            FormClosing += frmGuiTinNhan_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }
