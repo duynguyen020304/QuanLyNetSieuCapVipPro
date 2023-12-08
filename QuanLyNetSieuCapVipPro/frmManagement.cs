@@ -355,5 +355,11 @@
                 userControlGiaoDich1.Show();
             }
         }
+
+        private void giupDo_mnst_Click(object sender, EventArgs e)
+        {
+            gpt frmGpt = new gpt();
+            frmGpt.Show();
+        }
     }
 }

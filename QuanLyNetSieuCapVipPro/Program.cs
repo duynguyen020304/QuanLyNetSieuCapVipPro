@@ -15,8 +15,6 @@ namespace QuanLyNetSieuCapVipPro
             db.CreateDatabase();
             frmLogin login = new frmLogin();
             login.Show();
-            //frmManagement frm = new frmManagement();
-            //frm.Show();
             Application.Run();
         }
     }

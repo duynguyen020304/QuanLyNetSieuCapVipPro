@@ -249,6 +249,7 @@
             giupDo_mnst.Name = "giupDo_mnst";
             giupDo_mnst.Size = new Size(61, 20);
             giupDo_mnst.Text = "Giúp đỡ";
+            giupDo_mnst.Click += giupDo_mnst_Click;
             // 
             // lblHello
             // 
