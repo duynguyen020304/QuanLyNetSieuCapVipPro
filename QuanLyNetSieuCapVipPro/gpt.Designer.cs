@@ -35,6 +35,7 @@
             // 
             // richTextBox1
             // 
+            richTextBox1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             richTextBox1.Location = new Point(12, 12);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(536, 228);
@@ -43,6 +44,7 @@
             // 
             // textBox1
             // 
+            textBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.Location = new Point(12, 258);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
@@ -55,7 +57,7 @@
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 2;
-            button1.Text = "button1";
+            button1.Text = "Chat";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 

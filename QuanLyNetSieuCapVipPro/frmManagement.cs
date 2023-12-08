@@ -14,6 +14,7 @@
         private bool isShowPnlChat = false;
         private bool isShowUserControlMayTram = false;
         private bool isShowUserControlGiaoDich = true;
+        gpt frmGpt = new gpt();
         public frmManagement()
         {
             InitializeComponent();
@@ -358,7 +359,6 @@
 
         private void giupDo_mnst_Click(object sender, EventArgs e)
         {
-            gpt frmGpt = new gpt();
             frmGpt.Show();
         }
     }

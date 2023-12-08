@@ -13,7 +13,7 @@ namespace QuanLyNetSieuCapVipPro
 {
     public class chatgpt
     {
-        private readonly string _apiKey = "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";
+        private readonly string _apiKey = "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";
         private readonly RestClient _client;
 
         // Constructor that takes the API key as a parameter
