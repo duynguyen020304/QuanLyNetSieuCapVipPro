@@ -178,7 +178,12 @@ namespace QuanLyNetSieuCapVipPro
             cboLoaiNguoiDung.DisplayMember = "TenNhomNguoiDung";
             cboLoaiNguoiDung.ValueMember = "MaNhomNguoiDung";
             string loaiNguoiDung = dr[13].ToString();
-            dateTimePicker1.Value = Convert.ToDateTime(dr[15].ToString());
+            DateTime tmp = new DateTime();
+            if (!DateTime.TryParse(dr[15].ToString(), out tmp))
+            {
+                tmp = DateTime.Now;
+            }
+            dateTimePicker1.Value = tmp;
             for (int i = 0; i < cboLoaiNguoiDung.Items.Count; i++)
             {
                 if (cboLoaiNguoiDung.Items[i] is DataRowView row)
