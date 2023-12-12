@@ -191,7 +191,7 @@ namespace QuanLyNetSieuCapVipPro
             cboLoaiNguoiDung.DataSource = dt;
             cboLoaiNguoiDung.DisplayMember = "TenNhomNguoiDung"; //giá trị hiện ra comboBox
             cboLoaiNguoiDung.ValueMember = "MaNhomNguoiDung"; //giá trị thực khi click vào sẽ trả về
-            if (isAdd)
+            if (isAdd == true)
             {
                 btnThem.Enabled = true;
                 btnThem.Visible = true;

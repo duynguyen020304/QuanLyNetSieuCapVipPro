@@ -28,7 +28,7 @@ namespace QuanLyNetSieuCapVipPro
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataTable dt = db.GetAllUserDataSetForThanhVien().Tables[0];
 
-            // Thêm các hàng trống trực tiếp vào DataTable
+            //Thêm các hàng trống trực tiếp vào DataTable
             while (dt.Rows.Count < 20)
             {
                 dt.Rows.Add(dt.NewRow()); // Tạo một hàng mới và thêm nó vào DataTable

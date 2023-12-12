@@ -42,7 +42,7 @@
             }
             else
             {
-                if (authentication.AuthAdminLogin(txtUserName.Text.Trim(), txtPassword.Text.Trim()) && txtUserName.Text.Trim().Length != 0)
+                if (authentication.AuthAdminLogin(txtUserName.Text.Trim(), txtPassword.Text.Trim()) == true && txtUserName.Text.Trim().Length != 0)
                 {
                     if (_isChangeAdminAccount)
                     {

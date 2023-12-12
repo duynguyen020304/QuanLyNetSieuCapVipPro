@@ -14,7 +14,7 @@ namespace QuanLyNetSieuCapVipPro
     public partial class gpt : Form
     {
         private chatgpt chat = new chatgpt();
-        
+
         public gpt()
         {
             init();
@@ -23,7 +23,13 @@ namespace QuanLyNetSieuCapVipPro
 
         private async void init()
         {
-           var response =  await chat.SendMessageAsync("test");
+            var response = await chat.SendMessageAsync("test");
+        }
+
+        private void frmGpt_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }
 
         private async void button1_Click(object sender, EventArgs e)

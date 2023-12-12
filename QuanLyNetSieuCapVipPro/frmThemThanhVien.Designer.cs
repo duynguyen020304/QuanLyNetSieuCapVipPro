@@ -410,7 +410,8 @@
             // 
             // frmThemThanhVien
             // 
-            AutoScaleMode = AutoScaleMode.None;
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 235, 232);
             ClientSize = new Size(989, 600);
             Controls.Add(btnSua);

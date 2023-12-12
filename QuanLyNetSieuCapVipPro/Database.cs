@@ -185,7 +185,7 @@ namespace QuanLyNetSieuCapVipPro
                     {
                         File.Delete(destFileName);
                     }
-                    File.Move(filePath, destFileName);
+                    File.Copy(filePath, destFileName);
                 }
                 catch (Exception e)
                 {
