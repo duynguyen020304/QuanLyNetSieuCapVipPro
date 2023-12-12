@@ -87,7 +87,15 @@ namespace QuanLyNetSieuCapVipPro
             {
                 result = 0;
             }
-            DateTime dateWithoutMilliseconds = new DateTime(
+            DateTime now = new DateTime(
+                DateTime.Now.Year,
+                DateTime.Now.Month,
+                DateTime.Now.Day,
+                DateTime.Now.Hour,
+                DateTime.Now.Minute,
+                DateTime.Now.Second
+            );
+            DateTime birthTime = new DateTime(
                 dateTimePicker1.Value.Year,
                 dateTimePicker1.Value.Month,
                 dateTimePicker1.Value.Day,
@@ -96,7 +104,7 @@ namespace QuanLyNetSieuCapVipPro
                 dateTimePicker1.Value.Second
             );
             if (db.InsertDataIntoNGUOICHOI(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateWithoutMilliseconds, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung) && db.InsertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
+                    now, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung, birthTime) && db.InsertDataIntoTAIKHOAN_USER(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
             {
                 MessageBox.Show("Thêm tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -133,7 +141,7 @@ namespace QuanLyNetSieuCapVipPro
             {
                 result = 0;
             }
-            DateTime dateWithoutMilliseconds = new DateTime(
+            DateTime birthTime = new DateTime(
                 dateTimePicker1.Value.Year,
                 dateTimePicker1.Value.Month,
                 dateTimePicker1.Value.Day,
@@ -142,7 +150,7 @@ namespace QuanLyNetSieuCapVipPro
                 dateTimePicker1.Value.Second
             );
             if (db.UpdateNguoiChoiTableUserData(txtNguoiSuDung.Text.Trim(), txtHoTen.Text.Trim(), soGioChoi, result,
-                    dateWithoutMilliseconds, nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung) && db.UpdateUserPassword(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
+                    nguoiTaoKhoan, nguoiTaoKhoan, txtEmail.Text.Trim(), txtDiaChi.Text.Trim(), txtThanhPho.Text.Trim(), txtQuanHuyen.Text.Trim(), txtCMND.Text.Trim(), txtSDT.Text.Trim(), maNhomNguoiDung, birthTime) && db.UpdateUserPassword(txtNguoiSuDung.Text.Trim(), txtMatKhau.Text.Trim()))
             {
                 MessageBox.Show("Sửa tài khoản thành công", "Thông báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -170,6 +178,7 @@ namespace QuanLyNetSieuCapVipPro
             cboLoaiNguoiDung.DisplayMember = "TenNhomNguoiDung";
             cboLoaiNguoiDung.ValueMember = "MaNhomNguoiDung";
             string loaiNguoiDung = dr[13].ToString();
+            dateTimePicker1.Value = Convert.ToDateTime(dr[15].ToString());
             for (int i = 0; i < cboLoaiNguoiDung.Items.Count; i++)
             {
                 if (cboLoaiNguoiDung.Items[i] is DataRowView row)
@@ -204,5 +213,6 @@ namespace QuanLyNetSieuCapVipPro
                 txtNguoiSuDung.Enabled = false;
             }
         }
+
     }
 }

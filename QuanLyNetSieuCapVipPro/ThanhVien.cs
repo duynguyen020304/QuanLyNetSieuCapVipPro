@@ -62,6 +62,7 @@ namespace QuanLyNetSieuCapVipPro
         {
             int i = dataGridView1.CurrentRow.Index;
             db.RemoveUserFromNGUOICHOI(dataGridView1.Rows[i].Cells[0].Value.ToString());
+            db.RemoveItemInTAIKHOAN_USER(dataGridView1.Rows[i].Cells[0].Value.ToString());
             loadDgv();
         }
 

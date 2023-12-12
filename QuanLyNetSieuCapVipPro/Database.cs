@@ -56,6 +56,7 @@ namespace QuanLyNetSieuCapVipPro
                       "\"SDT\" TEXT, " +
                       "\"NhomNguoiDung\" TEXT, " +
                       "\"TrangThai\" TEXT," + 
+                      "\"NgaySinh\" TEXT," +
                       "CONSTRAINT \"NC_NguoiNapTien_FK\" FOREIGN KEY(\"NguoiNapTien\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
                       "CONSTRAINT \"NC_NguoiTaoTaiKhoan_FK\" FOREIGN KEY(\"NguoiTaoTaiKhoan\") REFERENCES \"ADMIN\"(\"MaAdmin\"), " +
                       "CONSTRAINT \"NC_MaNguoiChoi_PK\" PRIMARY KEY(\"MaNguoiChoi\"), " +
@@ -272,15 +273,15 @@ namespace QuanLyNetSieuCapVipPro
             }
         }
 
-        public bool InsertDataIntoNGUOICHOI(string userAccountId, string userAccountName, Int64 playTimeLeft, Decimal debtAmount, DateTime accountCreationDate, string accountCreator, string customerDeposit, string email, string address, string city, string district, string nationalId, string phoneNumber, string userAccountType, string state = "off")
+        public bool InsertDataIntoNGUOICHOI(string userAccountId, string userAccountName, Int64 playTimeLeft, Decimal debtAmount, DateTime accountCreationDate, string accountCreator, string customerDeposit, string email, string address, string city, string district, string nationalId, string phoneNumber, string userAccountType, DateTime birthTime, string state = "off")
         {
             using (SQLiteConnection conn = new SQLiteConnection(_createDBSQL))
             {
                 int i = 0;
                 conn.Open();
                 string sql =
-                    "INSERT OR IGNORE INTO NGUOICHOI(MaNguoiChoi, TenNguoiDung, SoGioChoiConLai, SoTienNo, NgayTaoTaiKhoan, NguoiTaoTaiKhoan, NguoiNapTien, Email, DiaChi, ThanhPho, QuanHuyen, CMND, SDT, NhomNguoiDung, TrangThai) " +
-                    "VALUES(@MaNguoiChoi, @TenNguoiDung, @SoGioChoiConLai, @SoTienNo, @NgayTaoTaiKhoan, @NguoiTaoTaiKhoan, @NguoiNapTien, @Email, @DiaChi, @ThanhPho, @QuanHuyen, @CMND, @SDT, @NhomNguoiDung, @TrangThai)";
+                    "INSERT OR IGNORE INTO NGUOICHOI(MaNguoiChoi, TenNguoiDung, SoGioChoiConLai, SoTienNo, NgayTaoTaiKhoan, NguoiTaoTaiKhoan, NguoiNapTien, Email, DiaChi, ThanhPho, QuanHuyen, CMND, SDT, NhomNguoiDung, TrangThai, NgaySinh) " +
+                    "VALUES(@MaNguoiChoi, @TenNguoiDung, @SoGioChoiConLai, @SoTienNo, @NgayTaoTaiKhoan, @NguoiTaoTaiKhoan, @NguoiNapTien, @Email, @DiaChi, @ThanhPho, @QuanHuyen, @CMND, @SDT, @NhomNguoiDung, @TrangThai, @NgaySinh)";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNguoiChoi", userAccountId);
                 cmd.Parameters.AddWithValue("@TenNguoiDung", userAccountName);
@@ -297,13 +298,14 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@SDT", phoneNumber);
                 cmd.Parameters.AddWithValue("@NhomNguoiDung", userAccountType);
                 cmd.Parameters.AddWithValue("@TrangThai", state);
+                cmd.Parameters.AddWithValue("@NgaySinh", birthTime);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
                 return i > 0;
             }
         }
-        public bool UpdateNguoiChoiTableUserData(string userAccountId, string userAccountName, Int64 playTimeLeft, Decimal debtAmount, DateTime accountCreationDate, string accountCreator, string customerDeposit, string email, string address,
-            string city, string district, string nationalId, string phoneNumber, string userAccountType)
+        public bool UpdateNguoiChoiTableUserData(string userAccountId, string userAccountName, Int64 playTimeLeft, Decimal debtAmount, string accountCreator, string customerDeposit, string email, string address,
+            string city, string district, string nationalId, string phoneNumber, string userAccountType, DateTime birthTime)
         {
             using (SQLiteConnection conn = new SQLiteConnection(_createDBSQL))
             {
@@ -312,7 +314,6 @@ namespace QuanLyNetSieuCapVipPro
                 string sql = "UPDATE NGUOICHOI set TenNguoiDung = @TenNguoiDung, " +
                              "SoGioChoiConLai = @SoGioChoiConLai, " +
                              "SoTienNo = @SoTienNo, " +
-                             "NgayTaoTaiKhoan = @NgayTaoTaiKhoan, " +
                              "NguoiTaoTaiKhoan = @NguoiTaoTaiKhoan, " +
                              "NguoiNapTien = @NguoiNapTien, " +
                              "Email = @Email, " +
@@ -321,14 +322,14 @@ namespace QuanLyNetSieuCapVipPro
                              "QuanHuyen = @QuanHuyen, " +
                              "CMND = @CMND, " +
                              "SDT = @SDT, " +
-                             "NhomNguoiDung = @NhomNguoiDung " +
+                             "NhomNguoiDung = @NhomNguoiDung, " +
+                             "NgaySinh = @NgaySinh " + 
                              "Where MaNguoiChoi = @MaNguoiChoi";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@MaNguoiChoi", userAccountId);
                 cmd.Parameters.AddWithValue("@TenNguoiDung", userAccountName);
                 cmd.Parameters.AddWithValue("@SoGioChoiConLai", playTimeLeft);
                 cmd.Parameters.AddWithValue("@SoTienNo", debtAmount);
-                cmd.Parameters.AddWithValue("@NgayTaoTaiKhoan", accountCreationDate);
                 cmd.Parameters.AddWithValue("@NguoiTaoTaiKhoan", accountCreator);
                 cmd.Parameters.AddWithValue("@NguoiNapTien", customerDeposit);
                 cmd.Parameters.AddWithValue("@Email", email);
@@ -338,6 +339,7 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@CMND", nationalId);
                 cmd.Parameters.AddWithValue("@SDT", phoneNumber);
                 cmd.Parameters.AddWithValue("@NhomNguoiDung", userAccountType);
+                cmd.Parameters.AddWithValue("@NgaySinh", birthTime);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
                 return i > 0;
@@ -748,6 +750,20 @@ namespace QuanLyNetSieuCapVipPro
                 cmd.Parameters.AddWithValue("@TrangThaiMay", state);
                 cmd.Parameters.AddWithValue("@LanKhoiDongGanNhat", bootTime);
                 cmd.Parameters.AddWithValue("@MaMay", computerId);
+                i = cmd.ExecuteNonQuery();
+                conn.Close();
+                return i > 0;
+            }
+        }
+
+        public bool RemoveItemInTAIKHOAN_USER(string userAccountId)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(_createDBSQL))
+            {
+                int i = 0;
+                conn.Open();
+                string sql = "DELETE FROM TAIKHOAN_USER WHERE MaTaiKhoan = @MaTaiKhoan";
+                var cmd = new SQLiteCommand(sql, conn);
                 i = cmd.ExecuteNonQuery();
                 conn.Close();
                 return i > 0;
