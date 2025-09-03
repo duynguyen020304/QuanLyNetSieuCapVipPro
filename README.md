@@ -1,4 +1,4 @@
-# QuanLyNetSieuCapVipPro
+# QuanLyNet
 
 A Windows Forms (WinForms) management application for an Internet cafe (quán net). The project is written in C# targeting .NET 6 and provides user / account management, computer (station) control, service (dich vu) and transaction history, plus simple chat and time-tracking features.
 
