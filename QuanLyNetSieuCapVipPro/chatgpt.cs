@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;  // Don't forget to include this namespace for async Task
-using System;
+using System.Threading.Tasks;
 using RestSharp;
 using Newtonsoft.Json;
 
@@ -13,27 +7,32 @@ namespace QuanLyNetSieuCapVipPro
 {
     public class chatgpt
     {
-        private readonly string _apiKey = "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";
+        private readonly string _apiKey;
         private readonly RestClient _client;
 
-        // Constructor that takes the API key as a parameter
-        public chatgpt()
+        // Preferred constructor: pass your API key here
+        public chatgpt(string apiKey)
         {
-            // Initialize the RestClient with the ChatGPT API endpoint
-            _client = new RestClient("https://api.openai.com/v1/engines/text-davinci-003/completions");
+            _apiKey = "my_key" ?? string.Empty;
+            // Use the completions endpoint and send model in body
+            _client = new RestClient("https://api.openai.com/v1/completions");
         }
+
+        // Backward-compatible parameterless ctor (will error if used without setting key)
+        public chatgpt() : this(string.Empty) { }
+
         public async Task<string> SendMessageAsync(string message)
         {
-            // Create a new POST request
+            if (string.IsNullOrWhiteSpace(_apiKey))
+                throw new InvalidOperationException("OpenAI API key is not set. Use new chatgpt(\"YOUR_KEY\") or provide a key.");
+
             var request = new RestRequest("", Method.Post);
-            // Set the Content-Type header
             request.AddHeader("Content-Type", "application/json");
-            // Set the Authorization header with the API key
             request.AddHeader("Authorization", $"Bearer {_apiKey}");
 
-            // Create the request body with the message and other parameters
             var requestBody = new
             {
+                model = "text-davinci-003",
                 prompt = message,
                 max_tokens = 3000,
                 n = 1,
@@ -41,17 +40,49 @@ namespace QuanLyNetSieuCapVipPro
                 temperature = 0.7,
             };
 
-            // Add the JSON body to the request
-            request.AddJsonBody(JsonConvert.SerializeObject(requestBody));
+            // Let RestSharp serialize the object
+            request.AddJsonBody(requestBody);
 
-            // Execute the request and receive the response
             var response = await _client.ExecuteAsync(request);
 
-            // Deserialize the response JSON content
-            var jsonResponse = JsonConvert.DeserializeObject<dynamic>(response.Content ?? string.Empty);
+            if (response == null)
+                throw new HttpRequestException("No response received from the OpenAI API.");
 
-            // Extract and return the chatbot's response text
-            return jsonResponse?.choices[0]?.text?.ToString()?.Trim() ?? string.Empty;
+            // If the call failed, try to extract a helpful error message
+            if (!response.IsSuccessful)
+            {
+                var content = response.Content ?? string.Empty;
+                try
+                {
+                    var err = JsonConvert.DeserializeObject<dynamic>(content);
+                    string errorMsg = err?.error?.message ?? content;
+                    throw new HttpRequestException($"OpenAI API error: {errorMsg} (HTTP {(int)response.StatusCode})");
+                }
+                catch (JsonException)
+                {
+                    throw new HttpRequestException($"OpenAI API returned HTTP {(int)response.StatusCode}: {response.StatusDescription}");
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(response.Content))
+                return string.Empty;
+
+            var jsonResponse = JsonConvert.DeserializeObject<dynamic>(response.Content);
+
+            if (jsonResponse == null)
+                return string.Empty;
+
+            // Safely attempt to read the text field
+            try
+            {
+                var text = jsonResponse.choices?[0]?.text?.ToString()?.Trim();
+                return string.IsNullOrEmpty(text) ? string.Empty : text;
+            }
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
+            {
+                // Unexpected structure: return empty string (or consider throwing)
+                return string.Empty;
+            }
         }
     }
 }
